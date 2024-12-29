@@ -1,29 +1,23 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router'
+import { BrowserRouter, Routes, Route } from 'react-router'
 import Home from './pages/HomePage/HomePage';
-import styles from './styles/App.module.css';
+import Navbar from './components/Navbar/Navbar';
+import Page1 from './pages/Page1/Page1';
+import Footer from './pages/Footer/Footer';
 
-import projectLogo from './assets/project-logo.png'
+
 
 function App() {
   return (
     <BrowserRouter>
-      <div className={styles.app}>
-        <header className={styles.appHeader}>
-          <img src={projectLogo} alt="Logo" className={styles.appLogo} />
-          <nav className={styles.appNav}>
-            <Link to="/" className={styles.appLink}>Home</Link>
-          </nav>
-        </header>
-        <main className={styles.main}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </main>
-        <footer className={styles.footer}>
-          <p>&copy; 2024 My App</p>
-        </footer>
-      </div>
-    </BrowserRouter>
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/page1" element={<Page1 title = "page1"/>} />
+        <Route path="/page2" element={<Page1 title = "page2"/>} />
+        <Route path="/page3" element={<Page1 title = "page3"/>} />
+      </Routes>
+      <Footer/>
+      </BrowserRouter>
   );
 }
 
