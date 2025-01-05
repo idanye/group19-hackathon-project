@@ -3,6 +3,7 @@ import Expert from '../models/expert.js';
 // Middleware to validate if the expert exists in the database
 const validateExpert = async (req, res, next) => {
   const { expertID } = req.body;
+
   try {
     const expert = await Expert.findOne({ expertID });
     if (!expert) {
@@ -11,7 +12,8 @@ const validateExpert = async (req, res, next) => {
     // Attach the expert details to the request object for further use
     req.expert = expert;
     next();
-  } catch (error) {
+  }
+  catch (error) {
     res.status(500).json({ message: error.message });
   }
 };

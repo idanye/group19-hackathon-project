@@ -1,4 +1,3 @@
-import "./page1.css";
 import PropTypes from "prop-types";
 
 /*
@@ -7,11 +6,11 @@ for now we pass a title
 */
 
 const Page1 = (props) => {
-
     const title = props.title;
+
     return (
-        <div className="Page1">
-            <h1>{title}</h1>
+        <div className="page">
+            <h1 className="headline">{title}</h1>
         </div>
     );
 }

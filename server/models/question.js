@@ -22,7 +22,7 @@ const questionSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    is_annonymous: {
+    is_anonymous: {
         type: Boolean,
         default: false,
     },
