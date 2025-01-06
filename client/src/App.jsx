@@ -1,28 +1,30 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router'
-import Home from './pages/HomePage/HomePage';
-import styles from './styles/App.module.css';
-
-import projectLogo from './assets/project-logo.png'
+import { BrowserRouter, Routes, Route } from 'react-router'
+// Pages
+import Home from './pages/HomePage.jsx';
+import CategoryPage from './pages/CategoryPage.jsx';
+// Components
+import Navbar from './components/Navbar.jsx';
+import Footer from './components/Footer.jsx';
+import QuestionForm from './components/QuestionForm.jsx';
+import AddQuestionButton from './components/AddQuestionButton.jsx';
+import SingleQuestionPage from './pages/SingleQuestionPage.jsx';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className={styles.app}>
-        <header className={styles.appHeader}>
-          <img src={projectLogo} alt="Logo" className={styles.appLogo} />
-          <nav className={styles.appNav}>
-            <Link to="/" className={styles.appLink}>Home</Link>
-          </nav>
-        </header>
-        <main className={styles.main}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </main>
-        <footer className={styles.footer}>
-          <p>&copy; 2024 My App</p>
-        </footer>
-      </div>
+        <div className="app">
+            <Navbar/>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/cyber-bullying" element={<CategoryPage category="Cyber Bullying"/>} />
+                <Route path="/sexual-harassment" element={<CategoryPage category="Sexual Harassment"/>} />
+                <Route path="/eating-disorders" element={<CategoryPage category="Eating Disorders"/>} />
+                <Route path="/question-form" element={<QuestionForm />} />
+                <Route path="/:category/:id" element={<SingleQuestionPage />} />
+            </Routes>
+            <AddQuestionButton />
+            <Footer/>
+        </div>
     </BrowserRouter>
   );
 }
