@@ -159,3 +159,42 @@
 .question-form input[type="radio"] {
   margin-right: 5px;
 }
+
+.category-page-container
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.category-questions-list-item
+{
+  list-style: none;
+  color: rgb(39, 71, 123);
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 45px;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.category-questions-list-item :hover
+{
+  cursor: pointer;
+  color: rgba(56, 101, 173, 0.925);
+  transform: scale(1.05);
+}
+
+.no-category-questions, .error, .loading
+{
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
+
+

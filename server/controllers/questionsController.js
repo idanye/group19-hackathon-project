@@ -19,9 +19,9 @@ const  getQuestionsByCategory = async (req, res) => {
     try {
         const { category } = req.params;
         const questions = await Question.find({ category });
-        if (!questions.length) {
-          return res.status(404).json({ message: "No questions found in this category" });
-        }
+        // if (!questions.length) {
+        //   return res.status(404).json({ message: "No questions found in this category" });
+        // }
         res.status(200).json(questions);
     } catch (error) 
     {
