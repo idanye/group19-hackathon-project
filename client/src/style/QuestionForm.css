@@ -1,0 +1,101 @@
+/* Question form container */
+.question-form {
+  max-width: 400px;
+  margin: 0 auto; 
+  padding: 20px;
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd; 
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+/* Title inside the question form */
+.question-form h1 {
+  font-size: 24px;
+  font-family: 'Chewy', cursive;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333; 
+}
+
+/* Label styling inside the question form */
+.question-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-family: 'Chewy', cursive;
+  color: #555; 
+}
+
+/* Input fields and select dropdowns styling */
+.question-form input[type="text"],
+.question-form select {
+  width: 100%; 
+  padding: 10px;
+  margin-bottom: 20px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Chewy', cursive;
+  box-sizing: border-box; 
+}
+
+/* Textarea styling */
+.question-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Chewy', cursive;
+  box-sizing: border-box;
+  resize: vertical; 
+}
+
+/* Button styling inside the form */
+.question-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #a2ceca; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: 'Chewy', cursive;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+/* Button hover effect */
+.question-form button:hover {
+  background-color: #64c5bd; 
+}
+
+/* Error message styling */
+.error {
+  color: #ff4d4d; 
+  background-color: #ffe6e6; 
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #ff4d4d; 
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+/* Success message styling */
+.success {
+  color: #4dabf7; 
+  background-color: #e7f4fa; 
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #4dabf7; 
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}

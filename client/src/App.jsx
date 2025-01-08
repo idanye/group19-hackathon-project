@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { BrowserRouter, Routes, Route } from 'react-router';
+
 // Pages
 import Home from './pages/HomePage.jsx';
 import CategoryPage from './pages/CategoryPage.jsx';
@@ -7,13 +9,27 @@ import SingleQuestionPage from './pages/SingleQuestionPage.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import QuestionForm from './components/QuestionForm.jsx';
-import AddQuestionButton from './components/AddQuestionButton.jsx';
 import AnswerForm from './components/AnswerForm.jsx';
+
+import SingleQuestionPage from './pages/SingleQuestionPage.jsx';
+import logo from './images/logo.png';
+import AskQuestionButton from './components/AskQuestionButton.jsx';
+
+
 
 function App() {
   return (
     <BrowserRouter>
         <div className="app">
+            <header className="app-header">
+                <div className="header-content">
+                    <div className="header-left">
+                        <img src={logo} alt="App Logo" className="app-logo" />
+                        <h1 className="app-title">SafeSpace</h1>
+                    </div>
+                    <AskQuestionButton />
+                </div>
+            </header>
             <Navbar/>
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -24,7 +40,6 @@ function App() {
                 <Route path="/:category/:id" element={<SingleQuestionPage />} />
                 <Route path="/:category/:id/add-answer" element={<AnswerForm />} />
             </Routes>
-            <AddQuestionButton />
             <Footer/>
         </div>
     </BrowserRouter>
@@ -32,3 +47,4 @@ function App() {
 }
 
 export default App;
+
