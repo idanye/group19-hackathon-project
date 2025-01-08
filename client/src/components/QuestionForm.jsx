@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import '../style/QuestionForm.css';
 
 const QuestionForm = () => {
   const [question, setQuestion] = useState("");

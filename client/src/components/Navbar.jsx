@@ -1,46 +1,57 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-/*
-using useState to toggle underLine under the current page
-using Link to connect a page to its path and render to the current page later*/ 
-const Navbar = () => {
+// Import icons
+import homeIcon from '../images/home.png';
+import cyberCrimeIcon from '../images/cyber-crime.png';
+import harassmentIcon from '../images/sexual-harassment.png';
+import eatingIcon from '../images/eating.png';
 
+/*
+Using useState to toggle underline under the current page.
+Using Link to connect a page to its path and render to the current page later.
+Added icons for each navigation option.
+*/
+const Navbar = () => {
     const [navBarOption, setNavBarOption] = useState("Home");
 
     return (
         <div className="navbar">
             <ul className="navbar-options">
-                <Link to="/" style={{textDecoration : 'none'}}>
+
+                {/* Home */}
+                <Link to="/" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("Home")}>
-                        Home
+                        <img src={homeIcon} alt="Home" className="navbar-icon" /> Home
                     </li>
                     {navBarOption === "Home" ? <hr /> : null}
                 </Link>
 
-                <Link to="/cyber-bullying" style={{textDecoration : 'none'}}>
+                {/* Cyber Bullying */}
+                <Link to="/cyber-bullying" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("cyber-bullying")}>
-                        Cyber Bullying
+                        <img src={cyberCrimeIcon} alt="Cyber Bullying" className="navbar-icon" /> Cyber Bullying
                     </li>
                     {navBarOption === "cyber-bullying" ? <hr /> : null}
                 </Link>
 
-                <Link to="/sexual-harassment" style={{textDecoration : 'none'}}>
+                {/* Sexual Harassment */}
+                <Link to="/sexual-harassment" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("sexual-harassment")}>
-                        Sexual Harassment
+                        <img src={harassmentIcon} alt="Sexual Harassment" className="navbar-icon" /> Sexual Harassment
                     </li>
                     {navBarOption === "sexual-harassment" ? <hr /> : null}
                 </Link>
 
-                <Link to="/eating-disorders" style={{textDecoration : 'none'}}>
+                {/* Eating Disorders */}
+                <Link to="/eating-disorders" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("eating-disorders")}>
-                        Eating Disorders
+                        <img src={eatingIcon} alt="Eating Disorders" className="navbar-icon" /> Eating Disorders
                     </li>
                     {navBarOption === "eating-disorders" ? <hr /> : null}
                 </Link>
 
             </ul>
-
         </div>
     );
 }
