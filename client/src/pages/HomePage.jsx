@@ -33,7 +33,7 @@ const Home = () => {
                       </h3>
                   </div>
                   <div className="team-member">
-                      <h3>Eti Revach
+                      <h3>Etti Revach
                           <a href="" target="_blank" rel="noopener noreferrer"
                              className="linkedin-icon">
                               <i className="fab fa-linkedin"></i>

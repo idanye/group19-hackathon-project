@@ -11,7 +11,7 @@ import Footer from './components/Footer.jsx';
 import QuestionForm from './components/QuestionForm.jsx';
 import AnswerForm from './components/AnswerForm.jsx';
 
-import SingleQuestionPage from './pages/SingleQuestionPage.jsx';
+
 import logo from './images/logo.png';
 import AskQuestionButton from './components/AskQuestionButton.jsx';
 
