@@ -11,13 +11,21 @@ const answerSchema = mongoose.Schema({
     ref: 'Question', 
     required: true 
   },
+
+  // fields for the regular user
+  name: { 
+    type: String,
+  },
+  email: { 
+    type: String,
+  },
+
+  // fiels for the expert
   expertName: { 
-    type: String, 
-    required: true 
+    type: String,
   },
   expertID: { 
-    type: String, 
-    required: true 
+    type: String,
   },
 //   expertRole: { type: String, required: true },
 }, { timestamps: true });

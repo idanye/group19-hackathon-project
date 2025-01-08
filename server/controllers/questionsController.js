@@ -1,5 +1,6 @@
 
 import Question from '../models/question.js';
+import RegularUser from '../models/regularUser.js';
 
 // Get all questions
 const getAllQuestions = async (req, res) => {  
@@ -55,12 +56,28 @@ const createQuestion = async (req, res) => {
             category,
             question_header,
             question_body,
-            name_asked_by :  name_asked_by, // default: "אנונימי"
+            name_asked_by :  name_asked_by, // default: "Anonymous"
             email_asked_by: email_asked_by,
-            is_annonymous : name_asked_by == "אנונימי" ? true : false
+            is_annonymous : name_asked_by == "Anonymous" ? true : false
         });
         const savedQuestion = await question.save();
-        res.status(201).json(savedQuestion);
+        // adding the user who asked the question to the regularUser collection
+        const existingUser = await RegularUser.findOne({ email: email_asked_by });
+        // let savedUser = existingUser;
+        if (!existingUser)
+        {
+            const newUser = new RegularUser({
+                name: name_asked_by,
+                email: email_asked_by
+            });
+            await newUser.save();
+            //savedUser = await newUser.save();
+        }
+        res.status(201).json({
+            message: 'Question created successfully!',
+            question: savedQuestion,
+            // user: savedUser
+        });
     } catch (error)
     {
         res.status(500).json({ message: error.message });
