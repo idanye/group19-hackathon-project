@@ -232,8 +232,6 @@ body, .app {
   text-align: center;
 }
 
-
-
 .error {
   color: #ff4d4d;
   background-color: #ffe6e6;
@@ -269,7 +267,7 @@ body, .app {
   margin-left: 8px;
   cursor: pointer;
   font-size: 14px;
-  color: #007BFF; 
+  color: #007BFF;
 }
 
 /* Home Page */
@@ -325,4 +323,3 @@ body, .app {
 .linkedin-icon:hover {
   color: #005582; /* Darker LinkedIn blue */
 }
-
