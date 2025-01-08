@@ -16,7 +16,7 @@ const questionSchema = new mongoose.Schema({
     name_asked_by: {
         type: String,
         required: true,
-        default: "אנונימי",
+        default: "Anonymous",
     },
     email_asked_by: {
         type: String,

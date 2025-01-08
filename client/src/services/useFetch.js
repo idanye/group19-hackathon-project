@@ -10,6 +10,9 @@ const useFetch = (url) => {
     useEffect(() => {
         fetch(url)
         .then(response => {
+            if(response.status === 404){
+                throw Error('No data found')
+            }
             if(!response.ok){
                 throw Error('Failed to fetch data')
             }
@@ -20,9 +23,17 @@ const useFetch = (url) => {
             setError(null);
         })
         .catch(error => {
-            // catch network error
-            setIsLoading(false);
-            setError(error.message);
+            // we don't want to show an error message for this case
+            if(error.message === 'No data found'){
+                setIsLoading(false);
+                setError(null);
+            }
+            else
+            {
+                 // catch network error
+                setIsLoading(false);
+                setError(error.message);
+            }
         });
     }, [url]);
     return {data, isLoading, error};
