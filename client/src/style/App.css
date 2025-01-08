@@ -1,0 +1,141 @@
+/* Load a soft and modern font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
+/* Header container */
+.header-content {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 10px 20px; 
+  background-color: white; 
+}
+
+.header-left {
+  display: flex; 
+  align-items: center; 
+}
+
+.app-logo {
+  width: 140px; 
+  height: auto; 
+  margin-right: 15px; 
+}
+
+.app-title {
+  font-size: 2.5rem; 
+  font-weight: 600; 
+  color: #a2ceca; 
+  margin: 0;
+  white-space: nowrap; 
+  font-family: 'Chewy', cursive;
+  font: bold;
+}
+
+
+.ask-question-button {
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center; 
+  padding: 10px 20px;
+  background-color: #a2ceca;
+  color: white;
+  border: none;
+  font-family: 'Chewy', cursive;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+  gap: 8px;
+}
+
+.ask-question-button:hover {
+  background-color: #86c9c3;
+}
+
+.material-symbols-outlined {
+  font-size: 25px; 
+  line-height: 1; 
+  vertical-align: middle; 
+}
+
+
+/* Base styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fefaf6; /* Light cream pastel background */
+  color: #444; /* Dark text for readability */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation Bar */
+.navbar-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a2ceca; 
+  padding: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-option {
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+  text-decoration: none;
+  color: white; 
+  font-size: 20px;
+  font-family: 'Chewy', cursive;
+  font-weight: 500;
+}
+
+.navbar-option:hover {
+  color: #E6F3FF;
+}
+
+.navbar-icon {
+  width: 28px; /* Adjust icon size */
+  height: 28px;
+  margin-right: 8px; /* Space between icon and text */
+  filter: brightness(0) invert(1); /* Converts image to white */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.navbar-option:hover .navbar-icon {
+  transform: scale(1.2); /* Slight zoom effect on hover */
+  filter: brightness(0.8) invert(1); /* Slightly dim the white */
+}
+
+.navbar-option:hover .navbar-icon {
+  transform: scale(1.2); /* Slight zoom effect on hover */
+}
+
+.navbar-options hr {
+  border: none;
+  height: 2px;
+  background-color: white;
+  margin: 0;
+  margin-top: 5px;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  background: #dceaf4; 
+  color: #444;
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+  color: #9f94b8; 
+}
