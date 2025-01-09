@@ -63,7 +63,7 @@ const CategoryPage = (props) => {
                                 <span className="meta-separator">•</span>
                                 <span className="replies">
                                     <MessageSquare size={14} />
-                                    {question.replies?.length || 0} replies
+                                    {question.num_replies || 0} replies
                                 </span>
                             </div>
                         </div>
