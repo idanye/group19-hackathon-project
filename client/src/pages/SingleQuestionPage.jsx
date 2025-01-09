@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router';
 import useFetch from '../services/useFetch';
+import '../style/SingleQuestionPage.css';
 
 const SingleQuestionPage = () => {
     const { category, id } = useParams()

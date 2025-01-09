@@ -2,7 +2,7 @@
 const Footer = () => {
     return (
         <div className="footer">
-            <p>&copy; 2024 My App</p>
+            <p>&copy; SafeSpace 2025</p>
         </div>
     );
 }

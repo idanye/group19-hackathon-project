@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from 'react-router';
 
 // Pages
@@ -14,8 +13,6 @@ import AnswerForm from './components/AnswerForm.jsx';
 
 import logo from './images/logo.png';
 import AskQuestionButton from './components/AskQuestionButton.jsx';
-
-
 
 function App() {
   return (

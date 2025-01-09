@@ -1,75 +1,86 @@
 /* Question form container */
 .question-form {
   max-width: 400px;
-  margin: 0 auto; 
+  margin: 20px auto;
   padding: 20px;
-  background-color: #f9f9f9; 
-  border: 1px solid #ddd; 
+  background-color: #a2ceca0a;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Title inside the question form */
 .question-form h1 {
-  font-size: 24px;
-  font-family: 'Chewy', cursive;
+  font-size: 1.5em;
   margin-bottom: 20px;
   text-align: center;
-  color: #333; 
+  color: var(--text-main);
 }
 
 /* Label styling inside the question form */
 .question-form label {
-  display: block;
+  display: inline-block;
   margin-bottom: 8px;
   font-weight: bold;
-  font-family: 'Chewy', cursive;
-  color: #555; 
+  color: #555;
+  margin-right: 15px;
+}
+
+.question-form input[type="radio"] {
+  margin-right: 5px;
+}
+
+.question-form fieldset label {
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
 /* Input fields and select dropdowns styling */
 .question-form input[type="text"],
-.question-form select {
-  width: 100%; 
-  padding: 10px;
-  margin-bottom: 20px; 
-  border: 1px solid #ccc; 
-  border-radius: 4px;
-  font-size: 14px;
-  font-family: 'Chewy', cursive;
-  box-sizing: border-box; 
-}
-
-/* Textarea styling */
+.question-form select,
 .question-form textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 14px;
-  font-family: 'Chewy', cursive;
+  font-size: 1rem;
   box-sizing: border-box;
-  resize: vertical; 
+  resize: vertical;
+}
+
+.question-form fieldset {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.question-form input:focus,
+.question-form select:focus,
+.question-form textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
 }
 
 /* Button styling inside the form */
 .question-form button {
   width: 100%;
   padding: 10px;
-  background-color: #a2ceca; 
+  background-color: #4dabf7;
   color: white;
   border: none;
   border-radius: 4px;
   font-size: 16px;
-  font-family: 'Chewy', cursive;
   cursor: pointer;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
 /* Button hover effect */
 .question-form button:hover {
-  background-color: #64c5bd; 
+  background-color: #0056b3;
 }
 
 /* Error message styling */
