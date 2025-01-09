@@ -4,9 +4,8 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import staySafeQuetsionsRoutes from './routes/questionsRouter.js'; 
+import staySafeQuestionsRoutes from './routes/questionsRouter.js';
 import  staySafeAnswersRoutes from './routes/answersRouter.js';
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,7 +21,6 @@ app.use(cors({
   origin: process.env.CLIENT_URL
 }));
 
-
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI)
 .then(() => console.log('Connected to MongoDB'))
@@ -30,7 +28,7 @@ mongoose.connect(MONGO_URI)
   console.error('Failed to connect to MongoDB:', err);
 });
 
-app.use('/staySafe', staySafeQuetsionsRoutes); 
+app.use('/staySafe', staySafeQuestionsRoutes);
 app.use('/staySafe', staySafeAnswersRoutes); 
 
 // Start server

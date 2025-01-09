@@ -26,6 +26,4 @@ router.get('/getCategoryQuestions/:category/:id', getQuestionByCategoryAndId)
 // POST a new question
 router.post('/addQuestion', createQuestion)
 
-
-
 export default router;

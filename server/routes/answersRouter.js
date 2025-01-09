@@ -11,9 +11,9 @@ import {
 const router = express.Router();
 
 // POST an answer to a specific question from an expert
-router.post('/exprt/:questionId', validateExpert, addAnswerExpert);
+router.post('/expert/:questionId', validateExpert, addAnswerExpert);
 
-// Post an answer to a specific question from a regular user
+// POST an answer to a specific question from a regular user
 router.post('/regularUser/:questionId', validateRegularUser, addAnswerRegularUser);
 
 // GET all answers for a specific question

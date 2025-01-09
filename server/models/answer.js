@@ -20,7 +20,7 @@ const answerSchema = mongoose.Schema({
     type: String,
   },
 
-  // fiels for the expert
+  // fields for the expert
   expertName: { 
     type: String,
   },
