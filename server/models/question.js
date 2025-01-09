@@ -25,7 +25,13 @@ const questionSchema = new mongoose.Schema({
     is_anonymous: {
         type: Boolean,
         default: false,
+        required: true,
     },
+    num_replies : {
+        type: Number,
+        default: 0,
+        required: true,
+    }
 }, { timestamps: true });
 
 // Create and export the model

@@ -1,4 +1,6 @@
 import Answer from "../models/answer.js";
+import Question from "../models/question.js";
+import mongoose from "mongoose";
 
 /**
  * Add an answer or a comment to a specific question
@@ -22,6 +24,11 @@ const addAnswerExpert = async (req, res) => {
     });
 
     const savedAnswer = await answer.save();
+
+    const question = await Question.findById({_id: new mongoose.Types.ObjectId(questionId)})
+    question.num_replies += 1;
+    await question.save();
+
     res.status(201).json(savedAnswer); 
   } catch (error) {
     res.status(500).json({ message: error.message }); 
@@ -49,6 +56,11 @@ const addAnswerRegularUser = async (req, res) => {
     });
 
     const savedAnswer = await answer.save();
+
+    const question = await Question.findById({_id: new mongoose.Types.ObjectId(questionId)})
+    question.num_replies += 1;
+    await question.save();
+
     res.status(201).json(savedAnswer); 
   } catch (error) {
     res.status(500).json({ message: error.message }); 
