@@ -29,6 +29,14 @@ body, .app {
   margin: 0 auto;
 }
 
+a {
+  text-decoration: none;
+}
+
+.signup-login a {
+
+}
+
 /* Header container */
 .header-content {
   display: flex; 
@@ -41,6 +49,17 @@ body, .app {
 .header-left {
   display: flex; 
   align-items: center; 
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.line-separator {
+  flex-grow: 1; /* Fills the space between left and right sections */
+  margin: 0 20px; /* Adjust spacing from left and right sections */
 }
 
 /* App logo styling */
@@ -58,8 +77,8 @@ body, .app {
   white-space: nowrap;
 }
 
-/* Ask question button */
-.ask-question-button {
+/* Ask question button and login/sign up buttons*/
+.ask-question-button, .signup-login a {
   display: inline-flex; 
   align-items: center;
   justify-content: center; 
@@ -76,7 +95,7 @@ body, .app {
 }
 
 /* Ask question button hover effect */
-.ask-question-button:hover {
+.ask-question-button:hover, .signup-login a:hover {
   background-color: #86c9c3;
 }
 
@@ -226,6 +245,92 @@ body {
 
 .linkedin-icon:hover {
   color: #005582;
+}
+
+/* Question form container */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #a2ceca0a;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Title inside the question form */
+form h1 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  text-align: center;
+  color: var(--text-main);
+}
+
+/* Label styling inside the question form */
+form label {
+  display: inline-flex;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+  margin-right: 15px;
+}
+
+form input[type="radio"] {
+  margin-right: 6px;
+  margin-bottom: 3px;
+  width: 20px;
+  height: 20px;
+}
+
+form fieldset label {
+  margin-top: 5px;
+}
+
+/* Input fields and select dropdowns styling */
+form input,
+form select,
+form textarea,
+form fieldset {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+form fieldset {
+  background: #ffffff;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+/* Button styling inside the form */
+form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #4dabf7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+form button:hover {
+  background-color: #0056b3;
 }
 
 /* Responsive design for smaller screens (max-width: 640px) */

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import '../style/QuestionForm.css';
 
 const QuestionForm = () => {
   const [question, setQuestion] = useState("");
@@ -92,80 +91,80 @@ const QuestionForm = () => {
         {error && <div className="error">{error}</div>}
         {successMessage && <div className="success">{successMessage}</div>}
 
-        <h1 className="headline">Ask a question</h1>
-
         <form onSubmit={handleSubmit}>
+          <h1 className="headline">Ask a question</h1>
+
           <label>Ask Anonymously:</label>
           <fieldset>
             <label>
               <input
-                type="radio"
-                value="yes"
-                checked={isAnonymous === "yes"}
-                onChange={(e) => setIsAnonymous(e.target.value)}
+                  type="radio"
+                  value="yes"
+                  checked={isAnonymous === "yes"}
+                  onChange={(e) => setIsAnonymous(e.target.value)}
               />
               Yes
             </label>
             <label>
               <input
-                type="radio"
-                value="no"
-                checked={isAnonymous === "no"}
-                onChange={(e) => setIsAnonymous(e.target.value)}
+                  type="radio"
+                  value="no"
+                  checked={isAnonymous === "no"}
+                  onChange={(e) => setIsAnonymous(e.target.value)}
               />
               No
             </label>
           </fieldset>
 
           {isAnonymous === "no" && (
-            <div>
-              <label>Your Name:</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
+              <div>
+                <label>Your Name:</label>
+                <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+              </div>
           )}
 
-        <label>
+          <label>
             Email:
             <span className="info-icon" title="Your email will remain confidential and won't be shared.">
                 ℹ️
             </span>
-        </label>
-        <div>
+          </label>
+          <div>
             <input
                 type="text"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
-        </div>
+          </div>
 
           <label>Title:</label>
           <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
           />
 
           <label>Question:</label>
           <textarea
-            id="question"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            rows="5"
-            placeholder="Write your question here..."
+              id="question"
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              rows="5"
+              placeholder="Write your question here..."
           />
 
           <label>Category:</label>
           <select
-            id="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
           >
             <option value="" disabled>
               Select a category

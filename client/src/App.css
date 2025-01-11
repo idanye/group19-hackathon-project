@@ -48,6 +48,10 @@ body, .app {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* Navbar */
 .navbar-options {
   display: flex;

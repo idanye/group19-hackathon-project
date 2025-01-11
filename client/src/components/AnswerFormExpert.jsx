@@ -9,7 +9,6 @@ const AnswerFormExpert = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const { id } = useParams(); // get the question id from the URL
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,7 +27,6 @@ const AnswerFormExpert = () => {
       return;
     }
 
-
     const formData = {
       questionId : id,
       expertID,
@@ -44,8 +42,7 @@ const AnswerFormExpert = () => {
       setExpertID("");
 
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (error) 
-    {
+    } catch (error) {
         console.error("Error submitting answer:", error.response ? error.response.data : error.message);
         // Check if the error is related to authorization
         if (error.response && error.response.status === 403) {
