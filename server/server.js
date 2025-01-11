@@ -5,12 +5,13 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import staySafeQuestionsRoutes from './routes/questionsRouter.js';
-import  staySafeAnswersRoutes from './routes/answersRouter.js';
+import staySafeAnswersRoutes from './routes/answersRouter.js';
+import userRouter from "./routes/userRouter.js";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-dotenv.config();
 
 const app = express();
 
@@ -21,6 +22,12 @@ app.use(cors({
   origin: process.env.CLIENT_URL
 }));
 
+// logging the requests to the server
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
+})
+
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI)
 .then(() => console.log('Connected to MongoDB'))
@@ -29,7 +36,8 @@ mongoose.connect(MONGO_URI)
 });
 
 app.use('/staySafe', staySafeQuestionsRoutes);
-app.use('/staySafe', staySafeAnswersRoutes); 
+app.use('/staySafe', staySafeAnswersRoutes);
+app.use('/staySafe', userRouter)
 
 // Start server
 const PORT = process.env.PORT;

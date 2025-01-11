@@ -1,5 +1,5 @@
-import Answer from "../models/answer.js";
-import Question from "../models/question.js";
+import AnswerModel from "../models/answerModel.js";
+import QuestionModel from "../models/questionModel.js";
 import mongoose from "mongoose";
 
 /**
@@ -15,7 +15,7 @@ const addAnswerExpert = async (req, res) => {
     const { expertName, expertID /* , expertRole*/ } = req.expert;
 
     // Create a new answer object
-    const answer = new Answer({
+    const answer = new AnswerModel({
       text,
       questionId, // Link the answer to the question ID
       expertName,
@@ -25,7 +25,7 @@ const addAnswerExpert = async (req, res) => {
 
     const savedAnswer = await answer.save();
 
-    const question = await Question.findById({_id: new mongoose.Types.ObjectId(questionId)})
+    const question = await QuestionModel.findById({_id: new mongoose.Types.ObjectId(questionId)})
     question.num_replies += 1;
     await question.save();
 
@@ -48,7 +48,7 @@ const addAnswerRegularUser = async (req, res) => {
     const { name, email} = req.user;
 
     // Create a new answer object
-    const answer = new Answer({
+    const answer = new AnswerModel({
       text,
       questionId, // Link the answer to the question ID
       name,
@@ -57,7 +57,7 @@ const addAnswerRegularUser = async (req, res) => {
 
     const savedAnswer = await answer.save();
 
-    const question = await Question.findById({_id: new mongoose.Types.ObjectId(questionId)})
+    const question = await QuestionModel.findById({_id: new mongoose.Types.ObjectId(questionId)})
     question.num_replies += 1;
     await question.save();
 
@@ -67,7 +67,6 @@ const addAnswerRegularUser = async (req, res) => {
   }
 };
 
-
 /**
  * Get all answers for a specific question
  * Returns answers sorted by creation date (newest first)
@@ -75,7 +74,7 @@ const addAnswerRegularUser = async (req, res) => {
 const getAnswers = async (req, res) => {
   try {
     const { questionId } = req.params;
-    const answers = await Answer.find({ questionId: questionId }).sort({ createdAt: -1 });
+    const answers = await AnswerModel.find({ questionId: questionId }).sort({ createdAt: -1 });
 
     // Check if no answers were found
     if (!answers.length) {

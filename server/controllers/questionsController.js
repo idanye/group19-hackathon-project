@@ -1,11 +1,10 @@
-
-import Question from '../models/question.js';
-import RegularUser from '../models/regularUser.js';
+import QuestionModel from '../models/questionModel.js';
+import RegularUserModel from '../models/regularUserModel.js';
 
 // Get all questions
 const getAllQuestions = async (req, res) => {  
     try {
-        const questions = await Question.find();  // Fetch all questions from MongoDB
+        const questions = await QuestionModel.find();  // Fetch all questions from MongoDB
         res.status(200).json({ message: 'Questions fetched successfully', data: questions });
     } catch (error) {
         console.error('Error fetching questions:', error);
@@ -14,18 +13,16 @@ const getAllQuestions = async (req, res) => {
 };
 
 
-
 // Get all questions from a certain category
 const  getQuestionsByCategory = async (req, res) => {
     try {
         const { category } = req.params;
-        const questions = await Question.find({ category });
+        const questions = await QuestionModel.find({ category });
         // if (!questions.length) {
         //   return res.status(404).json({ message: "No questions found in this category" });
         // }
         res.status(200).json(questions);
-    } catch (error) 
-    {
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
@@ -35,14 +32,13 @@ const  getQuestionsByCategory = async (req, res) => {
 const getQuestionByCategoryAndId = async (req, res) => {
     try {
         const { category, id } = req.params;
-        const question = await Question.findOne({ _id: id, category });
+        const question = await QuestionModel.findOne({ _id: id, category });
         if (!question) {
-          return res.status(404).json({ message: "Question not found in this category" });
+          return res.status(404).json({ message: "QuestionModel not found in this category" });
         }
         res.status(200).json(question);
     }
-    catch (error) 
-    {
+    catch (error) {
         res.status(500).json({ message: error.message });
     } 
 };
@@ -52,7 +48,7 @@ const getQuestionByCategoryAndId = async (req, res) => {
 const createQuestion = async (req, res) => { 
     try {
         const { category, question_header, question_body, name_asked_by, email_asked_by } = req.body;
-        const question = new Question({
+        const question = new QuestionModel({
             category,
             question_header,
             question_body,
@@ -62,11 +58,10 @@ const createQuestion = async (req, res) => {
         });
         const savedQuestion = await question.save();
         // adding the user who asked the question to the regularUser collection
-        const existingUser = await RegularUser.findOne({ email: email_asked_by });
+        const existingUser = await RegularUserModel.findOne({ email: email_asked_by });
         // let savedUser = existingUser;
-        if (!existingUser)
-        {
-            const newUser = new RegularUser({
+        if (!existingUser) {
+            const newUser = new RegularUserModel({
                 name: name_asked_by,
                 email: email_asked_by
             });
@@ -74,12 +69,11 @@ const createQuestion = async (req, res) => {
             //savedUser = await newUser.save();
         }
         res.status(201).json({
-            message: 'Question created successfully!',
+            message: 'QuestionModel created successfully!',
             question: savedQuestion,
             // user: savedUser
         });
-    } catch (error)
-    {
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };

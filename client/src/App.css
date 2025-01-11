@@ -170,7 +170,7 @@ body, .app {
   background-color: #0056b3;
 }
 
-/* Add Question Floating Button*/
+/* Add QuestionModel Floating Button*/
 .floating-button {
   position: fixed;
   bottom: 20px;

@@ -27,9 +27,6 @@ body, .app {
 .page {
   max-width: 800px;
   margin: 0 auto;
-  /*background-color: var(--background-light);*/
-  /*border-radius: 8px;*/
-  /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);*/
 }
 
 /* Header container */
@@ -37,7 +34,7 @@ body, .app {
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
-  padding: 10px 30px;
+  padding: 15px 90px;
   background-color: white; 
 }
 
@@ -126,7 +123,6 @@ body {
   text-decoration: none;
   color: white; 
   font-size: 20px;
-  /*font-family: 'Chewy', cursive;*/
   font-weight: 500;
 }
 
@@ -222,12 +218,40 @@ body {
 
 /* LinkedIn Icon */
 .linkedin-icon {
-  margin-left: 15px; /* Adds spacing between the name and icon */
-  color: #0077b5; /* LinkedIn blue */
+  margin-left: 15px;
+  color: #0077b5;
   font-size: 1.5em;
   transition: color 0.3s ease;
 }
 
 .linkedin-icon:hover {
-  color: #005582; /* Darker LinkedIn blue */
+  color: #005582;
+}
+
+/* Responsive design for smaller screens (max-width: 640px) */
+@media (max-width: 640px){
+  .navbar-options {
+    display: -webkit-box;
+  }
+
+  .header-content {
+    display: grid;
+  }
+
+  .header-left {
+    width: 50%;
+  }
+
+  .ask-question-button {
+    display: block;
+  }
+
+  .app-logo {
+    width: 80px;
+  }
+
+  .app-title {
+    font-size: 2rem;
+  }
+
 }

@@ -35,9 +35,9 @@ const AnswerFormRegularUser = () => {
 
     try {
       const response = await axios.post(`http://localhost:5000/staySafe/regularUser/${id}`, formData);
-      console.log("Answer submitted successfully:", response.data);
+      console.log("AnswerModel submitted successfully:", response.data);
 
-      setSuccessMessage("Answer submitted successfully!");
+      setSuccessMessage("AnswerModel submitted successfully!");
       setText("");
       setEmail(""); 
 

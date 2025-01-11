@@ -65,10 +65,10 @@ const QuestionForm = () => {
 
     try {
       const response = await axios.post("http://localhost:5000/staySafe/addQuestion", formData); //TODO: need to change to dynamic url
-      console.log("Question submitted successfully:", response.data);
+      console.log("QuestionModel submitted successfully:", response.data);
       
       // Show success message and clear the form
-      setSuccessMessage("Question submitted successfully!");
+      setSuccessMessage("QuestionModel submitted successfully!");
       setQuestion("");
       setCategory("");
       setEmail("");

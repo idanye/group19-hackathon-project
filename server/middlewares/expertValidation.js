@@ -1,11 +1,11 @@
-import Expert from '../models/expert.js';
+import ExpertModel from '../models/expertModel.js';
 
 // Middleware to validate if the expert exists in the database
 const validateExpert = async (req, res, next) => {
   const { expertID } = req.body;
 
   try {
-    const expert = await Expert.findOne({ expertID });
+    const expert = await ExpertModel.findOne({ expertID });
     if (!expert) {
       return res.status(403).json({ message: 'You are not authorized to answer questions' });
     }

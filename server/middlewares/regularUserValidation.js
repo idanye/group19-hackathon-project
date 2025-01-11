@@ -1,5 +1,5 @@
-import RegularUser from '../models/regularUser.js';
-import Question from '../models/question.js';
+import RegularUserModel from '../models/regularUserModel.js';
+import QuestionModel from '../models/questionModel.js';
 import mongoose from 'mongoose';
 
 // Middleware to validate if the user exists in the database and is the one who asked the question
@@ -8,11 +8,11 @@ const validateRegularUser = async (req, res, next) => {
   const { questionId } = req.params;
 
   try {
-    const question = await Question.findById({_id: new mongoose.Types.ObjectId(questionId)})
-    const user = await RegularUser.findOne({ email });
+    const question = await QuestionModel.findById({_id: new mongoose.Types.ObjectId(questionId)})
+    const user = await RegularUserModel.findOne({ email });
 
     if (!question) {
-      return res.status(404).json({ message: 'Question not found' });
+      return res.status(404).json({ message: 'QuestionModel not found' });
     }
 
     // Check if the user who is submitting the answer is the one who asked the question

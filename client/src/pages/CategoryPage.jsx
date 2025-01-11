@@ -13,7 +13,7 @@ const CategoryPage = (props) => {
     // Function to calculate how long ago a question was created
     const formatTimeAgo = (date) => {
         const now = new Date(); // Current date
-        const past = new Date(date); // Question creation date
+        const past = new Date(date); // QuestionModel creation date
         const diffInHours = Math.floor((now - past) / (1000 * 60 * 60)); // Calculate the difference in hours
 
         if (diffInHours < 24) {
@@ -48,7 +48,7 @@ const CategoryPage = (props) => {
                             {question.name_asked_by.charAt(0).toUpperCase()} {/* First letter of the username */}
                         </div>
 
-                        {/* Question content */}
+                        {/* QuestionModel content */}
                         <div className="question-content">
                             <h3 className="question-title">{question.question_header}</h3>
                             <div className="question-meta">

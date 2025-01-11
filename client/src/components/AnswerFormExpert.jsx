@@ -37,9 +37,9 @@ const AnswerFormExpert = () => {
 
     try {
       const response = await axios.post(`http://localhost:5000/staySafe/exprt/${id}`, formData);
-      console.log("Answer submitted successfully:", response.data);
+      console.log("AnswerModel submitted successfully:", response.data);
 
-      setSuccessMessage("Answer submitted successfully!");
+      setSuccessMessage("AnswerModel submitted successfully!");
       setText("");
       setExpertID("");
 
@@ -49,7 +49,7 @@ const AnswerFormExpert = () => {
         console.error("Error submitting answer:", error.response ? error.response.data : error.message);
         // Check if the error is related to authorization
         if (error.response && error.response.status === 403) {
-            setError("You are not authorized to answer this question. Please make sure your Expert ID is correct.");
+            setError("You are not authorized to answer this question. Please make sure your ExpertModel ID is correct.");
         } else {
             setError("There was an error submitting your answer. Please try again.");
         }
@@ -66,13 +66,13 @@ const AnswerFormExpert = () => {
         <h1 className="headline">Submit Your Answer</h1>
 
         <form onSubmit={handleSubmit}>
-          <label>Expert ID:</label>
+          <label>ExpertModel ID:</label>
           <input
             type="text"
             id="expertID"
             value={expertID}
             onChange={(e) => setExpertID(e.target.value)}
-            placeholder="Enter your Expert ID for verification"
+            placeholder="Enter your ExpertModel ID for verification"
           />
 
           <label>Answer:</label>
