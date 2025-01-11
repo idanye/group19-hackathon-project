@@ -47,15 +47,6 @@ const SignupPage = () => {
                     value={password}
                 />
 
-                <label>ID:</label>
-                <input
-                    type="id"
-                    onChange={(e) => {
-                        setExpertID(e.target.value)
-                    }}
-                    value={expertID}
-                />
-
                 <label>User Type:</label>
                 <fieldset>
                     <label>
