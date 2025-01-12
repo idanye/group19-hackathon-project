@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 import AnswerFormExpert from '../components/AnswerFormExpert';
 import AnswerFormRegularUser from '../components/AnswerFormRegularUser';
+import useValidCategory from "../hooks/useValidCategory";
 
 const AnswerForm = () => {
+  const { category} = useParams();
+
   const [userRole, setUserRole] = useState(""); 
   const navigate = useNavigate();
 
@@ -14,6 +17,12 @@ const AnswerForm = () => {
   const handleRoleChange = (e) => {
     setUserRole(e.target.value); 
   };
+
+  // Check if the category is valid else redirect to 404 page
+  const isValid = useValidCategory(category);
+  if (!isValid) {
+    return <Navigate to="/404" />;
+  }
 
   return (
       <div className="page">

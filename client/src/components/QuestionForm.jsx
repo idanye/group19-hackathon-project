@@ -11,6 +11,16 @@ const QuestionForm = () => {
   const [error, setError] = useState(""); // State for error messages
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
 
+
+  // Format category to match the URL format
+  const formatCategory = (category) => {
+    return category.replace(/ /g, '-'); // Replace all spaces with '-'
+  }
+
+  const handleCategoryChange = (e) => {
+    setCategory(formatCategory(e.target.value));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -164,7 +174,7 @@ const QuestionForm = () => {
           <select
               id="category"
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) => handleCategoryChange(e)}
           >
             <option value="" disabled>
               Select a category

@@ -28,27 +28,27 @@ const Navbar = () => {
                 </Link>
 
                 {/* Cyber Bullying */}
-                <Link to="/cyber-bullying" style={{ textDecoration: 'none' }}>
-                    <li className="navbar-option" onClick={() => setNavBarOption("cyber-bullying")}>
+                <Link to="/Cyber-Bullying" style={{ textDecoration: 'none' }}>
+                    <li className="navbar-option" onClick={() => setNavBarOption("Cyber Bullying")}>
                         <img src={cyberCrimeIcon} alt="Cyber Bullying" className="navbar-icon" /> Cyber Bullying
                     </li>
-                    {navBarOption === "cyber-bullying" ? <hr /> : null}
+                    {navBarOption === "Cyber Bullying" ? <hr /> : null}
                 </Link>
 
                 {/* Sexual Harassment */}
-                <Link to="/sexual-harassment" style={{ textDecoration: 'none' }}>
-                    <li className="navbar-option" onClick={() => setNavBarOption("sexual-harassment")}>
+                <Link to="/Sexual-Harassment" style={{ textDecoration: 'none' }}>
+                    <li className="navbar-option" onClick={() => setNavBarOption("Sexual Harassment")}>
                         <img src={harassmentIcon} alt="Sexual Harassment" className="navbar-icon" /> Sexual Harassment
                     </li>
-                    {navBarOption === "sexual-harassment" ? <hr /> : null}
+                    {navBarOption === "Sexual Harassment" ? <hr /> : null}
                 </Link>
 
                 {/* Eating Disorders */}
-                <Link to="/eating-disorders" style={{ textDecoration: 'none' }}>
-                    <li className="navbar-option" onClick={() => setNavBarOption("eating-disorders")}>
+                <Link to="/Eating-Disorders" style={{ textDecoration: 'none' }}>
+                    <li className="navbar-option" onClick={() => setNavBarOption("Eating Disorders")}>
                         <img src={eatingIcon} alt="Eating Disorders" className="navbar-icon" /> Eating Disorders
                     </li>
-                    {navBarOption === "eating-disorders" ? <hr /> : null}
+                    {navBarOption === "Eating Disorders" ? <hr /> : null}
                 </Link>
 
             </ul>

@@ -1,15 +1,23 @@
 // Import libraries and modules
-import PropTypes from "prop-types";
 import useFetch from "../hooks/useFetch.js";
 import { Link } from "react-router";
 import { Clock, MessageSquare } from 'lucide-react';
+import { useParams, Navigate } from "react-router-dom";
 import '../style/CategoryPage.css';
+import useValidCategory from '../hooks/useValidCategory.jsx';
 
 // CategoryPage component to display questions for a specific category
-const CategoryPage = (props) => {
-    const category = props.category; // Receive the category name as a prop
+const CategoryPage = () => {
+    const { category } = useParams(); // Get the category name from the URL
+    
     const { data: categoryQuestions, isLoading, error } = useFetch(`http://localhost:5000/staysafe/getCategoryQuestions/${category}`);
 
+    // Check if the category is valid else redirect to 404 page
+    const isValid = useValidCategory(category);
+    if (!isValid) {
+      return <Navigate to="/404" />;
+    }
+    
     // Function to calculate how long ago a question was created
     const formatTimeAgo = (date) => {
         const now = new Date(); // Current date
@@ -24,10 +32,14 @@ const CategoryPage = (props) => {
         }
     };
 
+    const formatCategory = (category) => {
+        return category.replace(/-/g, ' '); // Replace all '-' with spaces
+    };
+
     return (
         <div className="forum-container">
             {/* Page title displaying the category name */}
-            <h1 className="category-title">{category}</h1>
+            <h1 className="category-title">{formatCategory(category)}</h1>
 
             {/* List of questions */}
             <div className="questions-list">
@@ -79,10 +91,6 @@ const CategoryPage = (props) => {
     );
 };
 
-// Prop type validation
-CategoryPage.propTypes = {
-    category: PropTypes.string.isRequired, // Required prop of type string
-};
 
 // Export the component
 export default CategoryPage;

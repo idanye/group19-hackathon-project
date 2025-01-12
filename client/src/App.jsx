@@ -6,6 +6,7 @@ import CategoryPage from './pages/CategoryPage.jsx';
 import SingleQuestionPage from './pages/SingleQuestionPage.jsx';
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import NotFoundPage from './pages/NotFoundPage.jsx';
 
 // Components
 import Navbar from './components/Navbar.jsx';
@@ -13,6 +14,7 @@ import Footer from './components/Footer.jsx';
 import QuestionForm from './components/QuestionForm.jsx';
 import AnswerForm from './components/AnswerForm.jsx';
 import Header from "./components/Header.jsx";
+
 
 function App() {
   return (
@@ -25,14 +27,14 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
-
-                <Route path="/cyber-bullying" element={<CategoryPage category="Cyber Bullying"/>} />
-                <Route path="/sexual-harassment" element={<CategoryPage category="Sexual Harassment"/>} />
-                <Route path="/eating-disorders" element={<CategoryPage category="Eating Disorders"/>} />
+                <Route path="/:category" element={<CategoryPage />} />
                 <Route path="/question-form" element={<QuestionForm />} />
-
                 <Route path="/:category/:id" element={<SingleQuestionPage />} />
                 <Route path="/:category/:id/add-answer" element={<AnswerForm />} />
+
+                <Route path="/404" element={<NotFoundPage />} />
+                {/* catch all other routes - 404 page */}
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
 
             <Footer/>

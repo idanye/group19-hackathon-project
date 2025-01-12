@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router';
 import useFetch from '../hooks/useFetch.js';
 import '../style/SingleQuestionPage.css';
+import { Navigate } from 'react-router-dom';
+import useValidCategory from '../hooks/useValidCategory.jsx';
 
 const SingleQuestionPage = () => {
     const { category, id } = useParams()
@@ -13,32 +15,26 @@ const SingleQuestionPage = () => {
     }).format(date);
     }
 
-    const getLinkToPrevPage = (category) => {
-        if(category === 'Cyber Bullying'){
-            return '/cyber-bullying'
-        }
-        if(category === 'Sexual Harassment'){
-            return '/sexual-harassment'
-        }
-        if(category === 'Eating Disorders'){
-            return '/eating-disorders'
-        }
-    }
-
     // useFetch to get the data of the question
     const { data: question,  isLoading : isLoadingQuestion, error : errorQuestion } = useFetch(`http://localhost:5000/staysafe/getCategoryQuestions/${category}/${id}`)
 
     // useFetch to get the data of the answers
     const { data: answers,  isLoading : isLoadingAnswers, error : errorAnswers } = useFetch(`http://localhost:5000/staysafe/${id}`)
 
+    // Check if the category is valid else redirect to 404 page
+    const isValid = useValidCategory(category);
+    if (!isValid) {
+      return <Navigate to="/404" />;
+    }
+
     return (
         <div className='single-question-page'>
-            <Link to={getLinkToPrevPage(category)} style={{textDecoration : "none"}} className='go-back-link'>
+            <Link to={`/${category}`} style={{textDecoration : "none"}} className='go-back-link'>
                 <button className="go-back-to_category-button" >Back</button>
             </Link>
             {isLoadingQuestion && <div className='loading'>Loading...</div>}
             {errorQuestion && <div className='error'>Error: {errorQuestion}</div>}
-            {!question && !isLoadingQuestion && <div>Question not found</div>}
+            {!question && !isLoadingQuestion && <Navigate to="/404" />}
             {question && (
                 <>
                     <div className='question-header'>

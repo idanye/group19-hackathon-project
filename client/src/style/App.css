@@ -373,3 +373,26 @@ form button:hover {
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+/* css for 404 page*/
+
+.not-found
+{
+  max-width: 800px;
+  margin: 0 auto; /* Center content */
+  padding: 20px;
+  background: var(--background-light);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.not-found link
+{
+  text-decoration: none;
+}
+
+.not-found-redirect-msg
+{
+  color: var(--error);
+}
+
