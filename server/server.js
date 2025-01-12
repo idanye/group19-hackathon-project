@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import staySafeQuestionsRoutes from './routes/questionsRouter.js';
 import staySafeAnswersRoutes from './routes/answersRouter.js';
 import userRouter from "./routes/userRouter.js";
+import adminRoutes from './routes/adminRouter.js';
 
 dotenv.config();
 
@@ -18,9 +19,24 @@ const app = express();
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images'))); // Serve static images
 
+
+// Allow requests from the client URL and the admin URL
+const allowedOrigins = [process.env.CLIENT_URL, process.env.ADMIN_URL];
 app.use(cors({
-  origin: process.env.CLIENT_URL
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      // Allow requests 
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 }));
+
+// app.use(cors({
+//   origin: process.env.CLIENT_URL
+// }));
 
 // logging the requests to the server
 app.use((req, res, next) => {
@@ -38,6 +54,8 @@ mongoose.connect(MONGO_URI)
 app.use('/staySafe', staySafeQuestionsRoutes);
 app.use('/staySafe', staySafeAnswersRoutes);
 app.use('/staySafe', userRouter)
+
+app.use('/admin', adminRoutes);
 
 // Start server
 const PORT = process.env.PORT;
