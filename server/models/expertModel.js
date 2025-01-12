@@ -20,7 +20,13 @@ const expertSchema = mongoose.Schema({
   password: {
     type: String,
     require: true
-  }
+  },
+  approved : {
+    type: Boolean,
+    default: false, // experts need to be approved by the admin to be able to answer questions
+    required: true
+  },
+
 //   expertRole: { type: String, required: true },
 }, { timestamps: true });
 
