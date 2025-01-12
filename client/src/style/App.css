@@ -33,8 +33,23 @@ a {
   text-decoration: none;
 }
 
-.signup-login a {
+.signup-login {
+  display: flex;
+  gap: 10px;
+}
 
+.signup-login a {
+  border: 2px solid #a2ceca;
+  color: #a2ceca;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.signup-login a:hover {
+  background-color: #a2ceca0a;
 }
 
 /* Header container */
@@ -78,7 +93,7 @@ a {
 }
 
 /* Ask question button and login/sign up buttons*/
-.ask-question-button, .signup-login a {
+.ask-question-button {
   display: inline-flex; 
   align-items: center;
   justify-content: center; 
@@ -95,7 +110,7 @@ a {
 }
 
 /* Ask question button hover effect */
-.ask-question-button:hover, .signup-login a:hover {
+.ask-question-button:hover {
   background-color: #86c9c3;
 }
 
