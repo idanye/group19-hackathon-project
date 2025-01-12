@@ -1,4 +1,4 @@
-import logo from "../images/logo.png";
+import logo from "../images/logo.jpeg";
 import AskQuestionButton from "./AskQuestionButton.jsx";
 import { Link } from 'react-router-dom'
 import { useLogout } from "../hooks/useLogout.jsx";

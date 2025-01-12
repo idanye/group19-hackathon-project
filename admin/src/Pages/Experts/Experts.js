@@ -1,33 +1,42 @@
-// import { Link } from 'react-router-dom';
-import useFetch from '../../Hooks/useFetch'; 
+import React from 'react';
+import { AlertCircle, UserX } from 'lucide-react';
+import { ExpertsTable } from './ExpertsTable';
+import { useFetch } from '../../Hooks/useFetch';  // שינוי כאן
 
 const ExpertsList = () => {
+  const { data: experts, isLoading, error } = useFetch('http://localhost:5000/admin/allExperts');
 
-    const { data: experts, isLoading, error } = useFetch('http://localhost:5000/admin/allExperts');
+  return (
+    <div className="content-container">
+      <div className="page-header">
+        <h1 className="page-title">Approved Experts</h1>
+        <p className="page-subtitle">Manage and view all approved experts in the system</p>
+      </div>
 
-    return (
-        <div className="experts-list-page">
-            <h1>Experts</h1>
-            {isLoading && <div className="loading">Loading...</div>}
-            {error && <div className="error">Error: {error}</div>}
-            {!experts && !isLoading && <div>No experts found</div>}
-
-            {experts && (
-                <div className="experts-container">
-                    <ul className="experts-list">
-                        {experts.data.map((expert) => (
-                            <li key={expert._id} className="expert-item">
-                                <div className="expert-details">
-                                    <p>Name: {expert.expertName}</p>
-                                    <p>Id: {expert.expertID}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+      {isLoading && (
+        <div className="status-container">
+          <div className="loading-spinner" />
+          Loading...
         </div>
-    );
+      )}
+
+      {error && (
+        <div className="error-message">
+          <AlertCircle size={20} />
+          Error loading experts: {error}
+        </div>
+      )}
+
+      {!experts && !isLoading && (
+        <div className="status-container">
+          <UserX size={40} />
+          <p>No experts found in the system</p>
+        </div>
+      )}
+
+      {experts?.data && <ExpertsTable data={experts.data} />}
+    </div>
+  );
 };
 
 export default ExpertsList;

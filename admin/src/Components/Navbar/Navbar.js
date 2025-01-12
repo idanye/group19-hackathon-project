@@ -1,12 +1,18 @@
-import './Navbar.css';
-import logo from '../../Images/admin-logo.PNG';
+import logo from '../../Images/logo.jpeg';
 
 const Navbar = () => {
     
     return (
         <nav className="navbar">
-            <img className = "nav-logo" alt = "" src = {logo}></img>
+            <div className="nav-logo-container">
+                 <img className="nav-logo" alt="Logo" src={logo} />
+                 <div className="text-container">
+                  <span className="admin-text">Admin</span>
+                  <span className="safe-space-text">Safe Space</span>
+                 </div>
+             </div>
         </nav>
+
     );
 }
 
