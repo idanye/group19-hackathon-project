@@ -38,7 +38,7 @@ a {
   gap: 10px;
 }
 
-.signup-login a {
+.signup-login a, .logout-btn {
   border: 2px solid #a2ceca;
   color: #a2ceca;
   padding: 10px 20px;
@@ -48,8 +48,12 @@ a {
   transition: background-color 0.3s ease;
 }
 
-.signup-login a:hover {
+.signup-login a:hover, .logout-btn:hover {
   background-color: #a2ceca0a;
+}
+
+span {
+  align-content: center;
 }
 
 /* Header container */

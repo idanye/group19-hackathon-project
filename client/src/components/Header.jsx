@@ -25,9 +25,9 @@ const Header = () => {
 
             <nav className="header-right">
                 { user && (
-                    <div>
+                    <div className="signup-login">
                         <span>{user.email}</span>
-                        <button onClick={handleClick}>Log out</button>
+                        <button className="logout-btn" onClick={handleClick}>Log out</button>
                     </div>
                 )}
 
