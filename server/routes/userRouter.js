@@ -24,5 +24,4 @@ router.post('/signup', (req, res, next) => {
     }
 })
 
-
 export default router

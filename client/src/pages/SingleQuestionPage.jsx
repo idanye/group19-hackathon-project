@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router';
-import useFetch from '../services/useFetch';
+import useFetch from '../hooks/useFetch.js';
 import '../style/SingleQuestionPage.css';
 
 const SingleQuestionPage = () => {

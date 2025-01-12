@@ -12,7 +12,16 @@ const SignupPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        console.log(name, email, password)
+        let expertName;
+        const user = {
+            userType,
+            name: userType === 'expert' ? expertName : name,
+            email,
+            password,
+            ...(userType === 'expert' && { expertID })
+        };
+
+        console.log(user)
     }
 
     return (

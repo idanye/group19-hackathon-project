@@ -1,6 +1,6 @@
 // Import libraries and modules
 import PropTypes from "prop-types";
-import useFetch from "../services/useFetch";
+import useFetch from "../hooks/useFetch.js";
 import { Link } from "react-router";
 import { Clock, MessageSquare } from 'lucide-react';
 import '../style/CategoryPage.css';

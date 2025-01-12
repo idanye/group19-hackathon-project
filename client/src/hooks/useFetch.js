@@ -28,9 +28,8 @@ const useFetch = (url) => {
                 setIsLoading(false);
                 setError(null);
             }
-            else
-            {
-                 // catch network error
+            else {
+                // catch network error
                 setIsLoading(false);
                 setError(error.message);
             }

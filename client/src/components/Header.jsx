@@ -1,8 +1,15 @@
 import logo from "../images/logo.png";
 import AskQuestionButton from "./AskQuestionButton.jsx";
 import { Link } from 'react-router-dom'
+import { useLogout } from "../hooks/useLogout.jsx";
 
 const Header = () => {
+    const { logout } = useLogout()
+
+    const handleClick = () => {
+        logout()
+    }
+
     return (
         <div className="header-content">
             <Link to="/">
@@ -15,6 +22,9 @@ const Header = () => {
             <div className="line-separator"></div>
 
             <div className="header-right">
+                <div>
+                    <button onClick={handleClick}>Log out</button>
+                </div>
 
                 <div className="signup-login">
                     <Link to='/signup'>Sign up</Link>

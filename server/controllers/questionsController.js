@@ -14,7 +14,7 @@ const getAllQuestions = async (req, res) => {
 
 
 // Get all questions from a certain category
-const  getQuestionsByCategory = async (req, res) => {
+const getQuestionsByCategory = async (req, res) => {
     try {
         const { category } = req.params;
         const questions = await QuestionModel.find({ category });
