@@ -77,7 +77,7 @@ const QuestionForm = () => {
       console.log("QuestionModel submitted successfully:", response.data);
       
       // Show success message and clear the form
-      setSuccessMessage("QuestionModel submitted successfully!");
+      setSuccessMessage("Question submitted successfully!");
       setQuestion("");
       setCategory("");
       setEmail("");

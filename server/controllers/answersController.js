@@ -1,6 +1,7 @@
 import AnswerModel from "../models/answerModel.js";
 import QuestionModel from "../models/questionModel.js";
 import mongoose from "mongoose";
+import { sendResponseNotification } from "../services/emailService.js";
 
 /**
  * Add an answer or a comment to a specific question
@@ -12,7 +13,7 @@ const addAnswerExpert = async (req, res) => {
     const { questionId } = req.params;
 
     // Extract expert details from the middleware
-    const { expertName, expertID /* , expertRole*/ } = req.expert;
+    const { expertName, expertID } = req.expert;
 
     // Create a new answer object
     const answer = new AnswerModel({
@@ -20,14 +21,15 @@ const addAnswerExpert = async (req, res) => {
       questionId, // Link the answer to the question ID
       expertName,
       expertID,
-      //expertRole,
     });
 
     const savedAnswer = await answer.save();
 
-    const question = await QuestionModel.findById({_id: new mongoose.Types.ObjectId(questionId)})
+    const question = await QuestionModel.findById({_id: new mongoose.Types.ObjectId(questionId)});
     question.num_replies += 1;
     await question.save();
+
+    sendResponseNotification(question.email_asked_by, question);
 
     res.status(201).json(savedAnswer); 
   } catch (error) {
@@ -45,7 +47,7 @@ const addAnswerRegularUser = async (req, res) => {
     const { questionId } = req.params;
 
     // Extract user details from the middleware
-    const { name, email} = req.user;
+    const { name, email } = req.user;
 
     // Create a new answer object
     const answer = new AnswerModel({
@@ -57,9 +59,11 @@ const addAnswerRegularUser = async (req, res) => {
 
     const savedAnswer = await answer.save();
 
-    const question = await QuestionModel.findById({_id: new mongoose.Types.ObjectId(questionId)})
+    const question = await QuestionModel.findById({_id: new mongoose.Types.ObjectId(questionId)});
     question.num_replies += 1;
     await question.save();
+
+    sendResponseNotification(question.email_asked_by, question);
 
     res.status(201).json(savedAnswer); 
   } catch (error) {
