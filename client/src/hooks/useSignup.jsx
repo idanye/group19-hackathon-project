@@ -12,13 +12,14 @@ export const useSignup = () => {
         setError(null)
 
         try {
-            const response = await axiosInstance.post('/signup', {user})
+            const response = await axiosInstance.post('/signup', user)
 
             // save the user to local storage
             localStorage.setItem('user', JSON.stringify(response.data))
 
             // update the auth context
             dispatch({type: 'LOGIN', payload: response.data})
+            alert("Your request has been received and forwarded to the admin.");
 
             setIsLoading(false)
 

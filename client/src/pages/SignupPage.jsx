@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSignup } from "../hooks/useSignup.jsx";
 
 const SignupPage = () => {
     const [email, setEmail] = useState('')
@@ -9,19 +10,21 @@ const SignupPage = () => {
     // expert additional information
     const [expertID, setExpertID] = useState('')
 
+    const { signup } = useSignup()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        let expertName;
         const user = {
             userType,
-            name: userType === 'expert' ? expertName : name,
+            ...(userType === 'expert' ? { expertName: name } : { name }),
             email,
             password,
             ...(userType === 'expert' && { expertID })
         };
 
         console.log(user)
+        await signup(user)
     }
 
     return (
