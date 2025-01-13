@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Users, UserPlus } from 'lucide-react';
+import { Users, UserPlus, UserX } from 'lucide-react'; 
 
 const Sidebar = () => {
   return (
@@ -20,6 +20,14 @@ const Sidebar = () => {
       >
         <UserPlus size={20} />
         Pending Approval
+      </NavLink>
+
+      <NavLink
+        to="/unapproved-experts"
+        className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
+      >
+        <UserX size={20} />
+        Unapproved experts
       </NavLink>
     </nav>
   );

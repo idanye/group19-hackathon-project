@@ -57,9 +57,21 @@ const DeclineExpert = async (req, res) => {
     }
 };
 
+// Get all experts who were unapproved
+const getAllUnApprovedExperts = async (req, res) => {
+    try {
+        const unapproved_experts = await ExpertModel.find({ approved: "false" })
+        res.status(200).json({ message: 'unapproved experts fetched successfully', data: unapproved_experts });
+    } catch (error) {
+        console.error('Error fetching unapproved experts:', error);
+        res.status(500).json({ message: 'Failed to fetch unapproved experts', error: error.message });
+    }
+};
+
 export {
     getAllApprovedExperts,
     getAllPendingExperts,
     approveExpert,
     DeclineExpert,
+    getAllUnApprovedExperts,
 };

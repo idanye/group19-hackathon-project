@@ -5,11 +5,11 @@ import { ExpertsContext } from '../../Context/ExpertsContext';
 
 const ExpertsList = () => {
   // Access the context values
-  const { allExperts, allExpertsLoading, allExpertsError, RemoveExpert } = useContext(ExpertsContext);
+  const { allExperts, allExpertsLoading, allExpertsError, RemoveApprovedExpert } = useContext(ExpertsContext);
 
   const handleReject = async (expertId, expertName) => {
     try {
-      await RemoveExpert(expertId);
+      await RemoveApprovedExpert(expertId);
       alert(`Expert ${expertName} removed successfully!`);
     } catch (error) {
       console.error('Error removing expert:', error.message);

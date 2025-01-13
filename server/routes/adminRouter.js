@@ -4,6 +4,7 @@ import {
     getAllPendingExperts,
     approveExpert,
     DeclineExpert,
+    getAllUnApprovedExperts,
 } from '../controllers/adminController.js';
 
 
@@ -17,6 +18,9 @@ router.get('/approvedExperts', getAllApprovedExperts);
 
 // GET all unapproved experts
 router.get('/pendingExperts', getAllPendingExperts);
+
+// GET all unapproved experts (experts who were rejected)
+router.get('/unapprovedExperts', getAllUnApprovedExperts);
 
 
 /**
