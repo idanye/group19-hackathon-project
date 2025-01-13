@@ -2,6 +2,7 @@ import express from 'express';
 import {
     getAllExperts,
     getUnApprovedExperts,
+    approveExpert,
 } from '../controllers/adminController.js';
 
 
@@ -20,6 +21,7 @@ router.get('/unApprovedExperts', getUnApprovedExperts);
 /**
  * Read and Write Permission Routes
  */
+router.post('/approveExpert/:expertID', approveExpert);
 
 
 export default router;

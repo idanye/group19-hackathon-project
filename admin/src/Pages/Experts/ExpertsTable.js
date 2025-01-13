@@ -33,3 +33,5 @@ export const ExpertsTable = ({ data, showApproveButton = false, onApprove }) => 
     </table>
   </div>
 );
+
+export default ExpertsTable;
