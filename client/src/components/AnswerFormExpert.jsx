@@ -47,7 +47,10 @@ const AnswerFormExpert = () => {
         // Check if the error is related to authorization
         if (error.response && error.response.status === 403) {
             setError("You are not authorized to answer this question. Please make sure your ExpertModel ID is correct.");
-        } else {
+        } else if (error.response && error.response.status === 401) {
+            setError("You have not been approved by an admin yet. Please wait for approval to start answering questions.");
+        }
+        else {
             setError("There was an error submitting your answer. Please try again.");
         }
         window.scrollTo({ top: 0, behavior: "smooth" });
