@@ -3,10 +3,9 @@ import ExpertModel from '../models/expertModel.js';
 // Middleware to validate if the expert exists in the database and is approved by an admin
 const validateExpert = async (req, res, next) => {
   const { expertID } = req.body;
-
   try {
     const expert = await ExpertModel.findOne({ expertID });
-    console.log("expert id ", expertID);
+
     if (!expert || expert.approved === "false") {
       return res.status(403).json({ message: 'You are not authorized to answer questions.' });
     }
