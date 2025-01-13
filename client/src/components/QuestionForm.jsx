@@ -179,9 +179,9 @@ const QuestionForm = () => {
             <option value="" disabled>
               Select a category
             </option>
-            <option value="Cyber Bullying">Cyber Bullying</option>
-            <option value="Sexual Harassment">Sexual Harassment</option>
-            <option value="Eating Disorders">Eating Disorders</option>
+            <option value="Cyber-Bullying">Cyber Bullying</option>
+            <option value="Sexual-Harassment">Sexual Harassment</option>
+            <option value="Eating-Disorders">Eating Disorders</option>
           </select>
 
           <button type="submit">Submit</button>
