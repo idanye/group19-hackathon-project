@@ -5,8 +5,8 @@
 /* Root Variables */
 :root {
   --primary-color: #007bff;
-  --secondary-color: #ff7d9c;
-  --hover-secondary: #ff517a;
+  --secondary-color: #f1b5b5;
+  --hover-secondary: #cc6980;
   --background-light: #f9f9f9;
   --text-main: #333;
   --text-secondary: #555;
@@ -33,8 +33,27 @@ a {
   text-decoration: none;
 }
 
-.signup-login a {
+.signup-login {
+  display: flex;
+  gap: 10px;
+}
 
+.signup-login a, .logout-btn {
+  border: 2px solid #a2ceca;
+  color: #a2ceca;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.signup-login a:hover, .logout-btn:hover {
+  background-color: #a2ceca0a;
+}
+
+span {
+  align-content: center;
 }
 
 /* Header container */
@@ -78,7 +97,7 @@ a {
 }
 
 /* Ask question button and login/sign up buttons*/
-.ask-question-button, .signup-login a {
+.ask-question-button {
   display: inline-flex; 
   align-items: center;
   justify-content: center; 
@@ -95,7 +114,7 @@ a {
 }
 
 /* Ask question button hover effect */
-.ask-question-button:hover, .signup-login a:hover {
+.ask-question-button:hover {
   background-color: #86c9c3;
 }
 

@@ -1,10 +1,12 @@
-import logo from "../images/logo.png";
+import logo from "../images/logo.jpeg";
 import AskQuestionButton from "./AskQuestionButton.jsx";
 import { Link } from 'react-router-dom'
 import { useLogout } from "../hooks/useLogout.jsx";
+import {useAuthContext} from "../hooks/useAuthContext.jsx";
 
 const Header = () => {
     const { logout } = useLogout()
+    const { user } = useAuthContext()
 
     const handleClick = () => {
         logout()
@@ -21,18 +23,23 @@ const Header = () => {
 
             <div className="line-separator"></div>
 
-            <div className="header-right">
-                <div>
-                    <button onClick={handleClick}>Log out</button>
-                </div>
+            <nav className="header-right">
+                { user && (
+                    <div className="signup-login">
+                        <span>{user.email}</span>
+                        <button className="logout-btn" onClick={handleClick}>Log out</button>
+                    </div>
+                )}
 
-                <div className="signup-login">
-                    <Link to='/signup'>Sign up</Link>
-                    <Link to='/login'>Log in</Link>
-                </div>
+                { !user && (
+                    <div className="signup-login">
+                        <Link to='/signup'>Sign up</Link>
+                        <Link to='/login'>Log in</Link>
+                    </div>
+                )}
 
                 <AskQuestionButton/>
-            </div>
+            </nav>
         </div>
     )
 }

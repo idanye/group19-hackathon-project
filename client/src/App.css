@@ -445,7 +445,7 @@ a {
 
 .add-answer-button {
   padding: 10px 20px;
-  background-color: #FF7D9C;
+  background-color: #e7a1b1;
   color: white;
   border: none;
   border-radius: 4px;
@@ -455,7 +455,7 @@ a {
 }
 
 .add-answer-button:hover {
-  background-color: #ff517a;
+  background-color: #cc6980;
 }
 
 
@@ -540,3 +540,4 @@ a {
 .linkedin-icon:hover {
   color: #005582; /* Darker LinkedIn blue */
 }
+
