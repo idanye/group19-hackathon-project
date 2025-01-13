@@ -158,6 +158,16 @@ tr:hover {
     background-color: #059669;
 }
 
+.button-secondary {
+    margin-left: 3px;
+    background-color: #b91010;
+    color: white;
+}
+
+.button-secondary:hover {
+    background-color: #960511;
+}
+
 @keyframes spin {
     to {
         transform: rotate(360deg);

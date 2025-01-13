@@ -5,8 +5,8 @@ export const ExpertsContext = createContext(null);
 
 const ExpertsContextProvider = ({ children }) => {
 
-  const { data: allExpertsData, isLoading: allExpertsLoading, error: allExpertsError } = useFetch("http://localhost:5000/admin/allExperts");
-  const { data: unApprovedExpertsData, isLoading: unApprovedExpertsLoading, error: unApprovedExpertsError } = useFetch("http://localhost:5000/admin/unApprovedExperts");
+  const { data: allExpertsData, isLoading: allExpertsLoading, error: allExpertsError } = useFetch("http://localhost:5000/admin/approvedExperts");
+  const { data: unApprovedExpertsData, isLoading: unApprovedExpertsLoading, error: unApprovedExpertsError } = useFetch("http://localhost:5000/admin/pendingExperts");
 
   // using useState so pages showing the data can be updated when the data changes
   const [allExperts, setAllExperts] = useState([]);
@@ -48,6 +48,27 @@ const ExpertsContextProvider = ({ children }) => {
       throw error;
     }
   };
+
+  const DeclineExpert = async (expertId) => {
+    try {
+      const response = await fetch(`http://localhost:5000/admin/declineExpert/${expertId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        // Remove the approved expert from the unApprovedExperts state
+        setUnApprovedExperts((prevUnApprovedExperts) =>
+          prevUnApprovedExperts.filter((expert) => expert.expertID !== expertId)
+        );
+      } else {
+        throw new Error(result.message || "Failed to approve expert");
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
   
 
   // Provide the context value
@@ -59,6 +80,7 @@ const ExpertsContextProvider = ({ children }) => {
     allExpertsError,
     unApprovedExpertsError,
     approveExpert,
+    DeclineExpert,
   };
 
   return (

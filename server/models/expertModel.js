@@ -21,9 +21,9 @@ const expertSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  approved : {
-    type: Boolean,
-    default: false, // experts need to be approved by the admin to be able to answer questions
+  approved : { // 3 states: true, false, pending
+    type: String,
+    default: "pending", // experts need to be approved by the admin to be able to answer questions
     required: true
   },
 

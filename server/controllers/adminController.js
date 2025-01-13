@@ -2,9 +2,9 @@ import ExpertModel from '../models/expertModel.js';
 
 
 // Get all approved experts
-const getAllExperts = async (req, res) => {  
+const getAllApprovedExperts = async (req, res) => {  
     try {
-        const experts = await ExpertModel.find({ approved: true }) 
+        const experts = await ExpertModel.find({ approved: "true" }) 
         res.status(200).json({ message: 'experts fetched successfully', data: experts });
     } catch (error) {
         console.error('Error fetching experts:', error);
@@ -12,10 +12,10 @@ const getAllExperts = async (req, res) => {
     }
 };
 
-// Get all unapproved experts
-const getUnApprovedExperts = async (req, res) => {
+// Get all experts pending approval
+const getAllPendingExperts = async (req, res) => {
     try {
-        const experts = await ExpertModel.find({ approved: false })
+        const experts = await ExpertModel.find({ approved: "pending" })
         res.status(200).json({ message: 'experts fetched successfully', data: experts });
     } catch (error) {
         console.error('Error fetching experts:', error);
@@ -31,7 +31,7 @@ const approveExpert = async (req, res) => {
         if (!expert) {
             return res.status(404).json({ message: 'Expert not found' });
         }
-        expert.approved = true;
+        expert.approved = "true";
         await expert.save();
         res.status(200).json({ message: 'Expert approved successfully', data: expert });
     } catch (error) {
@@ -40,9 +40,26 @@ const approveExpert = async (req, res) => {
     }
 };
 
+// Post: Decline an expert
+const DeclineExpert = async (req, res) => {
+    try {
+        const { expertID } = req.params;
+        const expert = await ExpertModel.findOne({ expertID: expertID });
+        if (!expert) {
+            return res.status(404).json({ message: 'Expert not found' });
+        }
+        expert.approved = "false";
+        await expert.save();
+        res.status(200).json({ message: 'Expert declined successfully', data: expert });
+    } catch (error) {
+        console.error('Error declining expert:', error);
+        res.status(500).json({ message: 'Failed to decline expert', error: error.message });
+    }
+};
 
 export {
-    getAllExperts,
-    getUnApprovedExperts,
+    getAllApprovedExperts,
+    getAllPendingExperts,
     approveExpert,
+    DeclineExpert,
 };

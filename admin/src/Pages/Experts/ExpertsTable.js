@@ -1,7 +1,8 @@
 import React from 'react';
 import { UserCheck } from 'lucide-react';
+import { UserX } from 'lucide-react';
 
-export const ExpertsTable = ({ data, showApproveButton = false, onApprove }) => (
+export const ExpertsTable = ({ data, showApproveButton = false, onApprove, onReject }) => (
   <div className="table-container">
     <table>
       <thead>
@@ -24,6 +25,13 @@ export const ExpertsTable = ({ data, showApproveButton = false, onApprove }) => 
                 >
                   <UserCheck size={16} />
                   Approve
+                </button>
+                <button 
+                  className="button button-secondary"
+                  onClick={() => onReject(expert.expertID)}
+                >
+                  <UserX size={16} />
+                  Reject
                 </button>
               </td>
             )}

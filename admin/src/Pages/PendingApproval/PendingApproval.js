@@ -10,6 +10,7 @@ const PendingApproval = () => {
     unApprovedExpertsLoading,
     unApprovedExpertsError,
     approveExpert,
+    DeclineExpert,
   } = useContext(ExpertsContext);
 
   const handleApprove = async (expertId) => {
@@ -18,6 +19,16 @@ const PendingApproval = () => {
       alert(`Expert ${expertId} approved successfully!`);
     } catch (error) {
       console.error('Error approving expert:', error.message);
+      alert(error.message);
+    }
+  };
+
+  const handleReject = async (expertId) => {
+    try {
+      await DeclineExpert(expertId);
+      alert(`Expert ${expertId} declined successfully!`);
+    } catch (error) {
+      console.error('Error declining expert:', error.message);
       alert(error.message);
     }
   };
@@ -59,6 +70,7 @@ const PendingApproval = () => {
           data={unApprovedExperts}  
           showApproveButton={true}
           onApprove={handleApprove}
+          onReject={handleReject}
         />
       )}
     </div>

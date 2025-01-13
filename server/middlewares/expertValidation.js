@@ -7,10 +7,10 @@ const validateExpert = async (req, res, next) => {
   try {
     const expert = await ExpertModel.findOne({ expertID });
     console.log("expert id ", expertID);
-    if (!expert) {
+    if (!expert || expert.approved === "false") {
       return res.status(403).json({ message: 'You are not authorized to answer questions.' });
     }
-    if(expert.approved === false) {
+    if(expert.approved === "pending") {
       return res.status(401).json({ message: 'you have not been approved by an admin yet. Please wait for approval to start answering.' });
     }
     // Attach the expert details to the request object for further use
