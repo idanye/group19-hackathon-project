@@ -77,7 +77,7 @@ const QuestionForm = () => {
       console.log("QuestionModel submitted successfully:", response.data);
       
       // Show success message and clear the form
-      setSuccessMessage("QuestionModel submitted successfully!");
+      setSuccessMessage("Question submitted successfully!");
       setQuestion("");
       setCategory("");
       setEmail("");
@@ -179,9 +179,9 @@ const QuestionForm = () => {
             <option value="" disabled>
               Select a category
             </option>
-            <option value="Cyber Bullying">Cyber Bullying</option>
-            <option value="Sexual Harassment">Sexual Harassment</option>
-            <option value="Eating Disorders">Eating Disorders</option>
+            <option value="Cyber-Bullying">Cyber Bullying</option>
+            <option value="Sexual-Harassment">Sexual Harassment</option>
+            <option value="Eating-Disorders">Eating Disorders</option>
           </select>
 
           <button type="submit">Submit</button>
