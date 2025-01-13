@@ -159,7 +159,6 @@ tr:hover {
 }
 
 .button-secondary {
-    margin-left: 3px;
     background-color: #b91010;
     color: white;
 }
@@ -249,4 +248,11 @@ tr:hover {
     margin-right: 8px;
     width: 20px;
     height: 20px;
+}
+
+.actions-buttons
+{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

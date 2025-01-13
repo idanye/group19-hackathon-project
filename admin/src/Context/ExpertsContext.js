@@ -49,6 +49,7 @@ const ExpertsContextProvider = ({ children }) => {
     }
   };
 
+  // decline an expert waiting for an approval
   const DeclineExpert = async (expertId) => {
     try {
       const response = await fetch(`http://localhost:5000/admin/declineExpert/${expertId}`, {
@@ -69,6 +70,28 @@ const ExpertsContextProvider = ({ children }) => {
       throw error;
     }
   };
+
+  // unapprove an expert that was approved in the past
+  const RemoveExpert = async (expertId) => {
+    try {
+      const response = await fetch(`http://localhost:5000/admin/declineExpert/${expertId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        // Remove the approved expert from the unApprovedExperts state
+        setAllExperts((prevAllExperts) =>
+          prevAllExperts.filter((expert) => expert.expertID !== expertId)
+        );
+      } else {
+        throw new Error(result.message || "Failed to approve expert");
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
   
 
   // Provide the context value
@@ -81,6 +104,7 @@ const ExpertsContextProvider = ({ children }) => {
     unApprovedExpertsError,
     approveExpert,
     DeclineExpert,
+    RemoveExpert,
   };
 
   return (

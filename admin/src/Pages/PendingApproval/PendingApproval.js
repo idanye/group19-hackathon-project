@@ -13,20 +13,20 @@ const PendingApproval = () => {
     DeclineExpert,
   } = useContext(ExpertsContext);
 
-  const handleApprove = async (expertId) => {
+  const handleApprove = async (expertId, expertName) => {
     try {
       await approveExpert(expertId);
-      alert(`Expert ${expertId} approved successfully!`);
+      alert(`Expert ${expertName} approved successfully!`);
     } catch (error) {
       console.error('Error approving expert:', error.message);
       alert(error.message);
     }
   };
 
-  const handleReject = async (expertId) => {
+  const handleReject = async (expertId, expertName) => {
     try {
       await DeclineExpert(expertId);
-      alert(`Expert ${expertId} declined successfully!`);
+      alert(`Expert ${expertName} declined successfully!`);
     } catch (error) {
       console.error('Error declining expert:', error.message);
       alert(error.message);

@@ -5,7 +5,17 @@ import { ExpertsContext } from '../../Context/ExpertsContext';
 
 const ExpertsList = () => {
   // Access the context values
-  const { allExperts, allExpertsLoading, allExpertsError } = useContext(ExpertsContext);
+  const { allExperts, allExpertsLoading, allExpertsError, RemoveExpert } = useContext(ExpertsContext);
+
+  const handleReject = async (expertId, expertName) => {
+    try {
+      await RemoveExpert(expertId);
+      alert(`Expert ${expertName} removed successfully!`);
+    } catch (error) {
+      console.error('Error removing expert:', error.message);
+      alert(error.message);
+    }
+  };
 
   return (
     <div className="content-container">
@@ -39,7 +49,10 @@ const ExpertsList = () => {
       )}
 
       {/* Render ExpertsTable if there are approved experts */}
-      {allExperts?.length > 0 && <ExpertsTable data={allExperts} />}
+      {allExperts?.length > 0 && 
+      <ExpertsTable 
+        data={allExperts}
+        onReject={handleReject} />}
     </div>
   );
 };
