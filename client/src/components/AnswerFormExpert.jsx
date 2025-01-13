@@ -35,9 +35,9 @@ const AnswerFormExpert = () => {
 
     try {
       const response = await axios.post(`http://localhost:5000/staySafe/expert/${id}`, formData);
-      console.log("AnswerModel submitted successfully:", response.data);
+      console.log("Answer submitted successfully:", response.data);
 
-      setSuccessMessage("AnswerModel submitted successfully!");
+      setSuccessMessage("Answer submitted successfully!");
       setText("");
       setExpertID("");
 

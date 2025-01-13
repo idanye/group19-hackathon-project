@@ -32,6 +32,7 @@ const expertSchema = mongoose.Schema({
 
 // static signup method
 expertSchema.statics.signup = async function (expertName, expertID, email, password) {
+
   // validation
   if (!email || !password || !expertName || !expertID) {
     throw Error('All fields must be filled')
