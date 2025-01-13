@@ -7,7 +7,7 @@
 }
 
 .nav-logo {
-    width: 140px; 
+    width: 160px; 
     height: auto; 
     border-radius: 50%; 
     margin: 10px;
@@ -20,13 +20,13 @@
 }
 
 .admin-text {
-    font-size: 1.2rem; 
+    font-size: 1.8rem; 
     font-weight: 600; 
     color: #374151; 
 }
 
 .safe-space-text {
-    font-size: 1rem; 
+    font-size: 1.4rem; 
     color: #6b7280; 
 }
 
@@ -65,7 +65,7 @@
 }
 
 .page-title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
     color: #111827;
     margin: 0 0 8px 0;
@@ -73,7 +73,7 @@
 
 .page-subtitle {
     color: #6b7280;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 /* Table Styles */
@@ -179,7 +179,7 @@ tr:hover {
     }
     
     table {
-        font-size: 14px;
+        font-size: 18px;
     }
     
     th, td {
