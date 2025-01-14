@@ -26,6 +26,9 @@ const answerSchema = mongoose.Schema({
   expertID: { 
     type: String,
   },
+  expertEmail: { 
+    type: String,
+  },
 //   expertRole: { type: String, required: true },
 }, { timestamps: true });
 

@@ -32,8 +32,6 @@ router.post('/addQuestion', async (req, res) => {
     await createQuestion(req, res); // create question in DB
 
     const { email_asked_by } = req.body; //send email to the user who asked the question
-    // console.log("email_asked_by", email_asked_by);
-    // console.log("sending email")
 
     if (email_asked_by) {
       sendEmailConfirmation(email_asked_by);
