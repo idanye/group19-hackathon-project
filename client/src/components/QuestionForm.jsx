@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useAuthContext } from '../hooks/useAuthContext.jsx'
+// import { useAuthContext } from '../hooks/useAuthContext.jsx'
 
 const QuestionForm = () => {
   const [question, setQuestion] = useState("");

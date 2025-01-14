@@ -12,7 +12,7 @@ export const useSignup = () => {
         setError(null)
 
         try {
-            const response = await axiosInstance.post('/signup', user)
+            const response = await axiosInstance.post('/staySafe/signup', user)
 
             // save the user to local storage
             localStorage.setItem('user', JSON.stringify(response.data))

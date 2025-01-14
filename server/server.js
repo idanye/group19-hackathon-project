@@ -51,9 +51,10 @@ mongoose.connect(MONGO_URI)
   console.error('Failed to connect to MongoDB:', err);
 });
 
+app.use('/staySafe', userRouter);
 app.use('/staySafe', staySafeQuestionsRoutes);
 app.use('/staySafe', staySafeAnswersRoutes);
-app.use('/staySafe', userRouter)
+
 
 app.use('/admin', adminRoutes);
 
