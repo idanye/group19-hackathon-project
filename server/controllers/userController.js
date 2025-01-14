@@ -1,6 +1,7 @@
 import RegularUser from '../models/regularUserModel.js'
 import Expert from '../models/expertModel.js'
 import jwt from 'jsonwebtoken'
+import { sendExpertSignUpNotification } from '../services/emailService.js'
 
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.JWT_SECRET, { expiresIn: '3d' })
@@ -61,6 +62,9 @@ export const signupExpert = async (req, res) => {
 
         // create token
         const token = createToken(expert._id)
+
+        // send a notification to the admin to approve or decline the expert
+        sendExpertSignUpNotification();
 
         res.status(200).json({ email, token })
     } catch (error) {

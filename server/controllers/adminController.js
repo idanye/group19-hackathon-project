@@ -1,4 +1,5 @@
 import ExpertModel from '../models/expertModel.js';
+import {sendExpertDeclineNotification, sendExpertApprovalNotification} from '../services/emailService.js';
 
 
 // Get all approved experts
@@ -33,6 +34,10 @@ const approveExpert = async (req, res) => {
         }
         expert.approved = "true";
         await expert.save();
+
+        // Send email notification to expert
+        sendExpertApprovalNotification(expert.email);
+
         res.status(200).json({ message: 'Expert approved successfully', data: expert });
     } catch (error) {
         console.error('Error approving expert:', error);
@@ -50,6 +55,10 @@ const DeclineExpert = async (req, res) => {
         }
         expert.approved = "false";
         await expert.save();
+
+        // Send email notification to expert
+        sendExpertDeclineNotification(expert.email);
+
         res.status(200).json({ message: 'Expert declined successfully', data: expert });
     } catch (error) {
         console.error('Error declining expert:', error);
