@@ -14,7 +14,8 @@ export const requireAuth = async (req, res, next) => {
     const token = authorization.split(' ')[1]
 
     try {
-        const {_id} = jwt.verify(token, process.env.SECRET)
+        const {_id} = jwt.verify(token, process.env.JWT_SECRET)
+        console.log("id ", _id);
 
         req.user = await Promise.any([
             RegularUser.findOne({ _id }).select('_id'),

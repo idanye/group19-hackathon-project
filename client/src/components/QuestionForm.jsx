@@ -73,7 +73,15 @@ const QuestionForm = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/staySafe/addQuestion", formData); //TODO: need to change to dynamic url
+      const user = JSON.parse(localStorage.getItem('user'));
+      const token = user?.token; // user need a valid token to submit a question
+      const response = await axios.post("http://localhost:5000/staySafe/addQuestion", formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}` // Include token in Authorization header
+          }
+      }
+      ); //TODO: need to change to dynamic url
       console.log("QuestionModel submitted successfully:", response.data);
       
       // Show success message and clear the form
