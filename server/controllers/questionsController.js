@@ -45,7 +45,7 @@ const getQuestionByCategoryAndId = async (req, res) => {
 
 
 // Create a new question
-const createQuestion = async (req, res) => { 
+const createQuestion = async (req, /*res*/) => { 
     try {
         const { category, question_header, question_body, name_asked_by, email_asked_by } = req.body;
         const question = new QuestionModel({
@@ -68,13 +68,15 @@ const createQuestion = async (req, res) => {
             await newUser.save();
             //savedUser = await newUser.save();
         }
-        res.status(201).json({
-            message: 'QuestionModel created successfully!',
-            question: savedQuestion,
-            // user: savedUser
-        });
+        // res.status(201).json({
+        //     message: 'QuestionModel created successfully!',
+        //     question: savedQuestion,
+        //     // user: savedUser
+        // })
+        return { success: true, savedQuestion };
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        // res.status(500).json({ message: error.message });
+        return { success: false, error: error };
     }
 };
 

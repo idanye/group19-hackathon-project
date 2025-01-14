@@ -12,6 +12,10 @@ const expertSchema = mongoose.Schema({
     required: true, 
     unique: true 
   },
+  expertField: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     require: true,
@@ -31,10 +35,10 @@ const expertSchema = mongoose.Schema({
 }, { timestamps: true });
 
 // static signup method
-expertSchema.statics.signup = async function (expertName, expertID, email, password) {
+expertSchema.statics.signup = async function (expertName, expertID, email, password, expertField) {
 
   // validation
-  if (!email || !password || !expertName || !expertID) {
+  if (!email || !password || !expertName || !expertID || !expertField) {
     throw Error('All fields must be filled')
   }
 
@@ -60,7 +64,7 @@ expertSchema.statics.signup = async function (expertName, expertID, email, passw
   const salt = await bcrypt.genSalt(10)
   const hash = await bcrypt.hash(password, salt)
 
-  const expertUser = await this.create({expertName, expertID, email, password: hash})
+  const expertUser = await this.create({expertName, expertID, expertField, email, password: hash})
 
   return expertUser
 }

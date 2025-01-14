@@ -14,7 +14,7 @@ const addAnswerExpert = async (req, res) => {
     const { questionId } = req.params;
 
     // Extract expert details from the middleware
-    const { expertName, expertID, email /* , expertRole*/ } = req.expert;
+    const { expertName, expertID, email /* , expertField*/ } = req.expert;
 
     // Create a new answer object
     const answer = new AnswerModel({
@@ -23,7 +23,7 @@ const addAnswerExpert = async (req, res) => {
       expertName,
       expertID,
       expertEmail : email,
-      //expertRole,
+      //expertField,
     });
 
     const savedAnswer = await answer.save();

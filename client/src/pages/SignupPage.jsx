@@ -9,6 +9,7 @@ const SignupPage = () => {
 
     // expert additional information
     const [expertID, setExpertID] = useState('')
+    const [expertField, setExpertField] = useState('')
 
     const { signup } = useSignup()
 
@@ -20,7 +21,8 @@ const SignupPage = () => {
             ...(userType === 'expert' ? { expertName: name } : { name }),
             email,
             password,
-            ...(userType === 'expert' && { expertID })
+            ...(userType === 'expert' && { expertID }),
+            ...(userType === 'expert' && { expertField })
         };
 
         console.log(user)
@@ -90,6 +92,19 @@ const SignupPage = () => {
                             value={expertID}
                             placeholder="Enter your Expert ID"
                         />
+                        <label>Expert Field:</label>
+                        <select
+                            id="expert-field"
+                            value={expertField}
+                            onChange={(e) => setExpertField(e.target.value)}
+                        >
+                            <option value="" disabled>
+                            Select a Field
+                            </option>
+                            <option value="Cyber-Bullying">Cyber Bullying</option>
+                            <option value="Sexual-Harassment">Sexual Harassment</option>
+                            <option value="Eating-Disorders">Eating Disorders</option>
+                        </select>   
                     </>
                 )}
 
