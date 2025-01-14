@@ -75,7 +75,7 @@ const QuestionForm = () => {
     try {
       const user = JSON.parse(localStorage.getItem('user'));
       const token = user?.token; // user need a valid token to submit a question
-      const response = await axios.post("http://localhost:5000/staySafe/addQuestion", formData,
+      const response = await axios.post("http://localhost:5000/staySafe/Questions/addQuestion", formData,
         {
           headers: {
             authorization: `Bearer ${token}` // Include token in Authorization header

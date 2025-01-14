@@ -15,7 +15,7 @@ const router = express.Router();
 router.get('/:questionId', getAnswers);
 
 // Only logged-in users can view
-router.use(requireAuth)
+router.use(requireAuth);
 
 // POST an answer to a specific question from an expert
 router.post('/expert/:questionId', validateExpert, addAnswerExpert);

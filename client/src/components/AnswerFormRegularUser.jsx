@@ -34,7 +34,15 @@ const AnswerFormRegularUser = () => {
     };
 
     try {
-      const response = await axios.post(`http://localhost:5000/staySafe/regularUser/${id}`, formData);
+      const user = JSON.parse(localStorage.getItem('user'));
+      const token = user?.token; // user need a valid token to submit a comment
+      const response = await axios.post(`http://localhost:5000/staySafe/Answers/regularUser/${id}`, formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}` // Include token in Authorization header
+          }
+        }
+      );
       console.log("AnswerModel submitted successfully:", response.data);
 
       setSuccessMessage("AnswerModel submitted successfully!");

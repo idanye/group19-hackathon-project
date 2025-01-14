@@ -52,8 +52,8 @@ mongoose.connect(MONGO_URI)
 });
 
 app.use('/staySafe', userRouter);
-app.use('/staySafe', staySafeQuestionsRoutes);
-app.use('/staySafe', staySafeAnswersRoutes);
+app.use('/staySafe/Questions', staySafeQuestionsRoutes);
+app.use('/staySafe/Answers', staySafeAnswersRoutes);
 
 
 app.use('/admin', adminRoutes);

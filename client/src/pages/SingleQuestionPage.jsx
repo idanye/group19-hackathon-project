@@ -16,11 +16,10 @@ const SingleQuestionPage = () => {
     }
 
     // useFetch to get the data of the question
-    const { data: question,  isLoading : isLoadingQuestion, error : errorQuestion } = useFetch(`http://localhost:5000/staysafe/getCategoryQuestions/${category}/${id}`)
-
+    const { data: question,  isLoading : isLoadingQuestion, error : errorQuestion } = useFetch(`http://localhost:5000/staysafe/Questions/getCategoryQuestions/${category}/${id}`)
     // useFetch to get the data of the answers
-    const { data: answers,  isLoading : isLoadingAnswers, error : errorAnswers } = useFetch(`http://localhost:5000/staysafe/${id}`)
-
+    const { data: answers,  isLoading : isLoadingAnswers, error : errorAnswers } = useFetch(`http://localhost:5000/staysafe/Answers/${id}`)
+    
     // Check if the category is valid else redirect to 404 page
     const isValid = useValidCategory(category);
     if (!isValid) {
