@@ -57,12 +57,13 @@ const AnswerForm = () => {
                 />
                 Regular user
               </label>
+              {userRole === "expert" && <AnswerFormExpert />}
+              {userRole === "regular user" && <AnswerFormRegularUser />}
             </div>
             ) :(<div className="error">You must be logged in to comment</div>)}
             
 
-            {userRole === "expert" && <AnswerFormExpert />}
-            {userRole === "regular user" && <AnswerFormRegularUser />}
+            
           </div>
         </div>
       </div>
