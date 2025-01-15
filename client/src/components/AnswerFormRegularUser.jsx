@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useAuthContext } from "../hooks/useAuthContext";
+
 
 const AnswerFormRegularUser = () => {
   const [text, setText] = useState("");
-  const [email, setEmail] = useState(""); 
+  // const [email, setEmail] = useState(""); 
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { id } = useParams(); // get the question id from the URL
+
+  // get user email from context
+  const { user } = useAuthContext();
+  const email = user.email;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,11 +21,11 @@ const AnswerFormRegularUser = () => {
     setError("");
     setSuccessMessage("");
 
-    if (!email) {
-        setError("Please enter your email.");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-    }
+    // if (!email) {
+    //     setError("Please enter your email.");
+    //     window.scrollTo({ top: 0, behavior: "smooth" });
+    //     return;
+    // }
 
     if (text.length < 10) {
       setError("Your answer must be at least 10 characters long.");
@@ -47,14 +53,14 @@ const AnswerFormRegularUser = () => {
 
       setSuccessMessage("AnswerModel submitted successfully!");
       setText("");
-      setEmail(""); 
+      // setEmail(""); 
 
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
         console.error("Error submitting answer:", error.response ? error.response.data : error.message);
         // Check if the error is related to authorization or other errors
         if (error.response && error.response.status === 403) {
-            setError("You are not authorized to answer this question. Please make sure your email is correct.");
+            setError("Regular users are not allowed to comment on this question, except the question asker.");
         } else {
             setError("There was an error submitting your answer. Please try again.");
         }
@@ -71,7 +77,7 @@ const AnswerFormRegularUser = () => {
         <h1 className="headline">Submit Your Answer</h1>
 
         <form onSubmit={handleSubmit}>
-          <label>Email:</label>
+          {/* <label>Email:</label>
           <input
             type="email"
             id="email"
@@ -79,7 +85,7 @@ const AnswerFormRegularUser = () => {
             onChange={(e) => setEmail(e.target.value)} 
             placeholder="Enter your Email for verification"
             required
-          />
+          /> */}
 
           <label>Answer:</label>
           <textarea
