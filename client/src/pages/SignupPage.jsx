@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup.jsx";
+import { useNavigate } from "react-router";
 
 const SignupPage = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
@@ -27,6 +29,7 @@ const SignupPage = () => {
 
         console.log(user)
         await signup(user)
+        navigate(-1);
     }
 
     return (

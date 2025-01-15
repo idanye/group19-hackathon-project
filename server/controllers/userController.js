@@ -55,7 +55,7 @@ export const signupUser = async (req, res) => {
 
 // signup expert
 export const signupExpert = async (req, res) => {
-    const {expertName, expertID, email, password, expertField} = req.body
+    const {expertName, expertID, email, password, expertField} = req.body;
 
     try {
         const expert = await Expert.signup(expertName, expertID, email, password, expertField)
