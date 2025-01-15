@@ -27,8 +27,16 @@ export const loginUser = async (req, res) => {
 
         res.status(200).json({ email, token })
     } catch (error) {
-        if (error instanceof AggregateError) {
-            res.status(400).json({error: 'Invalid email or password'})
+        if (error instanceof AggregateError) { 
+            // Handle all rejections from the Promise.any() call when no promise resolves successfully
+            const reasons = error.errors.map(err => err.message);
+            if (reasons.includes('you are not approved by the admin yet')) {
+                res.status(403).json({ error: 'You are not approved by the admin yet.' });
+            } else if (reasons.includes('you are not approved by the admin')) {
+                res.status(403).json({ error: 'You are not approved by the admin.' });
+            } else {
+                res.status(400).json({error: 'Invalid email or password'})
+            }
         }
         else {
             // Handle unexpected errors

@@ -79,6 +79,14 @@ expertSchema.statics.login = async function (email, password) {
       throw Error('Incorrect email')
     }
 
+    if(expert.approved === "pending") {
+      throw Error('you are not approved by the admin yet')
+    }
+
+    if(expert.approved === "false") {
+      throw Error('you are not approved by the admin')
+    }
+
     const match = await bcrypt.compare(password, expert.password)
 
     if (!match) {
