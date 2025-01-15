@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { set } from "mongoose";
 // import { useAuthContext } from '../hooks/useAuthContext.jsx'
 
 const QuestionForm = () => {
@@ -11,6 +12,17 @@ const QuestionForm = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(""); // State for error messages
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
+
+  // only logged in users can submit a question
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.token) {
+      setIsLoggedIn(true);
+    }
+    setIsLoading(false);
+  }, []);
 
   // Format category to match the URL format
   const formatCategory = (category) => {
@@ -96,7 +108,13 @@ const QuestionForm = () => {
       window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
     } catch (error) {
       console.error("Error submitting question:", error.response ? error.response.data : error.message);
+      
+      // Check for unauthorized error (401)
+    if (error.response && error.response.status === 401) {
+      setError("You must be logged in to submit a question.");
+    } else {
       setError("There was an error submitting your question. Please try again.");
+    }
       window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
     }
   };
@@ -106,6 +124,7 @@ const QuestionForm = () => {
       <div className="question-form">
         
         {/* Error and success messages */}
+        {!isLoading && !isLoggedIn && <div className="error">You must be logged in to submit a question.</div>}
         {error && <div className="error">{error}</div>}
         {successMessage && <div className="success">{successMessage}</div>}
 
