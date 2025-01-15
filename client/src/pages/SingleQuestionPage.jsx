@@ -3,6 +3,7 @@ import useFetch from '../hooks/useFetch.js';
 import '../style/SingleQuestionPage.css';
 import { Navigate } from 'react-router-dom';
 import useValidCategory from '../hooks/useValidCategory.jsx';
+import { useAuthContext } from '../hooks/useAuthContext.jsx';
 
 const SingleQuestionPage = () => {
     const { category, id } = useParams()
@@ -25,6 +26,9 @@ const SingleQuestionPage = () => {
     if (!isValid) {
       return <Navigate to="/404" />;
     }
+
+    // check if the user is logged in - only logged in users can comment
+    const { user } = useAuthContext();
 
     return (
         <div className='single-question-page'>
@@ -50,12 +54,23 @@ const SingleQuestionPage = () => {
                     </div>
                     <div className='question-add-answer'>
                         <p>Only experts and the question asker are allowed to respond</p>
-                        <Link to={`/${category}/${id}/add-answer`} style={{textDecoration : "none"}} className="add-answer-link">
-                            <button className='add-answer-button'
-                                onClick={()=>{}}>
+                        {user ? (
+                            <Link 
+                                to={`/${category}/${id}/add-answer`} 
+                                style={{ textDecoration: "none" }} 
+                                className="add-answer-link"
+                            >
+                                <button className="add-answer-button">Comment</button>
+                            </Link>
+                        ) : (
+                            <button 
+                                className="add-answer-button" 
+                                onClick={() => alert("You must be logged in to add a comment!")}
+                            >
                                 Comment
                             </button>
-                        </Link>
+                        )}
+
                     </div> 
                     <div className='question-comments'>
                         {isLoadingAnswers && <div className='loading'>Loading...</div>}

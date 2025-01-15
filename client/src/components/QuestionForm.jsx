@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { set } from "mongoose";
-// import { useAuthContext } from '../hooks/useAuthContext.jsx'
+import { useAuthContext } from '../hooks/useAuthContext.jsx'
 
 const QuestionForm = () => {
   const [question, setQuestion] = useState("");
@@ -14,15 +14,7 @@ const QuestionForm = () => {
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
 
   // only logged in users can submit a question
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.token) {
-      setIsLoggedIn(true);
-    }
-    setIsLoading(false);
-  }, []);
+  const { user } = useAuthContext();
 
   // Format category to match the URL format
   const formatCategory = (category) => {
@@ -124,7 +116,7 @@ const QuestionForm = () => {
       <div className="question-form">
         
         {/* Error and success messages */}
-        {!isLoading && !isLoggedIn && <div className="error">You must be logged in to submit a question.</div>}
+        {user ? (null) : (<div className="error">You must be logged in to submit a question.</div>)}
         {error && <div className="error">{error}</div>}
         {successMessage && <div className="success">{successMessage}</div>}
 
