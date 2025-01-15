@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 import axiosInstance from "../services/api.js";
+import { useNavigate } from 'react-router-dom';
 
 export const useLogin = () => {
+    const navigate = useNavigate();
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
@@ -21,6 +23,7 @@ export const useLogin = () => {
             dispatch({type: 'LOGIN', payload: response.data})
 
             setIsLoading(false)
+            navigate(-1);
 
         } catch (error) {
             setIsLoading(false)
