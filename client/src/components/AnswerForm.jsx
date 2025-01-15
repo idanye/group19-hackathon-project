@@ -3,6 +3,7 @@ import { useNavigate, useParams, Navigate } from "react-router-dom";
 import AnswerFormExpert from '../components/AnswerFormExpert';
 import AnswerFormRegularUser from '../components/AnswerFormRegularUser';
 import useValidCategory from "../hooks/useValidCategory";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 const AnswerForm = () => {
@@ -25,12 +26,16 @@ const AnswerForm = () => {
     return <Navigate to="/404" />;
   }
 
+  // a user need to be logged in to answer a question
+  const {user} = useAuthContext();
+
   return (
       <div className="page">
         <div className="answer-page-container">
           <div className="answer-form-selector">
             <button className="go-back-button" onClick={handleBack}>Back</button>
-            <div className="role-selection">
+            {user ? (
+              <div className="role-selection">
               <p>Select Your Role:</p>
               <label>
                 <input
@@ -53,6 +58,8 @@ const AnswerForm = () => {
                 Regular user
               </label>
             </div>
+            ) :(<div className="error">You must be logged in to comment</div>)}
+            
 
             {userRole === "expert" && <AnswerFormExpert />}
             {userRole === "regular user" && <AnswerFormRegularUser />}
