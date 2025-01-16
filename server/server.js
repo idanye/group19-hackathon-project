@@ -34,9 +34,6 @@ app.use(cors({
   credentials: true,
 }));
 
-// app.use(cors({
-//   origin: process.env.CLIENT_URL
-// }));
 
 // logging the requests to the server
 app.use((req, res, next) => {
@@ -52,8 +49,8 @@ mongoose.connect(MONGO_URI)
 });
 
 app.use('/staySafe', userRouter);
-app.use('/staySafe/Questions', staySafeQuestionsRoutes);
-app.use('/staySafe/Answers', staySafeAnswersRoutes);
+app.use('/staySafe/questions', staySafeQuestionsRoutes);
+app.use('/staySafe/answers', staySafeAnswersRoutes);
 
 
 app.use('/admin', adminRoutes);

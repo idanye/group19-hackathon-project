@@ -17,24 +17,27 @@ export const loginUser = async (req, res) => {
             throw Error('All fields must be filled')
         }
 
-        const user = await Promise.any([
-            RegularUser.login(email, password), // Try logging in as a RegularUser
-            Expert.login(email, password),     // Try logging in as an Expert
+        const result = await Promise.any([
+            RegularUser.login(email, password).then(user => ({userType: 'regular', user})), // Try logging in as a RegularUser
+            Expert.login(email, password).then(user => ({userType: 'expert', user}))       // Try logging in as an Expert
         ]);
 
         // create a token for the successfully logged-in user
-        const token = createToken(user._id);
+        const token = createToken(result.user._id);
 
-        res.status(200).json({ email, token })
+        res.status(200).json({ email, token, userType: result.userType})
     } catch (error) {
         if (error instanceof AggregateError) { 
             // Handle all rejections from the Promise.any() call when no promise resolves successfully
             const reasons = error.errors.map(err => err.message);
+
             if (reasons.includes('you are not approved by the admin yet')) {
                 res.status(403).json({ error: 'You are not approved by the admin yet.' });
-            } else if (reasons.includes('you are not approved by the admin')) {
+            }
+            else if (reasons.includes('you are not approved by the admin')) {
                 res.status(403).json({ error: 'You are not approved by the admin.' });
-            } else {
+            }
+            else {
                 res.status(400).json({error: 'Invalid email or password'})
             }
         }
@@ -47,7 +50,7 @@ export const loginUser = async (req, res) => {
 
 // signup regular user
 export const signupUser = async (req, res) => {
-    const {name, email, password} = req.body
+    const {name, email, password, userType} = req.body
 
     try {
         const regularUser = await RegularUser.signup(name, email, password)
@@ -55,7 +58,7 @@ export const signupUser = async (req, res) => {
         // create token
         const token = createToken(regularUser._id)
 
-        res.status(200).json({ email, token })
+        res.status(200).json({ email, token, userType })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -63,7 +66,7 @@ export const signupUser = async (req, res) => {
 
 // signup expert
 export const signupExpert = async (req, res) => {
-    const {expertName, expertID, email, password, expertField} = req.body;
+    const {expertName, expertID, email, password, expertField, userType} = req.body;
 
     try {
         const expert = await Expert.signup(expertName, expertID, email, password, expertField)
@@ -74,7 +77,7 @@ export const signupExpert = async (req, res) => {
         // send a notification to the admin to approve or decline the expert
         sendExpertSignUpNotification();
 
-        res.status(200).json({ email, token })
+        res.status(200).json({ email, token, userType })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }

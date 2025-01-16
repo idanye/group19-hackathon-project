@@ -12,7 +12,7 @@ import NotFoundPage from './pages/NotFoundPage.jsx';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import QuestionForm from './components/QuestionForm.jsx';
-import AnswerForm from './components/AnswerForm.jsx';
+import AnswerForm from './pages/AnswerForm.jsx';
 import Header from "./components/Header.jsx";
 import {useState} from "react";
 

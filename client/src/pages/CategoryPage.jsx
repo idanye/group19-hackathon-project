@@ -10,7 +10,7 @@ import useValidCategory from '../hooks/useValidCategory.jsx';
 const CategoryPage = () => {
     const { category } = useParams(); // Get the category name from the URL
     
-    const { data: categoryQuestions, isLoading, error } = useFetch(`http://localhost:5000/staysafe/Questions/getCategoryQuestions/${category}`);
+    const { data: categoryQuestions, isLoading, error } = useFetch(`http://localhost:5000/staysafe/questions/getCategoryQuestions/${category}`);
 
     // Check if the category is valid else redirect to 404 page
     const isValid = useValidCategory(category);

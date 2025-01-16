@@ -5,12 +5,13 @@ import { useAuthContext } from '../hooks/useAuthContext.jsx'
 const QuestionForm = () => {
   const [question, setQuestion] = useState("");
   const [category, setCategory] = useState("");
-  const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
   const [isAnonymous, setIsAnonymous] = useState("no");
-  const [name, setName] = useState("");
   const [error, setError] = useState(""); // State for error messages
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
+
+  // const [email, setEmail] = useState("");
+  // const [name, setName] = useState("");
 
   // only logged in users can submit a question
   const { user } = useAuthContext();
@@ -31,13 +32,20 @@ const QuestionForm = () => {
     setError("");
     setSuccessMessage("");
 
-    // Validate email
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      setError("Please enter a valid email address.");
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
-      return;
-    }
+    // // Validate email
+    // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // if (!emailPattern.test(email)) {
+    //   setError("Please enter a valid email address.");
+    //   window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
+    //   return;
+    // }
+
+    // // Validate name field if not anonymous
+    // if (isAnonymous === "no" && !name) {
+    //   setError("Please enter your name.");
+    //   window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
+    //   return;
+    // }
 
     // Validate category selection
     if (!category) {
@@ -60,42 +68,38 @@ const QuestionForm = () => {
       return;
     }
 
-    // Validate name field if not anonymous
-    if (isAnonymous === "no" && !name) {
-      setError("Please enter your name.");
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
-      return;
-    }
-
     const formData = {
       category,
       question_header: title,
       question_body: question,
-      name_asked_by: isAnonymous === "no" ? name : "Anonymous",
-      email_asked_by: email,
+      name_asked_by: isAnonymous === "no" ? user.name : "Anonymous",
+      email_asked_by: user.email,
     };
 
     try {
       const user = JSON.parse(localStorage.getItem('user'));
       const token = user?.token; // user need a valid token to submit a question
-      const response = await axiosInstance.post("Questions/addQuestion",
+
+      const response = await axiosInstance.post("questions/addQuestion",
           formData,
           {
                     headers: {
                       authorization: `Bearer ${token}` // Include token in Authorization header
                     }
                   }
-      ); //TODO: need to change to dynamic url
+      );
+
       console.log("QuestionModel submitted successfully:", response.data);
       
       // Show success message and clear the form
       setSuccessMessage("Question submitted successfully!");
       setQuestion("");
       setCategory("");
-      setEmail("");
       setTitle("");
       setIsAnonymous("no");
-      setName("");
+
+      // setEmail("");
+      // setName("");
       
       window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
     } catch (error) {
@@ -118,12 +122,12 @@ const QuestionForm = () => {
       {!user ? (<div className="error">You must be logged in to submit a question.</div>) : (
 
         <div className="question-form">
-          {error && <div className="error">{error}</div>}
+          { error && <div className="error">{error}</div> }
 
-          {successMessage && <div className="success">{successMessage}</div>}
+          { successMessage && <div className="success">{successMessage}</div> }
 
           <form onSubmit={handleSubmit}>
-            <h1 className="headline">Ask a question</h1>
+            <h1 className="headline">Ask a Question</h1>
 
             <label>Ask Anonymously:</label>
             <fieldset>
@@ -136,6 +140,7 @@ const QuestionForm = () => {
                 />
                 Yes
               </label>
+
               <label>
                 <input
                     type="radio"
@@ -147,32 +152,32 @@ const QuestionForm = () => {
               </label>
             </fieldset>
 
-            {isAnonymous === "no" && (
-                <div>
-                  <label>Your Name:</label>
-                  <input
-                      type="text"
-                      id="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-            )}
+            {/*{isAnonymous === "no" && (*/}
+            {/*    <div>*/}
+            {/*      <label>Your Name:</label>*/}
+            {/*      <input*/}
+            {/*          type="text"*/}
+            {/*          id="name"*/}
+            {/*          value={name}*/}
+            {/*          onChange={(e) => setName(e.target.value)}*/}
+            {/*      />*/}
+            {/*    </div>*/}
+            {/*)}*/}
 
-            <label>
-              Email:
-              <span className="info-icon" title="Your email will remain confidential and won't be shared.">
-                  ℹ️
-              </span>
-            </label>
-            <div>
-              <input
-                  type="text"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+            {/*<label>*/}
+            {/*  Email:*/}
+            {/*  <span className="info-icon" title="Your email will remain confidential and won't be shared.">*/}
+            {/*      ℹ️*/}
+            {/*  </span>*/}
+            {/*</label>*/}
+            {/*<div>*/}
+            {/*  <input*/}
+            {/*      type="text"*/}
+            {/*      id="email"*/}
+            {/*      value={email}*/}
+            {/*      onChange={(e) => setEmail(e.target.value)}*/}
+            {/*  />*/}
+            {/*</div>*/}
 
             <label>Title:</label>
             <input

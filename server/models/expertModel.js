@@ -79,11 +79,11 @@ expertSchema.statics.login = async function (email, password) {
       throw Error('Incorrect email')
     }
 
-    if(expert.approved === "pending") {
+    if (expert.approved === "pending") {
       throw Error('you are not approved by the admin yet')
     }
 
-    if(expert.approved === "false") {
+    if (expert.approved === "false") {
       throw Error('you are not approved by the admin')
     }
 
