@@ -1,9 +1,9 @@
 import { createContext, useReducer, useEffect } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 
-export const AuthContext = createContext()
+const AuthContext = createContext()
 
-export const authReducer = (state, action) => {
+const authReducer = (state, action) => {
     switch (action.type) {
         case 'LOGIN':
             return { user: action.payload }
@@ -40,3 +40,5 @@ export const AuthContextProvider = ({ children }) => {
 AuthContextProvider.propTypes = {
     children: PropTypes.node.isRequired, // 'children' should be any renderable content
 };
+
+export default {AuthContext, AuthContextProvider}
