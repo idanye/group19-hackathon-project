@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../services/api";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 
@@ -42,7 +42,7 @@ const AnswerFormRegularUser = () => {
     try {
       const user = JSON.parse(localStorage.getItem('user'));
       const token = user?.token; // user need a valid token to submit a comment
-      const response = await axios.post(`Answers/regularUser/${id}`, formData,
+      const response = await axiosInstance.post(`Answers/regularUser/${id}`, formData,
         {
           headers: {
             authorization: `Bearer ${token}` // Include token in Authorization header

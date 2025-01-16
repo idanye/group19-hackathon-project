@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../services/api.js";
 import { useAuthContext } from '../hooks/useAuthContext.jsx'
 
 const QuestionForm = () => {
@@ -78,7 +78,7 @@ const QuestionForm = () => {
     try {
       const user = JSON.parse(localStorage.getItem('user'));
       const token = user?.token; // user need a valid token to submit a question
-      const response = await axios.post("Questions/addQuestion",
+      const response = await axiosInstance.post("Questions/addQuestion",
           formData,
           {
                     headers: {
