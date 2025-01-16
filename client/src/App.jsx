@@ -15,6 +15,7 @@ import QuestionForm from './components/QuestionForm.jsx';
 import AnswerForm from './pages/AnswerForm.jsx';
 import Header from "./components/Header.jsx";
 import {useState} from "react";
+import ReturnToTopButton from "./components/ReturnToTopButton.jsx";
 
 function App() {
     const [navBarOption, setNavBarOption] = useState("Home");
@@ -24,6 +25,8 @@ function App() {
         <div className="app">
             <Header setNavBarOption={setNavBarOption}/>
             <Navbar navBarOption={navBarOption} setNavBarOption={setNavBarOption}/>
+
+            <ReturnToTopButton />
 
             <Routes>
                 <Route path="/" element={<Home />} />
