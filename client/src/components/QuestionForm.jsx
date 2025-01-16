@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-// import { set } from "mongoose";
 import { useAuthContext } from '../hooks/useAuthContext.jsx'
 
 const QuestionForm = () => {
@@ -79,12 +78,13 @@ const QuestionForm = () => {
     try {
       const user = JSON.parse(localStorage.getItem('user'));
       const token = user?.token; // user need a valid token to submit a question
-      const response = await axios.post("http://localhost:5000/staySafe/Questions/addQuestion", formData,
-        {
-          headers: {
-            authorization: `Bearer ${token}` // Include token in Authorization header
-          }
-      }
+      const response = await axios.post("http://localhost:5000/staySafe/Questions/addQuestion",
+          formData,
+          {
+                    headers: {
+                      authorization: `Bearer ${token}` // Include token in Authorization header
+                    }
+                  }
       ); //TODO: need to change to dynamic url
       console.log("QuestionModel submitted successfully:", response.data);
       
@@ -99,113 +99,116 @@ const QuestionForm = () => {
       
       window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
     } catch (error) {
-      console.error("Error submitting question:", error.response ? error.response.data : error.message);
+        console.error("Error submitting question:", error.response ? error.response.data : error.message);
       
-      // Check for unauthorized error (401)
-    if (error.response && error.response.status === 401) {
-      setError("You must be logged in to submit a question.");
-    } else {
-      setError("There was an error submitting your question. Please try again.");
-    }
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
+        // Check for unauthorized error (401)
+        if (error.response && error.response.status === 401) {
+          setError("You must be logged in to submit a question.");
+        } else {
+          setError("There was an error submitting your question. Please try again.");
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
     }
   };
 
   return (
     <div className="page">
-      <div className="question-form">
-        
-        {/* Error and success messages */}
-        {user ? (null) : (<div className="error">You must be logged in to submit a question.</div>)}
-        {error && <div className="error">{error}</div>}
-        {successMessage && <div className="success">{successMessage}</div>}
 
-        <form onSubmit={handleSubmit}>
-          <h1 className="headline">Ask a question</h1>
+      {!user ? (<div className="error">You must be logged in to submit a question.</div>) : (
 
-          <label>Ask Anonymously:</label>
-          <fieldset>
-            <label>
-              <input
-                  type="radio"
-                  value="yes"
-                  checked={isAnonymous === "yes"}
-                  onChange={(e) => setIsAnonymous(e.target.value)}
-              />
-              Yes
-            </label>
-            <label>
-              <input
-                  type="radio"
-                  value="no"
-                  checked={isAnonymous === "no"}
-                  onChange={(e) => setIsAnonymous(e.target.value)}
-              />
-              No
-            </label>
-          </fieldset>
+        <div className="question-form">
+          {error && <div className="error">{error}</div>}
 
-          {isAnonymous === "no" && (
-              <div>
-                <label>Your Name:</label>
+          {successMessage && <div className="success">{successMessage}</div>}
+
+          <form onSubmit={handleSubmit}>
+            <h1 className="headline">Ask a question</h1>
+
+            <label>Ask Anonymously:</label>
+            <fieldset>
+              <label>
                 <input
-                    type="text"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    type="radio"
+                    value="yes"
+                    checked={isAnonymous === "yes"}
+                    onChange={(e) => setIsAnonymous(e.target.value)}
                 />
-              </div>
-          )}
+                Yes
+              </label>
+              <label>
+                <input
+                    type="radio"
+                    value="no"
+                    checked={isAnonymous === "no"}
+                    onChange={(e) => setIsAnonymous(e.target.value)}
+                />
+                No
+              </label>
+            </fieldset>
 
-          <label>
-            Email:
-            <span className="info-icon" title="Your email will remain confidential and won't be shared.">
-                ℹ️
-            </span>
-          </label>
-          <div>
+            {isAnonymous === "no" && (
+                <div>
+                  <label>Your Name:</label>
+                  <input
+                      type="text"
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+            )}
+
+            <label>
+              Email:
+              <span className="info-icon" title="Your email will remain confidential and won't be shared.">
+                  ℹ️
+              </span>
+            </label>
+            <div>
+              <input
+                  type="text"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <label>Title:</label>
             <input
                 type="text"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
             />
-          </div>
 
-          <label>Title:</label>
-          <input
-              type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-          />
+            <label>Question:</label>
+            <textarea
+                id="question"
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                rows="5"
+                placeholder="Write your question here..."
+            />
 
-          <label>Question:</label>
-          <textarea
-              id="question"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              rows="5"
-              placeholder="Write your question here..."
-          />
+            <label>Category:</label>
+            <select
+                id="category"
+                value={category}
+                onChange={(e) => handleCategoryChange(e)}
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              <option value="Cyber-Bullying">Cyber Bullying</option>
+              <option value="Sexual-Harassment">Sexual Harassment</option>
+              <option value="Eating-Disorders">Eating Disorders</option>
+            </select>
 
-          <label>Category:</label>
-          <select
-              id="category"
-              value={category}
-              onChange={(e) => handleCategoryChange(e)}
-          >
-            <option value="" disabled>
-              Select a category
-            </option>
-            <option value="Cyber-Bullying">Cyber Bullying</option>
-            <option value="Sexual-Harassment">Sexual Harassment</option>
-            <option value="Eating-Disorders">Eating Disorders</option>
-          </select>
-
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

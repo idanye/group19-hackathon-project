@@ -14,7 +14,7 @@ export const useLogin = () => {
         setError(null)
 
         try {
-            const response = await axiosInstance.post('/staySafe/login', { email, password })
+            const response = await axiosInstance.post('/login', { email, password })
 
             // save the user to local storage
             localStorage.setItem('user', JSON.stringify(response.data))

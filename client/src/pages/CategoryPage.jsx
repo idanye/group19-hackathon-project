@@ -1,5 +1,5 @@
 // Import libraries and modules
-import useFetch from "../hooks/useFetch.js";
+import useFetch from "../hooks/useFetch.jsx";
 import { Link } from "react-router";
 import { Clock, MessageSquare } from 'lucide-react';
 import { useParams, Navigate } from "react-router-dom";

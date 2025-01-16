@@ -14,19 +14,18 @@ export const useSignup = () => {
         setError(null)
 
         try {
-            const response = await axiosInstance.post('/staySafe/signup', user)
+            const response = await axiosInstance.post('/signup', user)
 
             // save the user to local storage
             localStorage.setItem('user', JSON.stringify(response.data))
 
             // update the auth context
             dispatch({type: 'LOGIN', payload: response.data})
-            if(user.userType === 'expert')
-            {
+
+            if (user.userType === 'expert') {
                 alert("Your request has been received and forwarded to the admin.");
             }
-            else
-            {
+            else {
                 alert("You have successfully signed up. Please log in to continue.");
             }
             setIsLoading(false)
@@ -37,7 +36,6 @@ export const useSignup = () => {
             setError(error.response?.data?.error)
             alert("Error in signup: " + error.response?.data?.error);
         }
-
     }
 
     return { signup, isLoading, error }

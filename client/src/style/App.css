@@ -45,11 +45,12 @@ a {
   border-radius: 4px;
   cursor: pointer;
   font-size: 20px;
-  transition: background-color 0.3s ease;
+  transition: hover 0.3s ease;
+  background: none;
 }
 
 .signup-login a:hover, .logout-btn:hover {
-  background-color: #a2ceca0a;
+  background-color: rgb(86 214 197 / 14%);
 }
 
 span {
@@ -162,12 +163,19 @@ body {
   color: white; 
   font-size: 20px;
   font-weight: 500;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 /* Hover effect for each navbar option */
-.navbar-option:hover {
-  color: #E6F3FF;
+.navbar-option:hover, .navbar-option:hover ~ hr {
+  color: #086e5bd1;
+  transform: scale(1.05);
 }
+
+.navbar-option:hover ~ hr {
+  background: #086e5bd1;
+}
+
 
 /* Icon styling inside navbar options */
 .navbar-icon {
@@ -187,12 +195,13 @@ body {
 /* Horizontal line below navbar options */
 .navbar-options hr {
   border: none;
-  height: 2px;
+  height: 1.5px;
   background-color: white;
-  margin: 0;
-  margin-top: 5px;
+  margin: 3px 0 0;
   width: 100%;
+  transition: color 0.3s ease; /* Smooth color change */
 }
+
 
 /* Footer styling */
 .footer {
@@ -204,9 +213,11 @@ body {
 
 /* Footer text styling */
 .footer p {
-  margin: 30px 20px 20px 50px;
+  margin: 30px 50px 20px 50px;
   font-size: 14px;
-  color: #9f94b8; 
+  color: #9f94b8;
+  display: flex;
+  justify-content: center;
 }
 
 /* Home Page */
@@ -421,7 +432,6 @@ form button:hover {
 }
 
 /* css for 404 page */
-
 .not-found {
   max-width: 600px;
   margin: 100px auto;

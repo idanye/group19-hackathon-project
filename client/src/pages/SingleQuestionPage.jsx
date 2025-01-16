@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router';
-import useFetch from '../hooks/useFetch.js';
+import useFetch from '../hooks/useFetch.jsx';
 import '../style/SingleQuestionPage.css';
 import { Navigate } from 'react-router-dom';
 import useValidCategory from '../hooks/useValidCategory.jsx';

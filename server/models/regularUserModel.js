@@ -43,7 +43,6 @@ regularUserSchema.statics.signup = async function (name, email, password) {
 
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
-    console.log("inside model")
 
     const regularUser = await this.create({name, email, password: hash})
 

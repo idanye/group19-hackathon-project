@@ -3,8 +3,9 @@ import AskQuestionButton from "./AskQuestionButton.jsx";
 import { Link } from 'react-router-dom'
 import { useLogout } from "../hooks/useLogout.jsx";
 import {useAuthContext} from "../hooks/useAuthContext.jsx";
+import PropTypes from "prop-types";
 
-const Header = () => {
+const Header = ({ setNavBarOption }) => {
     const { logout } = useLogout()
     const { user } = useAuthContext()
 
@@ -14,7 +15,7 @@ const Header = () => {
 
     return (
         <div className="header-content">
-            <Link to="/">
+            <Link to="/" onClick={() => setNavBarOption("Home")}>
                 <div className="header-left">
                     <img src={logo} alt="App Logo" className="app-logo"/>
                     <h1 className="app-title">SafeSpace</h1>
@@ -43,5 +44,9 @@ const Header = () => {
         </div>
     )
 }
+
+Header.propTypes = {
+    setNavBarOption: PropTypes.func.isRequired,
+};
 
 export default Header

@@ -14,14 +14,16 @@ import Footer from './components/Footer.jsx';
 import QuestionForm from './components/QuestionForm.jsx';
 import AnswerForm from './components/AnswerForm.jsx';
 import Header from "./components/Header.jsx";
-
+import {useState} from "react";
 
 function App() {
-  return (
+    const [navBarOption, setNavBarOption] = useState("Home");
+
+    return (
     <BrowserRouter>
         <div className="app">
-            <Header/>
-            <Navbar/>
+            <Header setNavBarOption={setNavBarOption}/>
+            <Navbar navBarOption={navBarOption} setNavBarOption={setNavBarOption}/>
 
             <Routes>
                 <Route path="/" element={<Home />} />

@@ -1,19 +1,18 @@
-import { useState } from "react";
 import { Link } from "react-router";
+import PropTypes from "prop-types";
 
 // Import icons
-import homeIcon from '../images/home.png';
-import cyberCrimeIcon from '../images/cyber-crime.png';
-import harassmentIcon from '../images/sexual-harassment.png';
-import eatingIcon from '../images/eating.png';
+// import homeIcon from '../images/home.png';
+// import cyberCrimeIcon from '../images/cyber-crime.png';
+// import harassmentIcon from '../images/sexual-harassment.png';
+// import eatingIcon from '../images/eating.png';
 
 /*
 Using useState to toggle underline under the current page.
 Using Link to connect a page to its path and render to the current page later.
 Added icons for each navigation option.
 */
-const Navbar = () => {
-    const [navBarOption, setNavBarOption] = useState("Home");
+const Navbar = ({ navBarOption, setNavBarOption }) => {
 
     return (
         <div className="navbar">
@@ -22,7 +21,7 @@ const Navbar = () => {
                 {/* Home */}
                 <Link to="/" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("Home")}>
-                        <img src={homeIcon} alt="Home" className="navbar-icon" /> Home
+                        {/*<img src={homeIcon} alt="Home" className="navbar-icon" />*/ } Home
                     </li>
                     {navBarOption === "Home" ? <hr /> : null}
                 </Link>
@@ -30,7 +29,7 @@ const Navbar = () => {
                 {/* Cyber Bullying */}
                 <Link to="/Cyber-Bullying" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("Cyber Bullying")}>
-                        <img src={cyberCrimeIcon} alt="Cyber Bullying" className="navbar-icon" /> Cyber Bullying
+                        {/*<img src={cyberCrimeIcon} alt="Cyber Bullying" className="navbar-icon" />*/} Cyber Bullying
                     </li>
                     {navBarOption === "Cyber Bullying" ? <hr /> : null}
                 </Link>
@@ -38,7 +37,7 @@ const Navbar = () => {
                 {/* Sexual Harassment */}
                 <Link to="/Sexual-Harassment" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("Sexual Harassment")}>
-                        <img src={harassmentIcon} alt="Sexual Harassment" className="navbar-icon" /> Sexual Harassment
+                        {/*<img src={harassmentIcon} alt="Sexual Harassment" className="navbar-icon" />*/} Sexual Harassment
                     </li>
                     {navBarOption === "Sexual Harassment" ? <hr /> : null}
                 </Link>
@@ -46,7 +45,7 @@ const Navbar = () => {
                 {/* Eating Disorders */}
                 <Link to="/Eating-Disorders" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("Eating Disorders")}>
-                        <img src={eatingIcon} alt="Eating Disorders" className="navbar-icon" /> Eating Disorders
+                        {/*<img src={eatingIcon} alt="Eating Disorders" className="navbar-icon" />*/} Eating Disorders
                     </li>
                     {navBarOption === "Eating Disorders" ? <hr /> : null}
                 </Link>
@@ -55,5 +54,10 @@ const Navbar = () => {
         </div>
     );
 }
+
+Navbar.propTypes = {
+    navBarOption: PropTypes.string.isRequired,
+    setNavBarOption: PropTypes.func.isRequired,
+};
 
 export default Navbar;
