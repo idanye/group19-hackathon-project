@@ -3,11 +3,9 @@ import {
     getAllQuestions,
     getQuestionsByCategory,
     getQuestionByCategoryAndId,
-    createQuestion,
-} from '../controllers/questionsController.js';
-import { sendEmailConfirmation } from '../services/emailService.js';
-import { requireAuth } from "../middlewares/requireAuth.js";
-import { sendNewQuestionNotification } from '../services/emailService.js';
+    createQuestion } from '../controllers/questionsController.js';
+import { sendEmailConfirmation, sendNewQuestionNotification} from '../services/emailService.js';
+import requireAuth from "../middlewares/requireAuth.js";
 import ExpertModel from '../models/expertModel.js';
 
 const router = express.Router();

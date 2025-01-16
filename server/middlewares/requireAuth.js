@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import RegularUser from '../models/regularUserModel.js'
 import Expert from '../models/expertModel.js'
 
-export const requireAuth = async (req, res, next) => {
+const requireAuth = async (req, res, next) => {
 
     // verify authentication
     const { authorization } = req.headers

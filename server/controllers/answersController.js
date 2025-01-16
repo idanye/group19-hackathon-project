@@ -1,9 +1,7 @@
 import AnswerModel from "../models/answerModel.js";
 import QuestionModel from "../models/questionModel.js";
 import mongoose from "mongoose";
-import { sendExpertResponseNotification } from "../services/emailService.js";
-import { sendRegularUserResponseNotification } from "../services/emailService.js";
-
+import { sendExpertResponseNotification, sendRegularUserResponseNotification } from "../services/emailService.js";
 /**
  * Add an answer or a comment to a specific question
  * This route is restricted to verified experts only
