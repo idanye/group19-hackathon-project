@@ -20,14 +20,16 @@ const AnswerForm = () => {
     setUserRole(e.target.value); 
   };
 
+    // a user need to be logged in to answer a question
+    const {user} = useAuthContext();
+
   // Check if the category is valid else redirect to 404 page
   const isValid = useValidCategory(category);
   if (!isValid) {
     return <Navigate to="/404" />;
   }
 
-  // a user need to be logged in to answer a question
-  const {user} = useAuthContext();
+
 
   return (
       <div className="page">

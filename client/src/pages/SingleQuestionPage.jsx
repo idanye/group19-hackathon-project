@@ -21,14 +21,15 @@ const SingleQuestionPage = () => {
     // useFetch to get the data of the answers
     const { data: answers,  isLoading : isLoadingAnswers, error : errorAnswers } = useFetch(`http://localhost:5000/staysafe/Answers/${id}`)
     
+    // check if the user is logged in - only logged in users can comment
+    const { user } = useAuthContext();
+    
     // Check if the category is valid else redirect to 404 page
     const isValid = useValidCategory(category);
     if (!isValid) {
       return <Navigate to="/404" />;
     }
 
-    // check if the user is logged in - only logged in users can comment
-    const { user } = useAuthContext();
 
     return (
         <div className='single-question-page'>
