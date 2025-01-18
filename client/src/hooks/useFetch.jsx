@@ -10,6 +10,9 @@ const useFetch = (url) => {
         fetch(url)
             .then(response => {
                 console.log("Response Status:", response.status); // Log response status
+                if(response.status === 404){
+                    throw Error('No data found')
+                }
                 if (!response.ok) {
                     throw Error('Failed to fetch data');
                 }

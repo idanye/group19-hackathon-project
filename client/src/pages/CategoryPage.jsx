@@ -43,9 +43,8 @@ const CategoryPage = () => {
 
             {/* List of questions */}
             <div className="questions-list">
-                {/* Error message in case of loading issues */}
                 {error && <div className="error-message">Error loading questions</div>}
-                {/* Loading message */}
+
                 {isLoading && <div className="loading-message">Loading...</div>}
 
                 {/* Render the questions if data is available */}
@@ -55,17 +54,16 @@ const CategoryPage = () => {
                         key={question._id}
                         className="question-item"
                     >
-                        {/* User avatar */}
                         <div className="user-avatar">
                             {question.name_asked_by.charAt(0).toUpperCase()} {/* First letter of the username */}
                         </div>
 
                         {/* QuestionModel content */}
                         <div className="question-content">
-                            <h3 className="question-title">{question.question_header}</h3>
+                            <h3 className="question-title">{ question.question_header }</h3>
                             <div className="question-meta">
                                 <span className="author-name">
-                                    {question.is_anonymous ? "Anonymous" : question.name_asked_by}
+                                    { question.is_anonymous ? "Anonymous" : question.name_asked_by }
                                 </span>
                                 <span className="meta-separator">•</span>
                                 <span className="timestamp">

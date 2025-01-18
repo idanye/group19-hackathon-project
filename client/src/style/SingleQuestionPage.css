@@ -44,14 +44,14 @@
 .question-add-answer p {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-top: 20px;
+    margin-left: 20px;
 }
 
-.add-comment {
+.question-add-answer {
     display: flex;
-    justify-content: center;
-    margin: 30px 10px 10px 10px;
+    align-items: center;
 }
+
 
 .add-answer-link {
     display: inline-block;

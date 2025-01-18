@@ -19,8 +19,12 @@ const SingleQuestionPage = () => {
     // useFetch to get the data of the question
     const { data: question,  isLoading : isLoadingQuestion, error : errorQuestion } = useFetch(`http://localhost:5000/staysafe/questions/getCategoryQuestions/${category}/${id}`)
     // useFetch to get the data of the answers
-    const { data: answers,  isLoading : isLoadingAnswers, error : errorAnswers } = useFetch(`http://localhost:5000/staysafe/answers/${id}`)
+    let { data: answers,  isLoading : isLoadingAnswers, error : errorAnswers } = useFetch(`http://localhost:5000/staysafe/answers/${id}`)
     
+    if (errorAnswers === 'No data found') {
+        errorAnswers = null;
+    }
+
     // check if the user is logged in - only logged-in users can comment
     const { user } = useAuthContext();
     
@@ -68,8 +72,7 @@ const SingleQuestionPage = () => {
                             </div>
 
                             <div className='question-add-answer'>
-                                <p>Only experts and the question asker are allowed to respond</p>
-                                { user ? (
+                                {user ? (
                                     <div className="add-comment">
                                         <Link
                                             to={`/${category}/${id}/add-answer`}
@@ -86,10 +89,10 @@ const SingleQuestionPage = () => {
                                         Comment
                                     </button>
                                 )}
-
+                                <p>Only experts and the question asker are allowed to respond</p>
                             </div>
 
-                            <hr className="elegant-line" />
+                            <hr className="elegant-line"/>
 
                             <div className='question-comments'>
                                 {isLoadingAnswers && <div className='loading'>Loading...</div>}

@@ -27,6 +27,7 @@ router.get('/getCategoryQuestions/:category/:id', getQuestionByCategoryAndId)
  * Read and Write Permission Routes
  */
 router.use(requireAuth)
+
 // POST a new question
 router.post('/addQuestion', async (req, res) => {
     const result = await createQuestion(req, res); // create question in DB
