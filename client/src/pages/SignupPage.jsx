@@ -2,19 +2,20 @@ import { useState } from "react";
 import { useSignup } from "../hooks/useSignup.jsx";
 
 const SignupPage = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
-    const [userType, setUserType] = useState('regular')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [userType, setUserType] = useState('regular');
 
-    // expert additional information
-    const [expertID, setExpertID] = useState('')
-    const [expertField, setExpertField] = useState('')
+    // Expert additional information
+    const [expertID, setExpertID] = useState('');
+    const [expertField, setExpertField] = useState('');
+    const [about, setAbout] = useState(''); // New state for "about"
 
-    const { signup } = useSignup()
+    const { signup } = useSignup();
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         const user = {
             userType,
@@ -22,12 +23,13 @@ const SignupPage = () => {
             email,
             password,
             ...(userType === 'expert' && { expertID }),
-            ...(userType === 'expert' && { expertField })
+            ...(userType === 'expert' && { expertField }),
+            ...(userType === 'expert' && { about }) // Add "about" for experts
         };
 
-        console.log(user)
-        await signup(user)
-    }
+        console.log(user);
+        await signup(user);
+    };
 
     return (
         <div className="page">
@@ -36,28 +38,22 @@ const SignupPage = () => {
 
                 <label>Name:</label>
                 <input
-                    type="name"
-                    onChange={(e) => {
-                        setName(e.target.value)
-                    }}
+                    type="text"
+                    onChange={(e) => setName(e.target.value)}
                     value={name}
                 />
 
                 <label>Email:</label>
                 <input
                     type="email"
-                    onChange={(e) => {
-                        setEmail(e.target.value)
-                    }}
+                    onChange={(e) => setEmail(e.target.value)}
                     value={email}
                 />
 
                 <label>Password:</label>
                 <input
                     type="password"
-                    onChange={(e) => {
-                        setPassword(e.target.value)
-                    }}
+                    onChange={(e) => setPassword(e.target.value)}
                     value={password}
                 />
 
@@ -92,6 +88,7 @@ const SignupPage = () => {
                             value={expertID}
                             placeholder="Enter your Expert ID"
                         />
+
                         <label>Expert Field:</label>
                         <select
                             id="expert-field"
@@ -99,19 +96,27 @@ const SignupPage = () => {
                             onChange={(e) => setExpertField(e.target.value)}
                         >
                             <option value="" disabled>
-                            Select a Field
+                                Select a Field
                             </option>
                             <option value="Cyber-Bullying">Cyber Bullying</option>
                             <option value="Sexual-Harassment">Sexual Harassment</option>
                             <option value="Eating-Disorders">Eating Disorders</option>
-                        </select>   
+                        </select>
+
+                        <label>About:</label>
+                        <textarea
+                            onChange={(e) => setAbout(e.target.value)}
+                            value={about}
+                            placeholder="Tell us more about your expertise. Please note this will appear in your profile description."
+                            rows = "4"
+                        />
                     </>
                 )}
 
                 <button type="submit">Sign up</button>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default SignupPage
+export default SignupPage;

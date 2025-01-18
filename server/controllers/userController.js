@@ -66,22 +66,22 @@ export const signupUser = async (req, res) => {
 
 // signup expert
 export const signupExpert = async (req, res) => {
-    const {expertName, expertID, email, password, expertField, userType} = req.body;
+    const { expertName, expertID, email, password, expertField, about, userType } = req.body;
 
     try {
-        const expert = await Expert.signup(expertName, expertID, email, password, expertField)
+        const expert = await Expert.signup(expertName, expertID, email, password, expertField, about);
 
         // create token
-        const token = createToken(expert._id)
+        const token = createToken(expert._id);
 
         // send a notification to the admin to approve or decline the expert
         sendExpertSignUpNotification();
 
-        res.status(200).json({ email, token, userType })
+        res.status(200).json({ email, token, userType });
     } catch (error) {
-        res.status(400).json({ error: error.message })
+        res.status(400).json({ error: error.message });
     }
-}
+};
 
 export default {
     loginUser,

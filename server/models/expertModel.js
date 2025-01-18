@@ -30,15 +30,19 @@ const expertSchema = mongoose.Schema({
     default: "pending", // experts need to be approved by the admin to be able to answer questions
     required: true
   },
+  about: {
+    type: String,
+    require: true
+  },
 
 //   expertRole: { type: String, required: true },
 }, { timestamps: true });
 
 // static signup method
-expertSchema.statics.signup = async function (expertName, expertID, email, password, expertField) {
+expertSchema.statics.signup = async function (expertName, expertID, email, password, expertField, about) {
 
   // validation
-  if (!email || !password || !expertName || !expertID || !expertField) {
+  if (!email || !password || !expertName || !expertID || !expertField || !about) {
     throw Error('All fields must be filled')
   }
 
@@ -64,7 +68,7 @@ expertSchema.statics.signup = async function (expertName, expertID, email, passw
   const salt = await bcrypt.genSalt(10)
   const hash = await bcrypt.hash(password, salt)
 
-  const expertUser = await this.create({expertName, expertID, expertField, email, password: hash})
+  const expertUser = await this.create({expertName, expertID, expertField, email, password: hash, about})
 
   return expertUser
 }
