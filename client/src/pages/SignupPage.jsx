@@ -39,11 +39,7 @@ const SignupPage = () => {
 
     return (
         <div className="page">
-            {error && (
-                <div ref={errorRef} className="error-message" style={{ color: "red", marginBottom: "20px" }}>
-                    <p>{error}</p>
-                </div>
-            )}
+            {error && <div ref={errorRef} className="error">{error}</div>}
 
             <form className="signup-form" onSubmit={handleSubmit}>
                 <h1>Sign up</h1>
