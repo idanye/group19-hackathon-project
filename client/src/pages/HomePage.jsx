@@ -60,7 +60,7 @@ const Home = () => {
       </section>
 
       <section className="about-experts">
-        <h2>About Our Experts</h2>
+        <h2>Meet Our Experts</h2>
 
         {isLoading && <p>Loading experts...</p>}
         {error && <p className="error">{error}</p>}

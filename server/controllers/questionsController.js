@@ -1,5 +1,4 @@
 import QuestionModel from '../models/questionModel.js';
-import RegularUserModel from '../models/regularUserModel.js';
 
 // Get all questions
 const getAllQuestions = async (req, res) => {  
@@ -44,31 +43,32 @@ const getQuestionByCategoryAndId = async (req, res) => {
 
 
 // Create a new question
-const createQuestion = async (req, /*res*/) => { 
+const createQuestion = async (req) => {
     try {
         const { category, question_header, question_body, name_asked_by, email_asked_by } = req.body;
+
         const question = new QuestionModel({
             category,
             question_header,
             question_body,
-            name_asked_by :  name_asked_by, // default: "Anonymous"
-            email_asked_by: email_asked_by,
+            name_asked_by,
+            email_asked_by,
             is_anonymous : name_asked_by === "Anonymous"
         });
 
         const savedQuestion = await question.save();
 
-        // adding the user who asked the question to the regularUser collection
-        const existingUser = await RegularUserModel.findOne({ email: email_asked_by });
-
-        if (!existingUser) {
-            const newUser = new RegularUserModel({
-                name: name_asked_by,
-                email: email_asked_by
-            });
-
-            await newUser.save();
-        }
+        // // adding the user who asked the question to the regularUser collection
+        // const existingUser = await RegularUserModel.findOne({ email: email_asked_by });
+        //
+        // if (!existingUser) {
+        //     const newUser = new RegularUserModel({
+        //         name: name_asked_by,
+        //         email: email_asked_by
+        //     });
+        //
+        //     await newUser.save();
+        // }
 
         return { success: true, savedQuestion };
     } catch (error) {

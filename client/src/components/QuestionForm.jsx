@@ -6,12 +6,9 @@ const QuestionForm = () => {
   const [question, setQuestion] = useState("");
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
-  const [isAnonymous, setIsAnonymous] = useState("no");
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [error, setError] = useState(""); // State for error messages
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
-
-  // const [email, setEmail] = useState("");
-  // const [name, setName] = useState("");
 
   // only logged in users can submit a question
   const { user } = useAuthContext();
@@ -31,21 +28,6 @@ const QuestionForm = () => {
     // Clear any previous messages
     setError("");
     setSuccessMessage("");
-
-    // // Validate email
-    // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // if (!emailPattern.test(email)) {
-    //   setError("Please enter a valid email address.");
-    //   window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
-    //   return;
-    // }
-
-    // // Validate name field if not anonymous
-    // if (isAnonymous === "no" && !name) {
-    //   setError("Please enter your name.");
-    //   window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
-    //   return;
-    // }
 
     // Validate category selection
     if (!category) {
@@ -72,7 +54,7 @@ const QuestionForm = () => {
       category,
       question_header: title,
       question_body: question,
-      name_asked_by: isAnonymous === "no" ? user.name : "Anonymous",
+      name_asked_by: isAnonymous ? "Anonymous" : user.name,
       email_asked_by: user.email,
     };
 
@@ -89,6 +71,8 @@ const QuestionForm = () => {
                   }
       );
 
+      console.log("user info:", user)
+      console.log("Question Form:", formData)
       console.log("QuestionModel submitted successfully:", response.data);
       
       // Show success message and clear the form
@@ -96,10 +80,7 @@ const QuestionForm = () => {
       setQuestion("");
       setCategory("");
       setTitle("");
-      setIsAnonymous("no");
-
-      // setEmail("");
-      // setName("");
+      setIsAnonymous(false);
       
       window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
     } catch (error) {
@@ -134,9 +115,9 @@ const QuestionForm = () => {
               <label>
                 <input
                     type="radio"
-                    value="yes"
-                    checked={isAnonymous === "yes"}
-                    onChange={(e) => setIsAnonymous(e.target.value)}
+                    value={"yes"}
+                    checked={isAnonymous}
+                    onChange={() => setIsAnonymous(true)}
                 />
                 Yes
               </label>
@@ -144,40 +125,13 @@ const QuestionForm = () => {
               <label>
                 <input
                     type="radio"
-                    value="no"
-                    checked={isAnonymous === "no"}
-                    onChange={(e) => setIsAnonymous(e.target.value)}
+                    value={"no"}
+                    checked={!isAnonymous}
+                    onChange={() => setIsAnonymous(false)}
                 />
                 No
               </label>
             </fieldset>
-
-            {/*{isAnonymous === "no" && (*/}
-            {/*    <div>*/}
-            {/*      <label>Your Name:</label>*/}
-            {/*      <input*/}
-            {/*          type="text"*/}
-            {/*          id="name"*/}
-            {/*          value={name}*/}
-            {/*          onChange={(e) => setName(e.target.value)}*/}
-            {/*      />*/}
-            {/*    </div>*/}
-            {/*)}*/}
-
-            {/*<label>*/}
-            {/*  Email:*/}
-            {/*  <span className="info-icon" title="Your email will remain confidential and won't be shared.">*/}
-            {/*      ℹ️*/}
-            {/*  </span>*/}
-            {/*</label>*/}
-            {/*<div>*/}
-            {/*  <input*/}
-            {/*      type="text"*/}
-            {/*      id="email"*/}
-            {/*      value={email}*/}
-            {/*      onChange={(e) => setEmail(e.target.value)}*/}
-            {/*  />*/}
-            {/*</div>*/}
 
             <label>Title:</label>
             <input

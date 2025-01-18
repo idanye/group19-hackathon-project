@@ -22,10 +22,18 @@ export const loginUser = async (req, res) => {
             Expert.login(email, password).then(user => ({userType: 'expert', user}))       // Try logging in as an Expert
         ]);
 
+        let name;
+
+        if (result.userType === 'regular') {
+            name = result.user.name
+        } else {
+            name = result.user.expertName
+        }
+
         // create a token for the successfully logged-in user
         const token = createToken(result.user._id);
 
-        res.status(200).json({ email, token, userType: result.userType})
+        res.status(200).json({ name, email, token, userType: result.userType})
     } catch (error) {
         if (error instanceof AggregateError) { 
             // Handle all rejections from the Promise.any() call when no promise resolves successfully

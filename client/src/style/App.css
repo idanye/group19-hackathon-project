@@ -121,10 +121,16 @@ span {
 }
 
 /* Icon styling for the ask question button */
-.material-symbols-outlined {
-  font-size: 40px;
+.ask-question-button .material-symbols-outlined {
+  font-size: 25px;
   line-height: 1; 
   vertical-align: middle; 
+}
+
+.material-symbols-outlined {
+  font-size: 40px;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 /* Base styling */
@@ -544,8 +550,9 @@ form button:hover {
 /* New expert styling */
 .expert {
   background-color: #f7f7f7; /* Light grey background */
+  border: 1px solid #eef2f5;
   border-radius: 8px; /* Rounded edges */
-  padding: 10px;
+  padding: 15px 24px 10px 24px;
   margin-bottom: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
