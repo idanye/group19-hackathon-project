@@ -4,12 +4,14 @@ import Experts from '../../Pages/Experts/Experts.js';
 import PendingApproval from '../../Pages/PendingApproval/PendingApproval.js';
 import Sidebar from '../Sidebar/Sidebar.js';
 import UnApprovedExperts from '../../Pages/UnApprovedExperts/UnApprovedExperts.js';
+import HomePage from '../../Pages/HomePage/HomePage.js';
 
 const Admin = () => {
     return (
         <div className="admin">
             <Sidebar />
             <Routes>
+                <Route path="/" element={<HomePage/>} />
                 <Route path="/experts" element={<Experts />} />
                 <Route path="/pending-approval" element={<PendingApproval />} />
                 <Route path="/unapproved-experts" element={<UnApprovedExperts />} />
