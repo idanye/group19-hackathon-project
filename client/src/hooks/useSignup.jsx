@@ -23,10 +23,12 @@ export const useSignup = () => {
             dispatch({type: 'LOGIN', payload: response.data})
 
             if (user.userType === 'expert') {
-                alert("Your request has been received and forwarded to the admin.");
+                // Removed the alert
+                // alert("Your request has been received and forwarded to the admin.");
             }
             else {
-                alert("You have successfully signed up. Please log in to continue.");
+                // Removed the alert
+                // alert("You have successfully signed up. Please log in to continue.");
             }
             setIsLoading(false)
             navigate(-1);
@@ -34,7 +36,8 @@ export const useSignup = () => {
         } catch (error) {
             setIsLoading(false)
             setError(error.response?.data?.error)
-            alert("Error in signup: " + error.response?.data?.error);
+            // Removed the alert
+            // alert("Error in signup: " + error.response?.data?.error);
         }
     }
 

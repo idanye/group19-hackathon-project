@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSignup } from "../hooks/useSignup.jsx";
 
 const SignupPage = () => {
@@ -10,9 +10,11 @@ const SignupPage = () => {
     // Expert additional information
     const [expertID, setExpertID] = useState('');
     const [expertField, setExpertField] = useState('');
-    const [about, setAbout] = useState(''); // New state for "about"
+    const [about, setAbout] = useState('');
 
-    const { signup } = useSignup();
+    const { signup, error } = useSignup(); // Use error from the custom hook
+
+    const errorRef = useRef(null); // Reference to scroll to the error message
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,15 +26,25 @@ const SignupPage = () => {
             password,
             ...(userType === 'expert' && { expertID }),
             ...(userType === 'expert' && { expertField }),
-            ...(userType === 'expert' && { about }) // Add "about" for experts
+            ...(userType === 'expert' && { about })
         };
 
-        console.log(user);
         await signup(user);
+
+        // Scroll to the top of the page if an error exists
+        if (error) {
+            window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
+        }
     };
 
     return (
         <div className="page">
+            {error && (
+                <div ref={errorRef} className="error-message" style={{ color: "red", marginBottom: "20px" }}>
+                    <p>{error}</p>
+                </div>
+            )}
+
             <form className="signup-form" onSubmit={handleSubmit}>
                 <h1>Sign up</h1>
 
@@ -108,7 +120,7 @@ const SignupPage = () => {
                             onChange={(e) => setAbout(e.target.value)}
                             value={about}
                             placeholder="Tell us more about your expertise. Please note this will appear in your profile description."
-                            rows = "4"
+                            rows="4"
                         />
                     </>
                 )}
