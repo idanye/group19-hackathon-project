@@ -14,7 +14,7 @@ const Home = () => {
         <p>
           Safe Space is dedicated to raising awareness and providing resources to combat challenges such as
           cyberbullying, sexual harassment, and eating disorders. Our goal is to create a supportive community
-          where everyone feels safe and empowered by receiving help by trusted professionals.
+          where everyone feels safe and empowered by receiving help from trusted professionals.
         </p>
       </section>
 
@@ -63,7 +63,7 @@ const Home = () => {
         <h2>About Our Experts</h2>
 
         {isLoading && <p>Loading experts...</p>}
-        {error && <p>{error}</p>}
+        {error && <p className="error">{error}</p>}
 
         <div className="expert-profiles">
           {data && data.data ? (
