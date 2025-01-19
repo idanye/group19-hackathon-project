@@ -63,7 +63,14 @@ const AnswerFormComponent = () => {
             // Check if the error is related to authorization or other errors
             if (user.userType === 'regular' && error.response && error.response.status === 403) {
                 setError("Regular users are not allowed to comment on this question, except the question asker.");
-            } else {
+            // Check if the error is related to expert approval
+            } else if (user.userType === 'expert' && error.response && error.response.status === 401) {
+                setError("You have not been approved by an admin yet. Please wait for approval to start answering.");
+            }
+            else if (user.userType === 'expert' && error.response && error.response.status === 403) {
+                setError("You are not authorized to answer questions.");
+            }
+            else {
                 setError("There was an error submitting your answer. Please try again.");
             }
             window.scrollTo({ top: 0, behavior: "smooth" });
