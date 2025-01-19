@@ -50,17 +50,17 @@ const QuestionForm = () => {
       return;
     }
 
-    const formData = {
-      category,
-      question_header: title,
-      question_body: question,
-      name_asked_by: isAnonymous ? "Anonymous" : user.name,
-      email_asked_by: user.email,
-    };
-
     try {
       const user = JSON.parse(localStorage.getItem('user'));
       const token = user?.token; // user need a valid token to submit a question
+
+      const formData = {
+        category,
+        question_header: title,
+        question_body: question,
+        name_asked_by: isAnonymous ? "Anonymous" : user.name,
+        email_asked_by: user.email,
+      };
 
       const response = await axiosInstance.post("questions/addQuestion",
           formData,

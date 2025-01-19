@@ -66,7 +66,7 @@ export const signupUser = async (req, res) => {
         // create token
         const token = createToken(regularUser._id)
 
-        res.status(200).json({ email, token, userType })
+        res.status(200).json({ email, token, userType, name })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }

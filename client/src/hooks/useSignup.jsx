@@ -14,6 +14,7 @@ export const useSignup = () => {
         setError(null)
 
         try {
+            console.log('user: ', user)
             const response = await axiosInstance.post('/signup', user)
 
             // save the user to local storage
