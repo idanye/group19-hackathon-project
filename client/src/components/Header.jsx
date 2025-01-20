@@ -27,7 +27,7 @@ const Header = ({ setNavBarOption }) => {
             <nav className="header-right">
                 { user && (
                     <div className="signup-login">
-                        <span>{user.email}</span>
+                        <span>Hello, {user.name}!</span>
                         <button className="logout-btn" onClick={handleClick}>Log out</button>
                     </div>
                 )}
