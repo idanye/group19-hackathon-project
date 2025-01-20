@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AlertCircle, UserX } from 'lucide-react';
-import { ExpertsTable } from '../Experts/ExpertsTable';
-import { ExpertsContext } from '../../Context/ExpertsContext';
+import { ExpertsTable } from './ExpertsTable';
+import { ExpertsContext } from '../Context/ExpertsContext';
 
 const PendingApproval = () => {
   // Get context values 
