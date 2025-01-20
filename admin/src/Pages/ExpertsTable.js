@@ -2,7 +2,7 @@ import React from 'react';
 import { UserCheck } from 'lucide-react';
 import { UserX } from 'lucide-react';
 
-export const ExpertsTable = ({ data, showApproveButton = false, showDeclineButton = true, onApprove, onReject, showAbout = false }) => (
+export const ExpertsTable = ({ data, showApproveButton = false, showDeclineButton = true, onApprove, onReject, showAbout = true }) => (
   <div className="table-container">
     <table>
       <thead>

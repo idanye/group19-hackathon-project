@@ -71,7 +71,6 @@ const PendingApproval = () => {
           showApproveButton={true}
           onApprove={handleApprove}
           onReject={handleReject}
-          showAbout = {true}
         />
       )}
     </div>
