@@ -7,13 +7,6 @@
   text-align: left; 
 }
 
-/* Container for the forum */
-.forum-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 /* Individual question item styling */
 .question-item {
   display: flex;
@@ -120,10 +113,6 @@
 
 /* Responsive design for smaller screens (max-width: 640px) */
 @media (max-width: 640px) {
-  .forum-container {
-    padding: 12px;
-  }
-
   .category-tag {
     display: none; 
   }
@@ -160,9 +149,9 @@
 }
 
 .question-container{
-  background-color: #f7f7f7; /* Light grey background */
-  border-radius: 8px; /* Rounded edges */
-  padding: 15px 24px 10px 24px;
+  background-color: #fbfbfb;
+  border-radius: 8px;
+  padding: 20px 24px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

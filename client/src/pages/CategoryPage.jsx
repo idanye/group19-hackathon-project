@@ -59,7 +59,7 @@ const CategoryPage = () => {
     };
 
     return (
-        <div className="forum-container">
+        <div className="page">
             {/* Page title displaying the category name */}
             <h1 className="category-title">{formatCategory(category)}</h1>
 
