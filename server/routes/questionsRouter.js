@@ -1,7 +1,7 @@
 import express from 'express';
 import {
     getAllQuestions,
-    getQuestionsByCategory,
+    // getQuestionsByCategory,
     getQuestionByCategoryAndId,
     createQuestion } from '../controllers/questionsController.js';
 import { sendEmailConfirmation, sendNewQuestionNotification} from '../services/emailService.js';
@@ -17,7 +17,7 @@ const router = express.Router();
 router.get('/', getAllQuestions);
 
 // GET all questions from a certain category
-router.get('/getCategoryQuestions/:category',  getQuestionsByCategory);
+// router.get('/getCategoryQuestions/:category',  getQuestionsByCategory);
 
 // GET a single questions from a category
 router.get('/getCategoryQuestions/:category/:id', getQuestionByCategoryAndId)
