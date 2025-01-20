@@ -39,7 +39,7 @@ const SingleQuestionPage = () => {
         <div className="page">
             <div className="navigation-button">
                 <Link
-                    to={`/${category}`}
+                    to={`/All-Questions`}
                     className="go-back-link"
                 >
                     <button className="go-back-button">Back</button>

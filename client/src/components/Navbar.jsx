@@ -34,34 +34,10 @@ const Navbar = ({ navBarOption, setNavBarOption }) => {
                     {navBarOption === "About Us" ? <hr /> : null}
                 </Link>
 
-                {/* Cyber Bullying */}
-                <Link to="/Cyber-Bullying" style={{ textDecoration: 'none' }}>
-                    <li className="navbar-option" onClick={() => setNavBarOption("Cyber Bullying")}>
-                        {/*<img src={cyberCrimeIcon} alt="Cyber Bullying" className="navbar-icon" />*/} Cyber Bullying
-                    </li>
-                    {navBarOption === "Cyber Bullying" ? <hr /> : null}
-                </Link>
-
-                {/* Sexual Harassment */}
-                <Link to="/Sexual-Harassment" style={{ textDecoration: 'none' }}>
-                    <li className="navbar-option" onClick={() => setNavBarOption("Sexual Harassment")}>
-                        {/*<img src={harassmentIcon} alt="Sexual Harassment" className="navbar-icon" />*/} Sexual Harassment
-                    </li>
-                    {navBarOption === "Sexual Harassment" ? <hr /> : null}
-                </Link>
-
-                {/* Eating Disorders */}
-                <Link to="/Eating-Disorders" style={{ textDecoration: 'none' }}>
-                    <li className="navbar-option" onClick={() => setNavBarOption("Eating Disorders")}>
-                        {/*<img src={eatingIcon} alt="Eating Disorders" className="navbar-icon" />*/} Eating Disorders
-                    </li>
-                    {navBarOption === "Eating Disorders" ? <hr /> : null}
-                </Link>
-
                 {/* All questions */}
                 <Link to="/All-Questions" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("All Questions")}>
-                        All Questions
+                        Expert Forum
                     </li>
                     {navBarOption === "All Questions" ? <hr /> : null}
                 </Link>

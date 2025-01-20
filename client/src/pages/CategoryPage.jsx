@@ -12,9 +12,11 @@ const CategoryPage = () => {
     const { category } = useParams(); // Get the category name from the URL
 
     // Fetch data based on the category
-    const url = category === "All-Questions" 
-        ? "http://localhost:5000/staysafe/questions/"
-        : `http://localhost:5000/staysafe/questions/getCategoryQuestions/${category}`;
+    // const url = category === "All-Questions" 
+    //     ? "http://localhost:5000/staysafe/questions/"
+    //     : `http://localhost:5000/staysafe/questions/getCategoryQuestions/${category}`;
+    
+    const url = `http://localhost:5000/staysafe/questions/`;
 
     const { data: categoryQuestions, isLoading, error } = useFetch(url);
     
@@ -70,9 +72,9 @@ const CategoryPage = () => {
                         onChange={(e) => setSelectedCategory(e.target.value)}
                     >
                         <option value="" disabled>Filter By Category</option>
-                        <option value="Cyber Bullying">Cyber Bullying</option>
-                        <option value="Sexual Harassment">Sexual Harassment</option>
-                        <option value="Eating Disorders">Eating Disorders</option>
+                        <option value="Cyber-Bullying">Cyber Bullying</option>
+                        <option value="Sexual-Harassment">Sexual Harassment</option>
+                        <option value="Eating-Disorders">Eating Disorders</option>
                     </select>
                 </div>
             }
@@ -103,7 +105,7 @@ const CategoryPage = () => {
                     }
                 })}
                 {/*filter and category select*/ }
-                {filteredQuestios && selectedCategory != '' && categoryQuestions && categoryQuestions.map((question) => {
+                {filteredQuestions && selectedCategory != '' && categoryQuestions && categoryQuestions.map((question) => {
                     if ((question.question_body.toLowerCase().includes(search.toLowerCase())
                     || question.question_header.toLowerCase().includes(search.toLowerCase()))
                     && question.category === selectedCategory) {
