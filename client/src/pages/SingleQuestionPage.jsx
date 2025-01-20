@@ -34,12 +34,12 @@ const SingleQuestionPage = () => {
     if (!isValid) {
       return <Navigate to="/404" />;
     }
-    console.log(location.pathname)
+    
     return (
         <div className="page">
             <div className="navigation-button">
                 <Link
-                    to={`${category}`}
+                    to={`/${category}`}
                     className="go-back-link"
                 >
                     <button className="go-back-button">Back</button>

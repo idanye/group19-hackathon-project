@@ -3,7 +3,7 @@ import QuestionModel from '../models/questionModel.js';
 // Get all questions
 const getAllQuestions = async (req, res) => {  
     try {
-        const questions = await QuestionModel.find();  // Fetch all questions from MongoDB
+        const questions = await QuestionModel.find().sort({ createdAt: -1 });  // Fetch all questions from MongoDB
         res.status(200).json(questions);
     } catch (error) {
         console.error('Error fetching questions:', error);
