@@ -74,8 +74,8 @@ PORT=4000
 ### Steps to Install
 1. Clone the repository:
    ```bash
-   git clone [repository-url]
-   cd [repository-folder]
+   git clone [https://github.com/idanye/group19-hackathon-project]
+   cd [group19-hackathon-project]
    ```
 
 2. Install dependencies for all components:
