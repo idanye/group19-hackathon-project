@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="nav-logo-container">
-                 <Link to={'/admin/public'}><img className="nav-logo" alt="Logo" src={logo} /></Link>
+                 <Link to={'/'}><img className="nav-logo" alt="Logo" src={logo} /></Link>
                  <div className="text-container">
                   <span className="admin-text">Admin</span>
                   <span className="safe-space-text">Safe Space</span>
