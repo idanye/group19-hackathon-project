@@ -70,26 +70,45 @@ const CategoryPage = () => {
                             value={selectedCategory} 
                             onChange={(e) => setSelectedCategory(e.target.value)}
                         >
-                            <option value="" disabled>Filter By Category</option>
-                            <option value="Cyber Bullying">Cyber Bullying</option>
-                            <option value="Sexual Harassment">Sexual Harassment</option>
-                            <option value="Eating Disorders">Eating Disorders</option>
+                            <option value="">All questions</option>
+                            <option value="Cyber-Bullying">Cyber Bullying</option>
+                            <option value="Sexual-Harassment">Sexual Harassment</option>
+                            <option value="Eating-Disorders">Eating Disorders</option>
                         </select>
                     </div>
                 } 
 
                 {/* Render the questions if data is available */}
-                {!filteredQuestions && categoryQuestions && categoryQuestions.map((question) => (
+                {/*no filter and no category select*/ }
+                {!filteredQuestions && selectedCategory == '' && categoryQuestions && categoryQuestions.map((question) => (
                     <QuestionItem question={question} key={question._id} />
                 ))}
-                {filteredQuestions && categoryQuestions && categoryQuestions.map((question) => {
+                {/*filter and no category select*/ }
+                {filteredQuestions && selectedCategory == '' && categoryQuestions && categoryQuestions.map((question) => {
                     if (question.question_body.toLowerCase().includes(search.toLowerCase())
                     || question.question_header.toLowerCase().includes(search.toLowerCase())) {
                         return (
                             <QuestionItem question={question} key={question._id} />
                         );
                     }
-                    
+                })}
+                {/*no filter and category select*/ }
+                {!filteredQuestions && selectedCategory != '' && categoryQuestions && categoryQuestions.map((question) => {
+                    if (question.category === selectedCategory) {
+                        return (
+                            <QuestionItem question={question} key={question._id} />
+                        );
+                    }
+                })}
+                {/*filter and category select*/ }
+                {filteredQuestions && selectedCategory != '' && categoryQuestions && categoryQuestions.map((question) => {
+                    if ((question.question_body.toLowerCase().includes(search.toLowerCase())
+                    || question.question_header.toLowerCase().includes(search.toLowerCase()))
+                    && question.category === selectedCategory) {
+                        return (
+                            <QuestionItem question={question} key={question._id} />
+                        );
+                    }
                 })}
             </div>
         </div>
