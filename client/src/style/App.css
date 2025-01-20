@@ -327,7 +327,7 @@ form h1 {
 }
 
 /* Label styling inside the question form */
-form label {
+label {
   display: inline-flex;
   margin-bottom: 8px;
   font-weight: bold;
@@ -335,7 +335,7 @@ form label {
   margin-right: 15px;
 }
 
-form input[type="radio"] {
+input[type="radio"] {
   margin-right: 6px;
   margin-bottom: 3px;
   width: 20px;
@@ -343,16 +343,12 @@ form input[type="radio"] {
   accent-color: darkcyan;
 }
 
-form fieldset label {
+fieldset label {
   margin-top: 5px;
 }
 
 /* Input fields and select dropdowns styling */
-form input,
-form select,
-form textarea,
-form fieldset,
-input {
+input, select, textarea, fieldset {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -363,13 +359,13 @@ input {
   resize: vertical;
 }
 
-form fieldset {
+fieldset {
   background: #ffffff;
 }
 
-form input:focus,
-form select:focus,
-form textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: var(--primary-color);
   outline: none;
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
