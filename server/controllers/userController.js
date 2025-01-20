@@ -85,7 +85,7 @@ export const signupExpert = async (req, res) => {
         // send a notification to the admin to approve or decline the expert
         sendExpertSignUpNotification();
 
-        res.status(200).json({ email, token, userType });
+        res.status(200).json({ email, token, userType, name : expertName });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
