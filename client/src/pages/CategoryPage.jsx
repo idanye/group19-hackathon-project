@@ -71,7 +71,7 @@ const CategoryPage = () => {
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
                     >
-                        <option value="" disabled>Filter By Category</option>
+                        <option value="" >Filter By Category</option>
                         <option value="Cyber-Bullying">Cyber Bullying</option>
                         <option value="Sexual-Harassment">Sexual Harassment</option>
                         <option value="Eating-Disorders">Eating Disorders</option>
