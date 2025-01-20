@@ -163,10 +163,11 @@ body {
   align-items: center;
   margin: 0 15px;
   text-decoration: none;
-  color: white; 
+  color: white;
   font-size: 20px;
   font-weight: 500;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 /* Hover effect for each navbar option */
