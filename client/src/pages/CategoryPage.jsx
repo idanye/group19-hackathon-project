@@ -56,7 +56,7 @@ const CategoryPage = () => {
                 {categoryQuestions && categoryQuestions.map((question) => (
                 <div className="question-container" key={question._id}>
                     <Link
-                        to={`/${category}/${question._id}`} // Link to the specific question page
+                        to={`/${question.category}/${question._id}`} // Link to the specific question page
                         className="question-item"
                     >
                         <div className="user-avatar">
