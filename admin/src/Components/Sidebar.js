@@ -27,7 +27,7 @@ const Sidebar = () => {
         className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
       >
         <UserX size={20} />
-        Unapproved experts
+        Unapproved Experts
       </NavLink>
     </nav>
   );
