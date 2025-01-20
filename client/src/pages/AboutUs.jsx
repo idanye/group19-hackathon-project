@@ -1,5 +1,14 @@
+import PropTypes from "prop-types";
+import { useEffect } from "react";
 
-const AboutUs = () => {
+const AboutUs = ({ setNavBarOption }) => {
+
+    useEffect(() => {
+        // Update the Navbar option to About Us
+        setNavBarOption("About Us");
+    }
+    , []);
+
     return (
         <div className="page">
             <section className="about-team">
@@ -45,5 +54,9 @@ const AboutUs = () => {
         </div>
     )
 }
+
+AboutUs.propTypes = {
+    setNavBarOption: PropTypes.func.isRequired,
+};
 
 export default AboutUs

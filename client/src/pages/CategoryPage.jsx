@@ -51,7 +51,7 @@ const CategoryPage = () => {
     return (
         <div className="page">
             {/* Page title displaying the category name */}
-            <h1 className="category-title">{formatCategory(category)}</h1>
+            <h1 className="category-title">Expert Forum</h1>
             {error && <div className="error-message">Error loading questions</div>}
 
             {isLoading && <div className="loading-message">Loading...</div>}
@@ -71,7 +71,7 @@ const CategoryPage = () => {
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
                     >
-                        <option value="" >Filter By Category</option>
+                        <option value="" >All Questions</option>
                         <option value="Cyber-Bullying">Cyber Bullying</option>
                         <option value="Sexual-Harassment">Sexual Harassment</option>
                         <option value="Eating-Disorders">Eating Disorders</option>

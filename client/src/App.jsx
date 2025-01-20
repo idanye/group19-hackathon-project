@@ -33,7 +33,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
-                <Route path="/About-Us" element={<AboutUs />} />
+                <Route path="/About-Us" element={<AboutUs setNavBarOption={setNavBarOption}/>} />
                 <Route path="/:category" element={<CategoryPage />} />
                 <Route path="/question-form" element={<QuestionForm />} />
                 <Route path="/:category/:id" element={<SingleQuestionPage />} />
