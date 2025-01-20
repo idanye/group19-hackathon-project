@@ -85,7 +85,7 @@ const CategoryPage = () => {
 
                         {/* Category tag */}
                         <div className="category-tag">
-                            {question.category}
+                            {question.category.replace(/-/g, ' ')}
                         </div>
                     </Link>
                 </div>

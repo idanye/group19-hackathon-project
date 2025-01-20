@@ -14,7 +14,7 @@ import Footer from './components/Footer.jsx';
 import QuestionForm from './components/QuestionForm.jsx';
 import AnswerForm from './pages/AnswerForm.jsx';
 import Header from "./components/Header.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ReturnToTopButton from "./components/ReturnToTopButton.jsx";
 
 function App() {
