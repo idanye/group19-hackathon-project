@@ -101,7 +101,7 @@ const CategoryPage = () => {
                     }
                 })}
                 {/*filter and category select*/ }
-                {filteredQuestions && selectedCategory != '' && categoryQuestions && categoryQuestions.map((question) => {
+                {filteredQuestios && selectedCategory != '' && categoryQuestions && categoryQuestions.map((question) => {
                     if ((question.question_body.toLowerCase().includes(search.toLowerCase())
                     || question.question_header.toLowerCase().includes(search.toLowerCase()))
                     && question.category === selectedCategory) {
