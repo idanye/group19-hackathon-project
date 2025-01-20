@@ -50,6 +50,14 @@ const Navbar = ({ navBarOption, setNavBarOption }) => {
                     {navBarOption === "Eating Disorders" ? <hr /> : null}
                 </Link>
 
+                {/* All questions */}
+                <Link to="/All-Questions" style={{ textDecoration: 'none' }}>
+                    <li className="navbar-option" onClick={() => setNavBarOption("All Questions")}>
+                        All Questions
+                    </li>
+                    {navBarOption === "All Questions" ? <hr /> : null}
+                </Link>
+
             </ul>
         </div>
     );

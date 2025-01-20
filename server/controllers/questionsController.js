@@ -3,11 +3,11 @@ import QuestionModel from '../models/questionModel.js';
 // Get all questions
 const getAllQuestions = async (req, res) => {  
     try {
-        const questions = await QuestionModel.find({}).sort({ createdAt: -1 });  // Fetch all questions from MongoDB
-        res.status(200).json({ message: 'Questions fetched successfully', data: questions });
+        const questions = await QuestionModel.find();  // Fetch all questions from MongoDB
+        res.status(200).json(questions);
     } catch (error) {
         console.error('Error fetching questions:', error);
-        res.status(500).json({ message: 'Failed to fetch questions', error: error.message });
+        res.status(500).json({ message: error.message });
     }
 };
 

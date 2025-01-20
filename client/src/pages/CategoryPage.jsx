@@ -9,8 +9,13 @@ import useValidCategory from '../hooks/useValidCategory.jsx';
 // CategoryPage component to display questions for a specific category
 const CategoryPage = () => {
     const { category } = useParams(); // Get the category name from the URL
-    
-    const { data: categoryQuestions, isLoading, error } = useFetch(`http://localhost:5000/staysafe/questions/getCategoryQuestions/${category}`);
+
+    // Fetch data based on the category
+    const url = category === "All-Questions" 
+        ? "http://localhost:5000/staysafe/questions/"
+        : `http://localhost:5000/staysafe/questions/getCategoryQuestions/${category}`;
+
+    const { data: categoryQuestions, isLoading, error } = useFetch(url);
 
     // Check if the category is valid else redirect to 404 page
     const isValid = useValidCategory(category);
@@ -49,9 +54,9 @@ const CategoryPage = () => {
 
                 {/* Render the questions if data is available */}
                 {categoryQuestions && categoryQuestions.map((question) => (
+                <div className="question-container" key={question._id}>
                     <Link
-                        to={`/${category}/${question._id}`} // Link to the specific question page
-                        key={question._id}
+                        to={`/${question.category}/${question._id}`} // Link to the specific question page
                         className="question-item"
                     >
                         <div className="user-avatar">
@@ -80,9 +85,10 @@ const CategoryPage = () => {
 
                         {/* Category tag */}
                         <div className="category-tag">
-                            {category}
+                            {question.category.replace(/-/g, ' ')}
                         </div>
                     </Link>
+                </div>
                 ))}
             </div>
         </div>
