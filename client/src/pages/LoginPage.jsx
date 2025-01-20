@@ -15,6 +15,7 @@ const LoginPage = () => {
 
     return (
         <div className="page">
+            { error && <div className="error">{error}</div> }
             <form className="login-form" onSubmit={handleSubmit}>
                 <h1>Log in</h1>
 
@@ -37,8 +38,6 @@ const LoginPage = () => {
                 />
 
                 <button disabled={isLoading}>Log in</button>
-
-                { error && <div className="error">{error}</div> }
             </form>
         </div>
     )
