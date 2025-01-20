@@ -5,6 +5,7 @@ import { Clock, MessageSquare } from 'lucide-react';
 import { useParams, Navigate } from "react-router-dom";
 import '../style/CategoryPage.css';
 import useValidCategory from '../hooks/useValidCategory.jsx';
+import { useState } from "react";
 
 // CategoryPage component to display questions for a specific category
 const CategoryPage = () => {
@@ -16,11 +17,27 @@ const CategoryPage = () => {
         : `http://localhost:5000/staysafe/questions/getCategoryQuestions/${category}`;
 
     const { data: categoryQuestions, isLoading, error } = useFetch(url);
+    
+    const [search, setSearch] = useState("Filter By Key Words");
+    const [filteredQuestions, setFilteredQuestions] = useState(false);
 
     // Check if the category is valid else redirect to 404 page
     const isValid = useValidCategory(category);
     if (!isValid) {
       return <Navigate to="/404" />;
+    }
+
+
+    const handleFilterChange = (value) => {
+        if (value === "") {
+            setFilteredQuestions(false);
+            setSearch("Filter By Key Words");
+        }
+        else
+        {
+            setSearch(value);
+            setFilteredQuestions(true);
+        }
     }
     
     // Function to calculate how long ago a question was created
@@ -53,7 +70,15 @@ const CategoryPage = () => {
                 {isLoading && <div className="loading-message">Loading...</div>}
 
                 {/* Render the questions if data is available */}
-                {categoryQuestions && categoryQuestions.map((question) => (
+                {categoryQuestions && categoryQuestions.length !== 0 && category === "All-Questions" &&
+                    <input type = "text"
+                    key="text"
+                    placeholder={search}
+                    className="input"
+                    onChange={(e) => {handleFilterChange(e.target.value)}}>
+                    </input> 
+                } 
+                {!filteredQuestions && categoryQuestions && categoryQuestions.map((question) => (
                 <div className="question-container" key={question._id}>
                     <Link
                         to={`/${question.category}/${question._id}`} // Link to the specific question page
@@ -90,6 +115,49 @@ const CategoryPage = () => {
                     </Link>
                 </div>
                 ))}
+                {filteredQuestions && categoryQuestions && categoryQuestions.map((question) => {
+                    if (question.question_body.toLowerCase().includes(search.toLowerCase())
+                    || question.question_header.toLowerCase().includes(search.toLowerCase())) {
+                        return (
+                            <div className="question-container" key={question._id}>
+                                <Link
+                                    to={`/${question.category}/${question._id}`} // Link to the specific question page
+                                    className="question-item"
+                                >
+                                    <div className="user-avatar">
+                                        {question.name_asked_by.charAt(0).toUpperCase()} {/* First letter of the username */}
+                                    </div>
+
+                                    {/* QuestionModel content */}
+                                    <div className="question-content">
+                                        <h3 className="question-title">{ question.question_header }</h3>
+                                        <div className="question-meta">
+                                            <span className="author-name">
+                                                { question.is_anonymous ? "Anonymous" : question.name_asked_by }
+                                            </span>
+                                            <span className="meta-separator">•</span>
+                                            <span className="timestamp">
+                                                <Clock size={14} />
+                                                {formatTimeAgo(question.createdAt)}
+                                            </span>
+                                            <span className="meta-separator">•</span>
+                                            <span className="replies">
+                                                <MessageSquare size={14} />
+                                                {question.num_replies || 0} replies
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Category tag */}
+                                    <div className="category-tag">
+                                        {question.category.replace(/-/g, ' ')}
+                                    </div>
+                                </Link>
+                            </div>
+                        );
+                    }
+                    
+                })}
             </div>
         </div>
     );

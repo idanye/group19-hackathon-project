@@ -350,7 +350,8 @@ form fieldset label {
 form input,
 form select,
 form textarea,
-form fieldset {
+form fieldset,
+input {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;

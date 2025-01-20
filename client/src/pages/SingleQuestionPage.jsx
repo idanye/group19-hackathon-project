@@ -27,18 +27,19 @@ const SingleQuestionPage = () => {
 
     // check if the user is logged in - only logged-in users can comment
     const { user } = useAuthContext();
-    
+
+
     // Check if the category is valid else redirect to 404 page
     const isValid = useValidCategory(category);
     if (!isValid) {
       return <Navigate to="/404" />;
     }
-
+    console.log(location.pathname)
     return (
         <div className="page">
             <div className="navigation-button">
                 <Link
-                    to={`/${category}`}
+                    to={`${category}`}
                     className="go-back-link"
                 >
                     <button className="go-back-button">Back</button>
@@ -121,7 +122,8 @@ const SingleQuestionPage = () => {
                 }
             </div>
         </div>
-        )
-        }
+    )
+    }
 
-            export default SingleQuestionPage;
+
+export default SingleQuestionPage;
