@@ -3,7 +3,7 @@ import QuestionModel from '../models/questionModel.js';
 // Get all questions
 const getAllQuestions = async (req, res) => {  
     try {
-        const questions = await QuestionModel.find().sort({ createdAt: 1 });  // Fetch all questions from MongoDB
+        const questions = await QuestionModel.find({}).sort({ createdAt: -1 });  // Fetch all questions from MongoDB
         res.status(200).json({ message: 'Questions fetched successfully', data: questions });
     } catch (error) {
         console.error('Error fetching questions:', error);
@@ -16,7 +16,7 @@ const getAllQuestions = async (req, res) => {
 const getQuestionsByCategory = async (req, res) => {
     try {
         const { category } = req.params;
-        const questions = await QuestionModel.find({ category });
+        const questions = await QuestionModel.find({ category }).sort({ createdAt: -1 }); 
 
         res.status(200).json(questions);
     } catch (error) {
