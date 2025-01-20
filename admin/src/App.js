@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Navbar from './Components/Navbar/Navbar';
-import Admin from './Components/Admin/Admin';
+import Navbar from './Components/Navbar';
 import ExpertsContextProvider from './Context/ExpertsContext';
-
+import MainContent from "./Components/MainContent";
 
 function App() {
 
@@ -15,7 +14,7 @@ function App() {
     <BrowserRouter> 
       <ExpertsContextProvider>
         <Navbar />
-        <Admin />
+        <MainContent/>
       </ExpertsContextProvider>
     </BrowserRouter>
   );

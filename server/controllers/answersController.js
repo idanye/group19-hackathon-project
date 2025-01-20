@@ -89,7 +89,7 @@ const addAnswerRegularUser = async (req, res) => {
 const getAnswers = async (req, res) => {
   try {
     const { questionId } = req.params;
-    const answers = await AnswerModel.find({ questionId: questionId }).sort({ createdAt: -1 });
+    const answers = await AnswerModel.find({ questionId: questionId }).sort({ createdAt: 1 });
     // Check if no answers were found
 
     if (!answers.length) {

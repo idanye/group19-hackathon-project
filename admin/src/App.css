@@ -31,24 +31,25 @@
     color: #6b7280; 
 }
 
-/* Main Layout Structure */
-.app-container {
-    display: flex;
-    min-height: 100vh;
-}
 
 /* Main Content Area */
 .main-content {
+    display: flex;
     flex: 1;
-    margin-left: 250px;
     padding: 24px;
-    background-color: #f3f4f6;
-    min-height: 100vh;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.admin {
+    flex: 1;
+    max-width: 800px;
+    box-sizing: border-box;
 }
 
 /* Content Container */
 .content-container {
-    max-width: 1200px;
+    max-width: 850px;
     margin: 0 auto;
     background-color: #fff;
     border-radius: 8px;
@@ -198,10 +199,11 @@ tr:hover {
 .sidebar-nav {
     display: flex;
     flex-direction: column;
+    height: fit-content;
     gap: 12px;
     padding: 24px 16px;
     border-radius: 8px;
-    margin: 38px;
+    margin: 0 40px 0 50px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -248,15 +250,13 @@ tr:hover {
     height: 20px;
 }
 
-.actions-buttons
-{
+.actions-buttons {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-.homepage-container
-{
+.homepage-container {
     display: flex;
     flex-direction: column;
     max-width: 1200px;
@@ -267,22 +267,19 @@ tr:hover {
     padding: 10px;
 }
 
-.homepage-container h1
-{
+.homepage-container h1 {
     font-size: 1.8rem; 
     font-weight: 600; 
     text-align: center; 
 }
 
-.homepage-container p
-{
+.homepage-container p {
     font-size: 1.4rem; 
     color: #374151; 
     text-align: center;
 }
 
-.homepage-container ul
-{
+.homepage-container ul {
     list-style-type: none;
 }
 

@@ -16,7 +16,7 @@ const getAllQuestions = async (req, res) => {
 const getQuestionsByCategory = async (req, res) => {
     try {
         const { category } = req.params;
-        const questions = await QuestionModel.find({ category });
+        const questions = await QuestionModel.find({ category }).sort({ createdAt: -1 }); 
 
         res.status(200).json(questions);
     } catch (error) {
