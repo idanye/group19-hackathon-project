@@ -16,6 +16,7 @@ import AnswerForm from './pages/AnswerForm.jsx';
 import Header from "./components/Header.jsx";
 import {useState} from "react";
 import ReturnToTopButton from "./components/ReturnToTopButton.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
 
 function App() {
     const [navBarOption, setNavBarOption] = useState("Home");
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/About-Us" element={<AboutUs />} />
                 <Route path="/:category" element={<CategoryPage />} />
                 <Route path="/question-form" element={<QuestionForm />} />
                 <Route path="/:category/:id" element={<SingleQuestionPage />} />

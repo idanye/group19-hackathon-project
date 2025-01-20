@@ -7,6 +7,10 @@
   text-align: left; 
 }
 
+.text-filter {
+  width: 350px;
+}
+
 /* Individual question item styling */
 .question-item {
   display: flex;

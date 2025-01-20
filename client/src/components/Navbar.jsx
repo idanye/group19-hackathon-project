@@ -26,6 +26,14 @@ const Navbar = ({ navBarOption, setNavBarOption }) => {
                     {navBarOption === "Home" ? <hr /> : null}
                 </Link>
 
+                {/* AboutUs */}
+                <Link to="/About-Us" style={{ textDecoration: 'none' }}>
+                    <li className="navbar-option" onClick={() => setNavBarOption("Home")}>
+                        About Us
+                    </li>
+                    {navBarOption === "About Us" ? <hr /> : null}
+                </Link>
+
                 {/* Cyber Bullying */}
                 <Link to="/Cyber-Bullying" style={{ textDecoration: 'none' }}>
                     <li className="navbar-option" onClick={() => setNavBarOption("Cyber Bullying")}>
