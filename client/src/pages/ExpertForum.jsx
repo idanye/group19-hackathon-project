@@ -1,35 +1,20 @@
 // Import libraries and modules
 import useFetch from "../hooks/useFetch.jsx";
-import { useParams, Navigate } from "react-router-dom";
-import '../style/CategoryPage.css';
-import useValidCategory from '../hooks/useValidCategory.jsx';
+import '../style/ExpertForum.css';
 import { useState } from "react";
 import QuestionItem from "../components/QuestionItem.jsx";
 // import { set } from "mongoose";
 
-// CategoryPage component to display questions for a specific category
-const CategoryPage = () => {
-    const { category } = useParams(); // Get the category name from the URL
-
-    // Fetch data based on the category
-    // const url = category === "All-Questions" 
-    //     ? "http://localhost:5000/staysafe/questions/"
-    //     : `http://localhost:5000/staysafe/questions/getCategoryQuestions/${category}`;
+// A page for displaying questions 
+const ExpertForum = () => {
     
     const url = `http://localhost:5000/staysafe/questions/`;
 
-    const { data: categoryQuestions, isLoading, error } = useFetch(url);
+    const { data: Questions, isLoading, error } = useFetch(url);
     
     const [search, setSearch] = useState("Filter By Key Words");
     const [filteredQuestions, setFilteredQuestions] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('');
-
-    // Check if the category is valid else redirect to 404 page
-    const isValid = useValidCategory(category);
-    if (!isValid) {
-      return <Navigate to="/404" />;
-    }
-
 
     const handleFilterChange = (value) => {
         if (value === "") {
@@ -43,11 +28,6 @@ const CategoryPage = () => {
         }
     }
 
-
-    const formatCategory = (category) => {
-        return category.replace(/-/g, ' '); // Replace all '-' with spaces
-    };
-
     return (
         <div className="page">
             {/* Page title displaying the category name */}
@@ -56,7 +36,7 @@ const CategoryPage = () => {
 
             {isLoading && <div className="loading-message">Loading...</div>}
 
-            {categoryQuestions && category === "All-Questions" &&
+            {Questions &&
                 <div className="question-filters">
                     <input type="text"
                            key="text"
@@ -84,11 +64,11 @@ const CategoryPage = () => {
 
                 {/* Render the questions if data is available */}
                 {/*no filter and no category select*/ }
-                {!filteredQuestions && selectedCategory == '' && categoryQuestions && categoryQuestions.map((question) => (
+                {!filteredQuestions && selectedCategory == '' && Questions && Questions.map((question) => (
                     <QuestionItem question={question} key={question._id} />
                 ))}
                 {/*filter and no category select*/ }
-                {filteredQuestions && selectedCategory == '' && categoryQuestions && categoryQuestions.map((question) => {
+                {filteredQuestions && selectedCategory == '' && Questions && Questions.map((question) => {
                     if (question.question_body.toLowerCase().includes(search.toLowerCase())
                     || question.question_header.toLowerCase().includes(search.toLowerCase())) {
                         return (
@@ -97,7 +77,7 @@ const CategoryPage = () => {
                     }
                 })}
                 {/*no filter and category select*/ }
-                {!filteredQuestions && selectedCategory != '' && categoryQuestions && categoryQuestions.map((question) => {
+                {!filteredQuestions && selectedCategory != '' && Questions && Questions.map((question) => {
                     if (question.category === selectedCategory) {
                         return (
                             <QuestionItem question={question} key={question._id} />
@@ -105,7 +85,7 @@ const CategoryPage = () => {
                     }
                 })}
                 {/*filter and category select*/ }
-                {filteredQuestions && selectedCategory != '' && categoryQuestions && categoryQuestions.map((question) => {
+                {filteredQuestions && selectedCategory != '' && Questions && Questions.map((question) => {
                     if ((question.question_body.toLowerCase().includes(search.toLowerCase())
                     || question.question_header.toLowerCase().includes(search.toLowerCase()))
                     && question.category === selectedCategory) {
@@ -121,4 +101,4 @@ const CategoryPage = () => {
 
 
 // Export the component
-export default CategoryPage;
+export default ExpertForum;

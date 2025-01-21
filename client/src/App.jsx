@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 
 // Pages
 import Home from './pages/HomePage.jsx';
-import CategoryPage from './pages/CategoryPage.jsx';
+import ExpertForum from './pages/ExpertForum.jsx';
 import SingleQuestionPage from './pages/SingleQuestionPage.jsx';
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
@@ -34,7 +34,7 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/About-Us" element={<AboutUs setNavBarOption={setNavBarOption}/>} />
-                <Route path="/:category" element={<CategoryPage />} />
+                <Route path="/All-Questions" element={<ExpertForum />} />
                 <Route path="/question-form" element={<QuestionForm />} />
                 <Route path="/:category/:id" element={<SingleQuestionPage />} />
                 <Route path="/:category/:id/add-answer" element={<AnswerForm />} />
