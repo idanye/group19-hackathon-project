@@ -7,7 +7,7 @@ import MainContent from "./Components/MainContent";
 function App() {
 
   useEffect(() => {
-    document.title = 'Admin panel';
+    document.title = 'SafeSpace Admin Panel';
   }, []);
 
   return (
