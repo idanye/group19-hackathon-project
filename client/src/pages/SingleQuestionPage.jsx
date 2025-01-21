@@ -43,13 +43,12 @@ const SingleQuestionPage = () => {
       return <Navigate to="/404" />;
     }
 
-    
     const handleCommentClick = () => {
         if (!user) {
             setErrorMessage("You must be logged in to add a comment!");
             setTimeout(() => setErrorMessage(""), 2000);
         } else if (!isUserAllowedToComment) {
-            setErrorMessage("You are not allowed to comment on this question!");
+            setErrorMessage("You are not authorized to comment on this question!");
             setTimeout(() => setErrorMessage(""), 2000);
         } else {
             setErrorMessage("");  // Clear any previous error messages
@@ -66,6 +65,8 @@ const SingleQuestionPage = () => {
                     <button className="go-back-button">Back</button>
                 </Link>
             </div>
+
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
 
             <div className='single-question-page'>
 
@@ -124,7 +125,6 @@ const SingleQuestionPage = () => {
                                 )}
                                 
                                 <p>Only experts and the question asker are allowed to respond</p>
-                                {errorMessage && <div className="error-message">{errorMessage}</div>}
                             </div>
 
                             <hr className="elegant-line"/>
@@ -158,7 +158,5 @@ const SingleQuestionPage = () => {
         </div>
     )
 }
-
-
 
 export default SingleQuestionPage;
