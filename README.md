@@ -22,8 +22,9 @@ SafeSpace is a platform committed to raising awareness and providing resources f
 - Middleware
 
 ### Client-Side
-- **HomePage**: Introduces the platform’s purpose and the team behind it.
-- **CategoryPage**: Displays a categorized list of questions.
+- **HomePage**: Introduces the platform’s purpose and the experts.
+- **AboutUs**: Introduces the team.
+- **Expert Forum**: Displays a list of questions that can be filtered by category and keywords.
 - **SingleQuestionPage**: Shows the complete details of a question along with its answers.
 - **AnswerForm**: Allows logged-in users to submit answers; prompts non-logged-in users to log in.
 - **Authentication**: LoginPage and SignupPage for user and expert registration, including fields specific to experts.
@@ -130,12 +131,15 @@ PORT=4000
 - `src/pages`: Components for individual routes (e.g., Homepage, LoginPage, etc.).
 - `src/services`: Manages API interactions.
 - `src/styles`: Contains CSS for styling the application.
+- `src/hooks`: Custom hooks to simplify user registration and authentication processes.
+- `src/images`: Contains the application's logo and other image assets.
 
 ### Server
 - `models`: Data models for users, experts, questions, and answers.
 - `routes`: API endpoints for handling data and logic.
 - `controllers`: Backend logic for managing requests.
 - `middlewares`: Security and validation for user actions.
+- `services`: Handles email notifications for updates.
 
 ### Admin
 - Contains the admin panel for expert management.
