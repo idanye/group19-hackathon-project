@@ -4,6 +4,7 @@ import '../style/SingleQuestionPage.css';
 import { Navigate } from 'react-router-dom';
 import useValidCategory from '../hooks/useValidCategory.jsx';
 import { useAuthContext } from '../hooks/useAuthContext.jsx';
+import { useState, useEffect } from 'react';
 
 const SingleQuestionPage = () => {
     const { category, id } = useParams()
@@ -27,12 +28,32 @@ const SingleQuestionPage = () => {
 
     // check if the user is logged in - only logged-in users can comment
     const { user } = useAuthContext();
-
+    const [isUserAllowedToComment, setIsUserAllowedToComment] = useState(false);
+    useEffect(() => {
+        if (user && question && question.email_asked_by) {
+            setIsUserAllowedToComment(user.userType === 'expert' || (user.userType === 'regular' && question.email_asked_by === user.email));
+        }
+    }, [user, question]);
+    
+    const [errorMessage, setErrorMessage] = useState("");
 
     // Check if the category is valid else redirect to 404 page
     const isValid = useValidCategory(category);
     if (!isValid) {
       return <Navigate to="/404" />;
+    }
+
+    
+    const handleCommentClick = () => {
+        if (!user) {
+            setErrorMessage("You must be logged in to add a comment!");
+            setTimeout(() => setErrorMessage(""), 2000);
+        } else if (!isUserAllowedToComment) {
+            setErrorMessage("You are not allowed to comment on this question!");
+            setTimeout(() => setErrorMessage(""), 2000);
+        } else {
+            setErrorMessage("");  // Clear any previous error messages
+        }
     }
     
     return (
@@ -75,22 +96,35 @@ const SingleQuestionPage = () => {
                             <div className='question-add-answer'>
                                 {user ? (
                                     <div className="add-comment">
-                                        <Link
-                                            to={`/${category}/${id}/add-answer`}
-                                            className="add-answer-link"
-                                        >
-                                            <button className="add-answer-button">Comment</button>
-                                        </Link>
+                                        {isUserAllowedToComment === true && 
+                                            <Link
+                                                to={`/${category}/${id}/add-answer`}
+                                                className="add-answer-link"
+                                            >
+                                                <button className="add-answer-button">Comment</button>
+                                            </Link>
+                                        }
+                                        {isUserAllowedToComment === false &&
+                                            <button
+                                                className="add-answer-button"
+                                                onClick={() => handleCommentClick()}
+                                            >
+                                                Comment
+                                            </button>
+                                        }
+                                        
                                     </div>
                                 ) : (
                                     <button
                                         className="add-answer-button"
-                                        onClick={() => alert("You must be logged in to add a comment!")}
+                                        onClick={() => handleCommentClick()}
                                     >
                                         Comment
                                     </button>
                                 )}
+                                
                                 <p>Only experts and the question asker are allowed to respond</p>
+                                {errorMessage && <div className="error-message">{errorMessage}</div>}
                             </div>
 
                             <hr className="elegant-line"/>
@@ -123,7 +157,8 @@ const SingleQuestionPage = () => {
             </div>
         </div>
     )
-    }
+}
+
 
 
 export default SingleQuestionPage;
