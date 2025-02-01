@@ -1,5 +1,8 @@
 import nodemailer from 'nodemailer';
 
+import dotenv from 'dotenv';
+dotenv.config();
+const password = process.env.PASS
 /* ********************************* staySafe Website Notifications************************************* */
 
 // runs when a user submits a question - sends a confirmation email
@@ -8,7 +11,7 @@ export const sendEmailConfirmation = (userEmail) => {
     service: 'Gmail',
     auth: {
       user: 'group19hackathon@gmail.com',
-      pass: 'ehdd kber ntku koeo',
+      pass: password,  
     },
   });
 
@@ -50,7 +53,7 @@ export const sendExpertResponseNotification = (userEmail, questionTitle, questio
     service: 'Gmail',
     auth: {
       user: 'group19hackathon@gmail.com',
-      pass: 'ehdd kber ntku koeo',
+      pass: password,
     },
   });
 
@@ -93,7 +96,7 @@ export const sendRegularUserResponseNotification = (userEmail, questionTitle, qu
     service: 'Gmail',
     auth: {
       user: 'group19hackathon@gmail.com',
-      pass: 'ehdd kber ntku koeo',
+      pass: password,
     },
   });
 
@@ -135,7 +138,7 @@ export const sendNewQuestionNotification = (userEmail, questionTitle, questionPa
     service: 'Gmail',
     auth: {
       user: 'group19hackathon@gmail.com',
-      pass: 'ehdd kber ntku koeo',
+      pass: password,
     },
   });
 
@@ -179,7 +182,7 @@ export const sendExpertSignUpNotification = () => {
     service: 'Gmail',
     auth: {
       user: 'group19hackathon@gmail.com',
-      pass: 'ehdd kber ntku koeo',
+      pass: password
     },
   });
 
@@ -221,7 +224,7 @@ export const sendExpertApprovalNotification = (userEmail) => {
     service: 'Gmail',
     auth: {
       user: 'group19hackathon@gmail.com',
-      pass: 'ehdd kber ntku koeo',
+      pass: password,
     },
   });
 
@@ -262,7 +265,7 @@ export const sendExpertDeclineNotification = (userEmail) => {
     service: 'Gmail',
     auth: {
       user: 'group19hackathon@gmail.com',
-      pass: 'ehdd kber ntku koeo',
+      pass: password,
     },
   });
 
