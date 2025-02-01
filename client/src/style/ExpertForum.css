@@ -114,7 +114,8 @@
 
 /* Loading and error states styling */
 .loading-message,
-.error-message {
+.error-message,
+.end-message {
   padding: 20px;
   text-align: center;
   color: #718096;

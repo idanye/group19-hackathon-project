@@ -6,8 +6,7 @@ const AboutUs = ({ setNavBarOption }) => {
     useEffect(() => {
         // Update the Navbar option to About Us
         setNavBarOption("About Us");
-    }
-    , []);
+    }, [setNavBarOption]); // Add 'setNavBarOption' as a dependency
 
     return (
         <div className="page">
@@ -59,4 +58,4 @@ AboutUs.propTypes = {
     setNavBarOption: PropTypes.func.isRequired,
 };
 
-export default AboutUs
+export default AboutUs;
