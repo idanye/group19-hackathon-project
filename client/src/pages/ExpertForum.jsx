@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from "react";
+import {useCallback, useRef } from "react";
 import '../style/ExpertForum.css';
 import { useState } from "react";
 import QuestionItem from "../components/QuestionItem.jsx";
